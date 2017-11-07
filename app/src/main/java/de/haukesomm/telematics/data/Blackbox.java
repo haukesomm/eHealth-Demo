@@ -31,57 +31,119 @@ import java.util.ArrayList;
 /**
  * Created on 04.11.17
  *
+ * This class stores the blackbox-data from the space detection vehicle.
+ * <p>
+ * Since there is no real vehicle the database populates itself with mockup-data provided in form of
+ * csv-files on first access.
+ *
  * @author Hauke Sommerfeld
  */
 public class Blackbox extends SQLiteOpenHelper {
 
+    /**
+     * Name of the database file.
+     */
     private static final String FILENAME = "blackbox.db";
 
 
+    /**
+     * Database version. This is important in case the database implementation changes.
+     *
+     * @see #onCreate(SQLiteDatabase)
+     */
     private static final int VERSION = 1;
 
 
 
+    /**
+     * Name of the directory in which the mockup-data csv-files are stored.
+     * It is located within the Android 'assets' resource-directory.
+     */
     private static final String MOCKUP_DATA_DIR = "mockup-data";
 
 
+    /**
+     * Prefix of all database tables containing mockup-data.
+     * This might become important in case the app switches to real-world-data at some point.
+     */
     private static final String MOCKUP_TABLE_PREFIX = "MOCKUP_";
 
 
 
+    /**
+     * This String is used to identify the id of a specific data-set.
+     * It is used for both the database's tables and JSON-objects which are used to transfer data.
+     */
     public static final String DATA_ID = "id";
 
 
+    /**
+     * This String is used to identify the timestamp of a specific data-set.
+     * It is used for both the database's tables and JSON-objects which are used to transfer data.
+     */
     public static final String DATA_TIME = "time";
 
 
+    /**
+     * This String is used to identify the 'space lenght'-data in a data-set.
+     * It is used for both the database's tables and JSON-objects which are used to transfer data.
+     */
     public static final String DATA_SPACE_LENGHT = "spaceLenght";
 
 
+    /**
+     * This String is used to identify the location-data's latitude in a data-set.
+     * It is used for both the database's tables and JSON-objects which are used to transfer data.
+     */
     public static final String DATA_LATITUDE = "latitude";
 
 
+    /**
+     * This String is used to identify the location-data's longitude in a data-set.
+     * It is used for both the database's tables and JSON-objects which are used to transfer data.
+     */
     public static final String DATA_LONGITUDE = "longitude";
 
 
+    /**
+     * This String is used to identify the vehicle's direction in a data-set.
+     * It is used for both the database's tables and JSON-objects which are used to transfer data.
+     */
     public static final String DATA_DIRECTION = "direction";
 
 
+    /**
+     * This String is used to identify the vehicle's speed in a data-set.
+     * It is used for both the database's tables and JSON-objects which are used to transfer data.
+     */
     public static final String DATA_SPEED = "speed";
 
 
-
+    /**
+     * Construcor of the Blackbox SQLiteOpenHelper.
+     *
+     * @param context The app's context to use for the database connection.
+     */
     public Blackbox(@NonNull Context context) {
         super(context, FILENAME, null, VERSION);
         mContext = context;
     }
 
 
-
+    /**
+     * Reference to the app's context since {@link SQLiteOpenHelper} does not have a getContext()
+     * method.
+     */
     private final Context mContext;
 
 
-
+    /**
+     * This method gets called when Blackbox is accessed for the first time and populates it with
+     * mockup-data from {@link #MOCKUP_DATA_DIR}.
+     * A new table is created for each csv-file. Each file contains data from one day.
+     *
+     * @param database The database which has been created.
+     */
     @Override
     public void onCreate(SQLiteDatabase database) {
         AssetManager assetManager = mContext.getAssets();
@@ -115,6 +177,19 @@ public class Blackbox extends SQLiteOpenHelper {
     }
 
 
+    /**
+     * This method reads the data from a given csv-file asset and returns all data-sets as a list of
+     * JSONObjects. The timestamp gets extracted from the longer csv-timestamp.
+     *
+     * @param assetManager  The asset manager which will be used to load the asset.
+     * @param assetName     The name of the asset to load.
+     * @return              Returns an ArrayList of JSONObjects containing the data-sets of the
+     *                      asset
+     *
+     * @see #generateTime(String)
+     * @see ArrayList
+     * @see JSONObject
+     */
     private ArrayList<JSONObject> readMockupData(AssetManager assetManager, String assetName) {
         ArrayList<JSONObject> jsonObjects = new ArrayList<>();
 
@@ -151,23 +226,46 @@ public class Blackbox extends SQLiteOpenHelper {
     }
 
 
+    /**
+     * This method generates an 'hh:mm:ss'-timestamp from the much longer csv-file timestamp.
+     *
+     * @param timestamp Timestamp from the original mockup-data csv-file.
+     * @return          Returns an 'hh:mm:ss'-timestamp.
+     */
     private String generateTime(String timestamp) {
         String[] timeParts = timestamp.split("T");
         return timeParts[timeParts.length - 1].split("\\+")[0];
     }
 
 
-
+    /**
+     * This method gets called when the Blackbox is beeing accessed for the first time after
+     * {@link #VERSION} changed.
+     *
+     * @param db            The database which has been updated.
+     * @param oldVersion    Old version of the database.
+     * @param newVersion    New version of the database.
+     */
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         // There is nothing to upgrade
     }
 
 
-
+    /**
+     * Class variable holding the actual SQLite database when the Blackbox is open.
+     *
+     * @see SQLiteDatabase
+     * @see #open()
+     * @see #close()
+     */
     private SQLiteDatabase mDatabase;
 
 
+    /**
+     * This method opens a connection to the database and must be called before the Blackbox can be
+     * accessed.
+     */
     public void open() {
         if (mDatabase == null || !mDatabase.isOpen()) {
             mDatabase = getWritableDatabase();
@@ -175,6 +273,10 @@ public class Blackbox extends SQLiteOpenHelper {
     }
 
 
+    /**
+     * This method closes the connection to the database and should be called once the Blackbox will
+     * no longer be accessed.
+     */
     @Override
     public void close() {
         if (mDatabase != null && mDatabase.isOpen()) {
@@ -183,9 +285,16 @@ public class Blackbox extends SQLiteOpenHelper {
     }
 
 
-
-    /* This method is never used and only here for demo purposes.
-     * Data would be added to the blackbox trough this method if there was no mockup data. */
+    /**
+     * This method can be used to pass data in form of a {@link JSONObject} to the Blackbox.
+     * <p>
+     * An {@link IllegalStateException} will be thrown if the Blackbox is not open.
+     *
+     * @param table The table the data should be added to. Format: [PREFIX][DATE(yyyymmdd)]
+     * @param data  The vehicle data in form of a JSONObject which should be added to the Blackbox.
+     *
+     * @see #MOCKUP_TABLE_PREFIX
+     */
     @SuppressWarnings("unused")
     public void add(@NonNull String table, @NonNull JSONObject data) {
         if (mDatabase == null || !mDatabase.isOpen()) {
@@ -196,6 +305,14 @@ public class Blackbox extends SQLiteOpenHelper {
     }
 
 
+    /**
+     * This method can be used to pass data in form of a {@link JSONObject} to the Blackbox.
+     *
+     * @param database  The databa the data should be added to.
+     * @param table     The table the data should be added to. Format: [PREFIX][DATE(yyyymmdd)]
+     * @param data      The vehicle data in form of a JSONObject which should be added to the
+     *                  Blackbox.
+     */
     private void add(SQLiteDatabase database, String table, JSONObject data) {
         try {
             ContentValues columns = new ContentValues();
@@ -214,7 +331,15 @@ public class Blackbox extends SQLiteOpenHelper {
     }
 
 
-
+    /**
+     * This method can be used to obtain a list of all data-sets in a specific table of the
+     * BlackBox in form of {@link JSONObject}s.
+     * <p>
+     * An {@link IllegalStateException} will be thrown if the Blackbox is not open.
+     *
+     * @param table The table the data should be retrieved from. Format: [PREFIX][DATE(yyyymmdd)]
+     * @return      Returns a list of all data-sets in a table of in form of {@link JSONObject}s.
+     */
     public ArrayList<JSONObject> getEntireTable(@NonNull String table) {
         if (mDatabase == null || !mDatabase.isOpen()) {
             throw new IllegalStateException("Call open() before accessing the database!");
