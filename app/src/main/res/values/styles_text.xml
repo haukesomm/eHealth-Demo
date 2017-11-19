@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- This layout file contains all Android text styles suggested in the Google
+Material Design typography guidelines
+(https://material.io/guidelines/style/typography.html#typography-styles).
+
+There are styles for each size as well as styles for primary and secondary texts
+(e.g. for use in VertretungsplanPreferenceFragment) which inherit the respective size-only-styles.
+
+Hauke Sommerfeld, github.com/haukesomm -->
+
+<resources>
+    <style name="Text"/>
+
+
+    <!-- size-only-styles -->
+
+    <style name="Text.Display4">
+        <item name="android:textSize">112sp</item>
+        <item name="android:fontFamily">sans-serif-light</item>
+    </style>
+
+    <style name="Text.Display3">
+        <item name="android:textSize">56sp</item>
+    </style>
+
+    <style name="Text.Display2">
+        <item name="android:textSize">45sp</item>
+    </style>
+
+    <style name="Text.Display1">
+        <item name="android:textSize">34sp</item>
+    </style>
+
+    <style name="Text.Headline">
+        <item name="android:textSize">24sp</item>
+    </style>
+
+    <style name="Text.Title">
+        <item name="android:textSize">20sp</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+    </style>
+
+    <style name="Text.Subheading">
+        <item name="android:textSize">16sp</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+    </style>
+
+    <style name="Text.Body2">
+        <item name="android:textSize">14sp</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+    </style>
+
+    <style name="Text.Body1">
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="Text.Caption">
+        <item name="android:textSize">12sp</item>
+    </style>
+
+
+    <!-- primary and secondary styles -->
+
+    <style name="Text.Display4.Primary" parent="Text.Display4">
+        <item name="android:textColor">?android:textColorPrimary</item>
+    </style>
+
+    <style name="Text.Display4.Secondary" parent="Text.Display4">
+        <item name="android:textColor">?android:textColorSecondary</item>
+    </style>
+
+    <style name="Text.Display3.Primary" parent="Text.Display3">
+        <item name="android:textColor">?android:textColorPrimary</item>
+    </style>
+
+    <style name="Text.Display3.Secondary" parent="Text.Display3">
+        <item name="android:textColor">?android:textColorSecondary</item>
+    </style>
+
+    <style name="Text.Display2.Primary" parent="Text.Display2">
+        <item name="android:textColor">?android:textColorPrimary</item>
+    </style>
+
+    <style name="Text.Display2.Secondary" parent="Text.Display2">
+        <item name="android:textColor">?android:textColorSecondary</item>
+    </style>
+
+    <style name="Text.Display1.Primary" parent="Text.Display1">
+        <item name="android:textColor">?android:textColorPrimary</item>
+    </style>
+
+    <style name="Text.Display1.Secondary" parent="Text.Display1">
+        <item name="android:textColor">?android:textColorSecondary</item>
+    </style>
+
+    <style name="Text.Headline.Primary" parent="Text.Headline">
+        <item name="android:textColor">?android:textColorPrimary</item>
+    </style>
+
+    <style name="Text.Headline.Secondary" parent="Text.Headline">
+        <item name="android:textColor">?android:textColorSecondary</item>
+    </style>
+
+    <style name="Text.Title.Primary" parent="Text.Title">
+        <item name="android:textColor">?android:textColorPrimary</item>
+    </style>
+
+    <style name="Text.Title.Secondary" parent="Text.Title">
+        <item name="android:textColor">?android:textColorSecondary</item>
+    </style>
+
+    <style name="Text.Subheading.Primary" parent="Text.Subheading">
+        <item name="android:textColor">?android:textColorPrimary</item>
+    </style>
+
+    <style name="Text.Subheading.Secondary" parent="Text.Subheading">
+        <item name="android:textColor">?android:textColorSecondary</item>
+    </style>
+
+    <style name="Text.Body2.Primary" parent="Text.Body2">
+        <item name="android:textColor">?android:textColorPrimary</item>
+    </style>
+
+    <style name="Text.Body2.Secondary" parent="Text.Body2">
+        <item name="android:textColor">?android:textColorSecondary</item>
+    </style>
+
+    <style name="Text.Body1.Primary" parent="Text.Body1">
+        <item name="android:textColor">?android:textColorPrimary</item>
+    </style>
+
+    <style name="Text.Body1.Secondary" parent="Text.Body1">
+        <item name="android:textColor">?android:textColorSecondary</item>
+    </style>
+
+    <style name="Text.Body1.Important" parent="Text.Body1">
+        <item name="android:textColor">?android:textColorSecondary</item>
+    </style>
+
+    <style name="Text.Caption.Primary" parent="Text.Caption">
+        <item name="android:textColor">?android:textColorPrimary</item>
+    </style>
+
+    <style name="Text.Caption.Secondary" parent="Text.Caption">
+        <item name="android:textColor">?android:textColorSecondary</item>
+    </style>
+</resources>
