@@ -289,6 +289,33 @@ public class Blackbox extends SQLiteOpenHelper {
     }
 
 
+    /**
+     * This method returns a list of all tables of the Blackbox.
+     * <p>
+     * An {@link IllegalStateException} will be thrown if the Blackbox is not open.
+     *
+     * @return ArrayList of all tables
+     */
+    public ArrayList<String> getTables() {
+        if (mDatabase == null || !mDatabase.isOpen()) {
+            throw new IllegalStateException("Call open() before accessing the database!");
+        }
+
+        ArrayList<String> tables = new ArrayList<String>();
+
+        Cursor cursor = mDatabase.rawQuery("SELECT name FROM sqlite_master WHERE type='table' AND name LIKE 'MOCKUP_%' order by name", null);
+        if (cursor.moveToFirst()) {
+            while (!cursor.isAfterLast()) {
+                tables.add(cursor.getString( cursor.getColumnIndex("name")));
+                cursor.moveToNext();
+            }
+        }
+        cursor.close();
+
+        return tables;
+    }
+
+
 
     /**
      * This method can be used to pass data in form of a {@link JSONObject} to the Blackbox.
