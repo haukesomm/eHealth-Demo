@@ -119,6 +119,7 @@ public class Blackbox extends SQLiteOpenHelper {
     public static final String DATA_SPEED = "speed";
 
 
+
     /**
      * Construcor of the Blackbox SQLiteOpenHelper.
      *
@@ -130,11 +131,13 @@ public class Blackbox extends SQLiteOpenHelper {
     }
 
 
+
     /**
      * Reference to the app's context since {@link SQLiteOpenHelper} does not have a getContext()
      * method.
      */
     private final Context mContext;
+
 
 
     /**
@@ -252,6 +255,7 @@ public class Blackbox extends SQLiteOpenHelper {
     }
 
 
+
     /**
      * Class variable holding the actual SQLite database when the Blackbox is open.
      *
@@ -283,6 +287,7 @@ public class Blackbox extends SQLiteOpenHelper {
             mDatabase.close();
         }
     }
+
 
 
     /**
@@ -329,6 +334,7 @@ public class Blackbox extends SQLiteOpenHelper {
                     + e.getMessage() + ")");
         }
     }
+
 
 
     /**
