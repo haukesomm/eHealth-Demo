@@ -92,6 +92,13 @@ public class Blackbox extends SQLiteOpenHelper {
 
 
     /**
+     * This String is used to identify the 'space depth'-data in a data-set.
+     * It is used for both the database's tables and JSON-objects which are used to transfer data.
+     */
+    public static final String DATA_SPACE_DEPTH = "spaceDepth";
+
+
+    /**
      * This String is used to identify the location-data's latitude in a data-set.
      * It is used for both the database's tables and JSON-objects which are used to transfer data.
      */
@@ -167,6 +174,7 @@ public class Blackbox extends SQLiteOpenHelper {
                     + DATA_ID               + " INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, "
                     + DATA_TIME             + " TEXT NOT NULL, "
                     + DATA_SPACE_LENGHT     + " REAL NOT NULL, "
+                    + DATA_SPACE_DEPTH      + " REAL NOT NULL, "
                     + DATA_LATITUDE         + " REAL NOT NULL, "
                     + DATA_LONGITUDE        + " REAL NOT NULL, "
                     + DATA_DIRECTION        + " REAL NOT NULL, "
@@ -208,12 +216,13 @@ public class Blackbox extends SQLiteOpenHelper {
 
             while ((csvColumns = csvReader.readNext()) != null) {
                 JSONObject json = new JSONObject();
-                json.put(DATA_TIME,           generateTime(csvColumns[0]));
-                json.put(DATA_SPACE_LENGHT,   Double.valueOf(csvColumns[1]));
-                json.put(DATA_LATITUDE,       Double.valueOf(csvColumns[2]));
-                json.put(DATA_LONGITUDE,      Double.valueOf(csvColumns[3]));
-                json.put(DATA_DIRECTION,      Double.valueOf(csvColumns[4]));
-                json.put(DATA_SPEED,          Double.valueOf(csvColumns[5]));
+                json.put(DATA_TIME,             generateTime(csvColumns[0]));
+                json.put(DATA_SPACE_LENGHT,     Double.valueOf(csvColumns[1]));
+                json.put(DATA_SPACE_DEPTH,      Double.valueOf(csvColumns[2]));
+                json.put(DATA_LATITUDE,         Double.valueOf(csvColumns[3]));
+                json.put(DATA_LONGITUDE,        Double.valueOf(csvColumns[4]));
+                json.put(DATA_DIRECTION,        Double.valueOf(csvColumns[5]));
+                json.put(DATA_SPEED,            Double.valueOf(csvColumns[6]));
 
                 jsonObjects.add(json);
             }
@@ -350,6 +359,7 @@ public class Blackbox extends SQLiteOpenHelper {
             ContentValues columns = new ContentValues();
             columns.put(DATA_TIME,          data.getString(DATA_TIME));
             columns.put(DATA_SPACE_LENGHT,  data.getDouble(DATA_SPACE_LENGHT));
+            columns.put(DATA_SPACE_DEPTH,   data.getDouble(DATA_SPACE_DEPTH));
             columns.put(DATA_LATITUDE,      data.getDouble(DATA_LATITUDE));
             columns.put(DATA_LONGITUDE,     data.getDouble(DATA_LONGITUDE));
             columns.put(DATA_DIRECTION,     data.getDouble(DATA_DIRECTION));
@@ -387,10 +397,11 @@ public class Blackbox extends SQLiteOpenHelper {
                 json.put(DATA_ID,               cursor.getInt(0));
                 json.put(DATA_TIME,             cursor.getString(1));
                 json.put(DATA_SPACE_LENGHT,     cursor.getDouble(2));
-                json.put(DATA_LATITUDE,         cursor.getDouble(3));
-                json.put(DATA_LONGITUDE,        cursor.getDouble(4));
-                json.put(DATA_DIRECTION,        cursor.getDouble(5));
-                json.put(DATA_SPEED,            cursor.getDouble(6));
+                json.put(DATA_SPACE_DEPTH,      cursor.getDouble(3));
+                json.put(DATA_LATITUDE,         cursor.getDouble(4));
+                json.put(DATA_LONGITUDE,        cursor.getDouble(5));
+                json.put(DATA_DIRECTION,        cursor.getDouble(6));
+                json.put(DATA_SPEED,            cursor.getDouble(7));
 
                 jsonObjects.add(json);
             } catch (JSONException e) {
