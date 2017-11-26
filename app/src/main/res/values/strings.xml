@@ -7,4 +7,5 @@
 
     <!-- Data -->
     <string name="data_notAvailable">No data available</string>
+    <string name="data_unit_mph">mph</string>
 </resources>
