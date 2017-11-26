@@ -43,22 +43,20 @@ import de.haukesomm.telematics.R;
  */
 public class Blackbox extends SQLiteOpenHelper {
 
-    /**
+    /*
      * Name of the database file.
      */
     private static final String FILENAME = "blackbox.db";
 
 
-    /**
+    /*
      * Database version. This is important in case the database implementation changes.
-     *
-     * @see #onCreate(SQLiteDatabase)
      */
     private static final int VERSION = 1;
 
 
 
-    /**
+    /*
      * Name of the directory in which the mockup-data csv-files are stored.
      * It is located within the Android 'assets' resource-directory.
      */
@@ -69,7 +67,7 @@ public class Blackbox extends SQLiteOpenHelper {
      * Prefix of all database tables containing mockup-data.
      * This might become important in case the app switches to real-world-data at some point.
      */
-    private static final String MOCKUP_TABLE_PREFIX = "MOCKUP_";
+    public static final String MOCKUP_TABLE_PREFIX = "MOCKUP_";
 
 
 
@@ -130,7 +128,7 @@ public class Blackbox extends SQLiteOpenHelper {
 
 
 
-    /**
+    /*
      * This String is used to identify the 'cache'-table of the Blackbox.
      */
     private static final String CACHE_TABLE_NAME = "cache";
@@ -181,8 +179,8 @@ public class Blackbox extends SQLiteOpenHelper {
 
 
 
-    /**
-     * Reference to the app's context since {@link SQLiteOpenHelper} does not have a getContext()
+    /*
+     * Reference to the app's context since SQLiteOpenHelper does not have a getContext()
      * method.
      */
     private final Context mContext;
@@ -232,19 +230,9 @@ public class Blackbox extends SQLiteOpenHelper {
     }
 
 
-    /**
-     * This method reads the data from a given csv-file asset and returns all data-sets as a list of
-     * JSONObjects. The timestamp gets extracted from the longer csv-timestamp.
-     *
-     * @param assetManager  The asset manager which will be used to load the asset.
-     * @param assetName     The name of the asset to load.
-     * @return              Returns an ArrayList of JSONObjects containing the data-sets of the
-     *                      asset
-     *
-     * @see #generateTime(String)
-     * @see ArrayList
-     * @see JSONObject
-     */
+    /* This method reads the data from a given csv-file asset and returns all data-sets as a list of
+     * JSONObjects.
+     * The timestamp gets extracted from the longer csv-timestamp. */
     private ArrayList<JSONObject> readMockupData(AssetManager assetManager, String assetName) {
         ArrayList<JSONObject> jsonObjects = new ArrayList<>();
 
@@ -282,12 +270,6 @@ public class Blackbox extends SQLiteOpenHelper {
     }
 
 
-    /**
-     * This method generates an 'hh:mm:ss'-timestamp from the much longer csv-file timestamp.
-     *
-     * @param timestamp Timestamp from the original mockup-data csv-file.
-     * @return          Returns an 'hh:mm:ss'-timestamp.
-     */
     private String generateTime(String timestamp) {
         String[] timeParts = timestamp.split("T");
         return timeParts[timeParts.length - 1].split("\\+")[0];
@@ -309,12 +291,8 @@ public class Blackbox extends SQLiteOpenHelper {
 
 
 
-    /**
+    /*
      * Class variable holding the actual SQLite database when the Blackbox is open.
-     *
-     * @see SQLiteDatabase
-     * @see #open()
-     * @see #close()
      */
     private SQLiteDatabase mDatabase;
 
@@ -359,12 +337,6 @@ public class Blackbox extends SQLiteOpenHelper {
     }
 
 
-    /**
-     * This method returns a list of all tables of the Blackbox.
-     *
-     * @param database  The database which tables should be returned
-     * @return          ArrayList of all tables
-     */
     private ArrayList<String> getTables(SQLiteDatabase database) {
         ArrayList<String> tables = new ArrayList<>();
 
@@ -402,14 +374,6 @@ public class Blackbox extends SQLiteOpenHelper {
     }
 
 
-    /**
-     * This method can be used to pass data in form of a {@link JSONObject} to the Blackbox.
-     *
-     * @param database  The databa the data should be added to.
-     * @param table     The table the data should be added to. Format: [PREFIX][DATE(yyyymmdd)]
-     * @param data      The vehicle data in form of a JSONObject which should be added to the
-     *                  Blackbox.
-     */
     private void add(SQLiteDatabase database, String table, JSONObject data) {
         try {
             ContentValues columns = new ContentValues();
@@ -448,14 +412,6 @@ public class Blackbox extends SQLiteOpenHelper {
     }
 
 
-    /**
-     * This method can be used to obtain a list of all data-sets in a specific table of the
-     * BlackBox in form of {@link JSONObject}s.
-     *
-     * @param database  The database which table should be returned
-     * @param table     The table the data should be retrieved from. Format: [PREFIX][DATE(yyyymmdd)]
-     * @return          Returns a list of all data-sets in a table of in form of {@link JSONObject}s.
-     */
     private ArrayList<JSONObject> getEntireTable(SQLiteDatabase database, String table) {
         ArrayList<JSONObject> jsonObjects = new ArrayList<>();
 
@@ -490,11 +446,9 @@ public class Blackbox extends SQLiteOpenHelper {
      * positions from all tables of the Blackbox and stores them in a separate 'cache'-table.
      * This is useful in some cases only a preview of a table is needed and this way there is no
      * need to read and process the data of an entire table.
-     * The app's {@link de.haukesomm.telematics.OverviewActivity} takes advantage from this cache.
      * <p>
      * An {@link IllegalStateException} will be thrown if the Blackbox is not open.
      *
-     * @see de.haukesomm.telematics.OverviewActivity
      * @see #getEntireTable(String)
      */
     @SuppressWarnings("unused")
@@ -507,18 +461,6 @@ public class Blackbox extends SQLiteOpenHelper {
     }
 
 
-    /**
-     * This method generates commonly requested data such as average speed or start- and destination-
-     * positions from all tables of the Blackbox and stores them in a separate 'cache'-table.
-     * This is useful in some cases only a preview of a table is needed and this way there is no
-     * need to read and process the data of an entire table.
-     * The app's {@link de.haukesomm.telematics.OverviewActivity} takes advantage from this cache.
-     *
-     * @param database  The database which should be used to build the 'cache'-table
-     *
-     * @see             de.haukesomm.telematics.OverviewActivity
-     * @see             #getEntireTable(String)
-     */
     private void rebuildCache(SQLiteDatabase database) {
         database.execSQL("DROP TABLE IF EXISTS " + CACHE_TABLE_NAME);
         database.execSQL("CREATE TABLE " + CACHE_TABLE_NAME + " ("
