@@ -27,6 +27,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.List;
+
+import de.haukesomm.telematics.R;
 
 /**
  * Created on 04.11.17
@@ -128,6 +131,45 @@ public class Blackbox extends SQLiteOpenHelper {
 
 
     /**
+     * This String is used to identify the 'cache'-table of the Blackbox.
+     */
+    private static final String CACHE_TABLE_NAME = "cache";
+
+
+    /**
+     * This String is used to identify the name of a table in a cached data-set.
+     * It is used for both the database's cache table and JSON-objects which are used to transfer
+     * data.
+     */
+    public static final String CACHE_TABLE = "data_table";
+
+
+    /**
+     * This String is used to identify the starting location in a cached data-set.
+     * It is used for both the database's cache table and JSON-objects which are used to transfer
+     * data.
+     */
+    public static final String CACHE_LOCATION_START = "start";
+
+
+    /**
+     * This String is used to identify the destination location in a cached data-set.
+     * It is used for both the database's cache table and JSON-objects which are used to transfer
+     * data.
+     */
+    public static final String CACHE_LOCATION_DESTINATION = "destination";
+
+
+    /**
+     * This String is used to identify the average speed in a cached data-set.
+     * It is used for both the database's cache table and JSON-objects which are used to transfer
+     * data.
+     */
+    public static final String CACHE_AVERAGE_SPEED = "averageSpeed";
+
+
+
+    /**
      * Construcor of the Blackbox SQLiteOpenHelper.
      *
      * @param context The app's context to use for the database connection.
@@ -185,6 +227,8 @@ public class Blackbox extends SQLiteOpenHelper {
                 add(database, tableName, data);
             }
         }
+
+        rebuildCache(database);
     }
 
 
@@ -298,6 +342,7 @@ public class Blackbox extends SQLiteOpenHelper {
     }
 
 
+
     /**
      * This method returns a list of all tables of the Blackbox.
      * <p>
@@ -310,9 +355,20 @@ public class Blackbox extends SQLiteOpenHelper {
             throw new IllegalStateException("Call open() before accessing the database!");
         }
 
-        ArrayList<String> tables = new ArrayList<String>();
+        return getTables(mDatabase);
+    }
 
-        Cursor cursor = mDatabase.rawQuery("SELECT name FROM sqlite_master WHERE type='table' AND name LIKE 'MOCKUP_%' order by name", null);
+
+    /**
+     * This method returns a list of all tables of the Blackbox.
+     *
+     * @param database  The database which tables should be returned
+     * @return          ArrayList of all tables
+     */
+    private ArrayList<String> getTables(SQLiteDatabase database) {
+        ArrayList<String> tables = new ArrayList<>();
+
+        Cursor cursor = database.rawQuery("SELECT name FROM sqlite_master WHERE type='table' AND name LIKE 'MOCKUP_%' order by name", null);
         if (cursor.moveToFirst()) {
             while (!cursor.isAfterLast()) {
                 tables.add(cursor.getString( cursor.getColumnIndex("name")));
@@ -388,9 +444,22 @@ public class Blackbox extends SQLiteOpenHelper {
             throw new IllegalStateException("Call open() before accessing the database!");
         }
 
+        return getEntireTable(mDatabase, table);
+    }
+
+
+    /**
+     * This method can be used to obtain a list of all data-sets in a specific table of the
+     * BlackBox in form of {@link JSONObject}s.
+     *
+     * @param database  The database which table should be returned
+     * @param table     The table the data should be retrieved from. Format: [PREFIX][DATE(yyyymmdd)]
+     * @return          Returns a list of all data-sets in a table of in form of {@link JSONObject}s.
+     */
+    private ArrayList<JSONObject> getEntireTable(SQLiteDatabase database, String table) {
         ArrayList<JSONObject> jsonObjects = new ArrayList<>();
 
-        Cursor cursor = mDatabase.query(table, null, null, null, null, null, null);
+        Cursor cursor = database.query(table, null, null, null, null, null, null);
         for (cursor.moveToFirst(); !cursor.isAfterLast(); cursor.moveToNext()) {
             try {
                 JSONObject json = new JSONObject();
@@ -412,5 +481,113 @@ public class Blackbox extends SQLiteOpenHelper {
         cursor.close();
 
         return jsonObjects;
+    }
+
+
+
+    /**
+     * This method generates commonly requested data such as average speed or start- and destination-
+     * positions from all tables of the Blackbox and stores them in a separate 'cache'-table.
+     * This is useful in some cases only a preview of a table is needed and this way there is no
+     * need to read and process the data of an entire table.
+     * The app's {@link de.haukesomm.telematics.OverviewActivity} takes advantage from this cache.
+     * <p>
+     * An {@link IllegalStateException} will be thrown if the Blackbox is not open.
+     *
+     * @see de.haukesomm.telematics.OverviewActivity
+     * @see #getEntireTable(String)
+     */
+    @SuppressWarnings("unused")
+    public void rebuildCache() {
+        if (mDatabase == null || !mDatabase.isOpen()) {
+            throw new IllegalStateException("Call open() before accessing the database!");
+        }
+
+        rebuildCache(mDatabase);
+    }
+
+
+    /**
+     * This method generates commonly requested data such as average speed or start- and destination-
+     * positions from all tables of the Blackbox and stores them in a separate 'cache'-table.
+     * This is useful in some cases only a preview of a table is needed and this way there is no
+     * need to read and process the data of an entire table.
+     * The app's {@link de.haukesomm.telematics.OverviewActivity} takes advantage from this cache.
+     *
+     * @param database  The database which should be used to build the 'cache'-table
+     *
+     * @see             de.haukesomm.telematics.OverviewActivity
+     * @see             #getEntireTable(String)
+     */
+    private void rebuildCache(SQLiteDatabase database) {
+        database.execSQL("DROP TABLE IF EXISTS " + CACHE_TABLE_NAME);
+        database.execSQL("CREATE TABLE " + CACHE_TABLE_NAME + " ("
+                + CACHE_TABLE                   + " TEXT NOT NULL PRIMARY KEY, "
+                + CACHE_LOCATION_START          + " TEXT NOT NULL, "
+                + CACHE_LOCATION_DESTINATION    + " TEXT NOT NULL, "
+                + CACHE_AVERAGE_SPEED           + " REAL NOT NULL);"
+        );
+
+        for (String table : getTables(database)) {
+            List<JSONObject> data = getEntireTable(database, table);
+
+            /* BEGIN:
+             * The following code is not final. The locations can be generated from the given GPS
+             * coordinates once the Google Maps SDK is implemented.
+             * The average speed may be calculated in a separate method in the future. */
+            double averageSpeed = 0.0d;
+            for (JSONObject o : data) {
+                try {
+                    double speed = o.getDouble(Blackbox.DATA_SPEED);
+                    averageSpeed += speed;
+                } catch (JSONException e) {
+                    // Warning
+                }
+            }
+            averageSpeed /= data.size();
+
+
+            ContentValues columns = new ContentValues();
+            columns.put(CACHE_TABLE, table);
+            columns.put(CACHE_LOCATION_START, mContext.getString(R.string.unknown));
+            columns.put(CACHE_LOCATION_DESTINATION, mContext.getString(R.string.unknown));
+            columns.put(CACHE_AVERAGE_SPEED, averageSpeed);
+            /* END */
+
+            database.insert(CACHE_TABLE_NAME, null, columns);
+        }
+    }
+
+
+
+    /**
+     * This method return the cached data from a specific 'cache'-table in form of a JSONObject.
+     * <p>
+     * An {@link IllegalStateException} will be thrown if the Blackbox is not open.
+     *
+     * @param table The table which data should be returned
+     * @return      A JSONObject containing the cached values
+     */
+    public JSONObject getCachedValues(@NonNull String table) {
+        if (mDatabase == null || !mDatabase.isOpen()) {
+            throw new IllegalStateException("Call open() before accessing the database!");
+        }
+
+        Cursor cursor = mDatabase.query(CACHE_TABLE_NAME, null, CACHE_TABLE + " = '" + table + "'", null, null, null, null);
+        cursor.moveToFirst();
+
+        JSONObject json = new JSONObject();
+        try {
+            json.put(CACHE_TABLE,                   cursor.getString(0));
+            json.put(CACHE_LOCATION_START,          cursor.getString(1));
+            json.put(CACHE_LOCATION_DESTINATION,    cursor.getString(2));
+            json.put(CACHE_AVERAGE_SPEED,           cursor.getDouble(3));
+        } catch (JSONException e) {
+            Log.w("Blackbox", "Unable to get entry '" + cursor.getPosition() + "' from table '"
+                    + table + "': " + e.getMessage());
+        }
+        cursor.close();
+
+        return json;
     }
 }

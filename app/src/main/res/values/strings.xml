@@ -1,3 +1,10 @@
 <resources>
+    <!-- App -->
     <string name="app_name">Telematics</string>
+
+    <!-- General -->
+    <string name="unknown">Unknown</string>
+
+    <!-- Data -->
+    <string name="data_notAvailable">No data available</string>
 </resources>
