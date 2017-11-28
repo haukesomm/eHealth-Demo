@@ -19,6 +19,7 @@ import android.support.annotation.NonNull;
  * @author Hauke Sommerfeld
  */
 public enum PrivacyMode {
+    UNKNOWN(-1),
     MAXIMUM_DATA(0),
     USER_DEFINED(45),
     MINIMUM_DATA(65),
