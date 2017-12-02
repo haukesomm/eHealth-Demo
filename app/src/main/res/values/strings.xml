@@ -15,10 +15,6 @@
 
     <!-- Privacy -->
     <string name="privacy_settings_title">Privacy Settings</string>
-    <string name="privacy_mode_maximumData">0% - Personalized Plan\nMaximum Amount of Data</string>
-    <string name="privacy_mode_userDefined">0–65% - Flexible Plan\nSelected Data Only</string>
-    <string name="privacy_mode_minimumData">~65% - Flexible Plan\nMinimum Amount of Data</string>
-    <string name="privacy_mode_obfuscation">100% - Standard Plan\nObfuscation Mode</string>
 
     <!-- Data -->
     <string name="data_notAvailable">No data available</string>
