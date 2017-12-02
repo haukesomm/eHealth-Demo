@@ -13,13 +13,11 @@
     <!-- Timeline Fragment -->
     <string name="fragment_timeline_title">Timeline</string>
 
-    <!-- Privacy -->
-    <string name="privacy_settings_title">Privacy Settings</string>
-
     <!-- Data -->
     <string name="data_notAvailable">No data available</string>
     <string name="data_unit_mph">mph</string>
 
     <!-- Settings -->
     <string name="settings_title">Settings</string>
+    <string name="settings_privacy">Privacy Settings</string>
 </resources>

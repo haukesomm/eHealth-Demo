@@ -29,6 +29,6 @@
         android:layout_gravity="center_horizontal"
         android:background="?android:attr/selectableItemBackground"
         android:textColor="@color/colorPrimary"
-        android:text="@string/privacy_settings_title"/>
+        android:text="@string/settings_privacy"/>
 
 </LinearLayout>
