@@ -5,6 +5,11 @@
     <!-- General -->
     <string name="unknown">Unknown</string>
 
+    <!-- Overview Fragment -->
+    <string name="fragment_overview_title">Overview</string>
+    <string name="fragment_overview_privacyScore">Your Privacy Score</string>
+    <string name="fragment_overview_recents">Recent Activity</string>
+
     <!-- Privacy -->
     <string name="privacy_settings_title">Privacy Settings</string>
     <string name="privacy_mode_maximumData">0% - Personalized Plan\nMaximum Amount of Data</string>
