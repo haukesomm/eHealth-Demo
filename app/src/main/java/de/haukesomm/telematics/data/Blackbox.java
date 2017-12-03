@@ -16,6 +16,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.util.Log;
 
 import com.opencsv.CSVReader;
@@ -298,13 +299,42 @@ public class Blackbox extends SQLiteOpenHelper {
 
 
     /**
+     * Listener interface used as a callback if the Blackbox is opened asynchronously. This may be
+     * the case on first access when the database needs to be created.
+     *
+     * @see #open()
+     * @see #open(OpenListener)
+     */
+    public interface OpenListener {
+        void onBlackboxOpened();
+    }
+
+
+    /**
+     * This method opens a connection to the database and must be called before the Blackbox can be
+     * accessed.
+     * A {@link OpenListener} can be passed as an argument so it will be called once the Blackbox is
+     * open. In most cases this method should be called from an asynchronous context.
+     *
+     * @param listener  The listener to call
+     */
+    public void open(@Nullable OpenListener listener) {
+        if (mDatabase == null || !mDatabase.isOpen()) {
+            mDatabase = getWritableDatabase();
+
+            if (listener != null) {
+                listener.onBlackboxOpened();
+            }
+        }
+    }
+
+
+    /**
      * This method opens a connection to the database and must be called before the Blackbox can be
      * accessed.
      */
     public void open() {
-        if (mDatabase == null || !mDatabase.isOpen()) {
-            mDatabase = getWritableDatabase();
-        }
+        open(null);
     }
 
 
