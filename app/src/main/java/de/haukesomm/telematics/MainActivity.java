@@ -1,6 +1,6 @@
 /*
  * This file is part of the "Telematics App Mockup" project.
- * Copyright 2017, Hauke Sommerfeld and Sarah Mukisa Kibirige.
+ * Copyright 2017, Hauke Sommerfeld and Sarah Schulz-Mukisa
  *  
  * Licensed under the MIT license.
  * A copy can be obtained under the following link:
