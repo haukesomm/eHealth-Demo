@@ -13,7 +13,7 @@
 
         <activity
             android:name=".SplashActivity"
-            android:theme="@style/AppTheme.TransparentStatusBar"
+            android:theme="@style/AppTheme.SplashScreen"
             android:screenOrientation="portrait"
             android:noHistory="true">
 
