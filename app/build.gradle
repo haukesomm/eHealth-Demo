@@ -19,6 +19,11 @@ android {
     }
     productFlavors {
     }
+
+    // Temporyry workaround for Toolbar library group error
+    lintOptions {
+        disable 'RestrictedApi'
+    }
 }
 
 dependencies {
