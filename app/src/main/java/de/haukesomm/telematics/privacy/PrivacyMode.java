@@ -9,8 +9,6 @@
 
 package de.haukesomm.telematics.privacy;
 
-import android.support.annotation.NonNull;
-
 /**
  * Created on 28.11.17
  *
@@ -27,9 +25,9 @@ public enum PrivacyMode {
 
 
 
-    public static PrivacyMode fromPercentage(int percentage) throws ClassNotFoundException {
+    public static PrivacyMode fromID(int percentage) throws ClassNotFoundException {
         for (PrivacyMode mode : PrivacyMode.values()) {
-            if (mode.getPercentage() == percentage) {
+            if (mode.getID() == percentage) {
                 return mode;
             }
         }
@@ -39,17 +37,17 @@ public enum PrivacyMode {
 
 
 
-    int mPercentage;
+    int mID;
 
 
 
-    PrivacyMode(int percentage) {
-        mPercentage = percentage;
+    PrivacyMode(int id) {
+        mID = id;
     }
 
 
 
-    public int getPercentage() {
-        return mPercentage;
+    public int getID() {
+        return mID;
     }
 }
