@@ -3,4 +3,9 @@
     <dimen name="margin_default">16dp</dimen>
     <dimen name="margin_small">8dp</dimen>
     <dimen name="margin_tiny">4dp</dimen>
+    
+    <dimen name="keyline_indent_left_small">@dimen/margin_default</dimen>
+    <dimen name="keyline_indent_left_large">72dp</dimen>
+    <dimen name="keyline_indent_right_small">@dimen/keyline_indent_left_small</dimen>
+    <dimen name="keyline_statusbar_height">24dp</dimen>
 </resources>
