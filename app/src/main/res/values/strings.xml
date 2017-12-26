@@ -4,6 +4,7 @@
 
     <!-- General -->
     <string name="unknown">Unknown</string>
+    <string name="delete">Delete</string>
 
     <!-- Overview Fragment -->
     <string name="fragment_overview_title">Overview</string>
@@ -14,6 +15,8 @@
     <string name="fragment_timeline_title">Timeline</string>
 
     <!-- Data -->
+    <string name="activity_data_title">Your driving data</string>
+    <string name="activity_data_reportFalseData">Report false data</string>
     <string name="data_notAvailable">No data available</string>
     <string name="data_unit_mph">mph</string>
 
