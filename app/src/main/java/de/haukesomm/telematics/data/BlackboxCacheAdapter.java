@@ -11,6 +11,7 @@ package de.haukesomm.telematics.data;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -105,9 +106,9 @@ public class BlackboxCacheAdapter extends BaseAdapter {
      */
     @SuppressLint({"InflateParams", "SetTextI18n", "SimpleDateFormat"})
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
 
-        JSONObject data = mData.get(position);
+        final JSONObject data = mData.get(position);
 
 
         View view = convertView;
@@ -119,14 +120,17 @@ public class BlackboxCacheAdapter extends BaseAdapter {
         view.setPadding(padding, padding / 2, padding, padding / 2);
 
 
+        String date = null;
         try {
-            TextView date = view.findViewById(R.id.blackbox_data_preview_date);
+            TextView dateText = view.findViewById(R.id.blackbox_data_preview_date);
 
             SimpleDateFormat formatIn = new SimpleDateFormat("yyyyMMdd");
             Date rawDate = formatIn.parse(data.getString(Blackbox.CACHE_TABLE).replace(Blackbox.MOCKUP_TABLE_PREFIX, ""));
 
             DateFormat formatOut = DateFormat.getDateInstance();
-            date.setText(formatOut.format(rawDate));
+            date = formatOut.format(rawDate);
+
+            dateText.setText(date);
         } catch (JSONException | ParseException e) {
             Log.w("BlackboxCacheAdapter", "Unable to set date: " + e.getMessage());
         }
@@ -154,6 +158,22 @@ public class BlackboxCacheAdapter extends BaseAdapter {
         } catch (JSONException e) {
             Log.w("BlackboxCacheAdapter", "Unable to set averageSpeed: " + e.getMessage());
         }
+
+
+        final String _date = date;
+        view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                try {
+                    Intent dataActivity = new Intent(mContext, DataActivity.class);
+                    dataActivity.putExtra(DataActivity.EXTRA_BLACKBOX_TABLE, data.getString(Blackbox.CACHE_TABLE));
+                    dataActivity.putExtra(DataActivity.EXTRA_DATE, _date);
+                    mContext.startActivity(dataActivity);
+                } catch (JSONException j) {
+                    Log.e("BlackboxCacheAdapter", "Error getting table: " + j.getMessage());
+                }
+            }
+        });
 
 
         return view;
