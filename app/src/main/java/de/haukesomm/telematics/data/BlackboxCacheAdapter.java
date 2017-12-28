@@ -151,9 +151,7 @@ public class BlackboxCacheAdapter extends BaseAdapter {
 
         try {
             TextView speed = view.findViewById(R.id.blackbox_data_preview_averageSpeed);
-
-            DecimalFormat format = new DecimalFormat("###.##");
-            speed.setText(format.format(data.getDouble(Blackbox.CACHE_AVERAGE_SPEED))
+            speed.setText(new TelematicsDecimalFormat().format(data.getDouble(Blackbox.CACHE_AVERAGE_SPEED))
                     + " " + mContext.getString(R.string.data_unit_mph));
         } catch (JSONException e) {
             Log.w("BlackboxCacheAdapter", "Unable to set averageSpeed: " + e.getMessage());
