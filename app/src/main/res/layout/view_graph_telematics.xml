@@ -38,7 +38,7 @@
             style="@style/Text.Body1.Primary"
             android:drawableStart="@drawable/ic_stats_high"
             android:drawablePadding="@dimen/margin_small"
-            android:text="@string/data_maximum"/>
+            android:text="@string/view_graph_telematics_maximum"/>
 
         <TextView
             android:id="@+id/view_graph_telematics_maximum_value"
@@ -60,7 +60,7 @@
             style="@style/Text.Body1.Primary"
             android:drawableStart="@drawable/ic_stats_low"
             android:drawablePadding="@dimen/margin_small"
-            android:text="@string/data_minimum"/>
+            android:text="@string/view_graph_telematics_minimum"/>
 
         <TextView
             android:id="@+id/view_graph_telematics_minimum_value"

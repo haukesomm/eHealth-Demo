@@ -4,7 +4,6 @@
 
     <!-- General -->
     <string name="unknown">Unknown</string>
-    <string name="delete">Delete</string>
 
     <!-- Overview Fragment -->
     <string name="fragment_overview_title">Overview</string>
@@ -17,14 +16,15 @@
     <!-- Data -->
     <string name="activity_data_title">Your driving data</string>
     <string name="activity_data_reportFalseData">Report false data</string>
+    <string name="activity_data_delete">Delete</string>
     <string name="activity_data_route_title">Route</string>
     <string name="activity_data_route_from">From</string>
     <string name="activity_data_route_to">to</string>
     <string name="activity_data_graph_speed_title">Speed</string>
+    <string name="view_graph_telematics_maximum">Maximum</string>
+    <string name="view_graph_telematics_minimum">Minimum</string>
     <string name="data_notAvailable">No data available</string>
     <string name="data_unit_mph">mph</string>
-    <string name="data_maximum">Maximum</string>
-    <string name="data_minimum">Minimum</string>
 
     <!-- Settings -->
     <string name="settings_title">Settings</string>

@@ -6,13 +6,13 @@
     <item
         android:id="@+id/activity_data_menuAction_delete"
         android:icon="@drawable/ic_delete"
-        android:title="@string/delete"
+        android:title="@string/activity_data_delete"
         app:showAsAction="ifRoom"/>
 
     <item
         android:id="@+id/activity_data_menuAction_report"
         android:icon="@drawable/ic_report"
-        android:title="@string/delete"
+        android:title="@string/activity_data_delete"
         app:showAsAction="ifRoom"/>
 
 </menu>
