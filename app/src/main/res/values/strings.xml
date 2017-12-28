@@ -19,6 +19,8 @@
     <string name="activity_data_reportFalseData">Report false data</string>
     <string name="data_notAvailable">No data available</string>
     <string name="data_unit_mph">mph</string>
+    <string name="data_maximum">Maximum</string>
+    <string name="data_minimum">Minimum</string>
 
     <!-- Settings -->
     <string name="settings_title">Settings</string>
