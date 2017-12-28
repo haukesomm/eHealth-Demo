@@ -10,6 +10,8 @@
 package de.haukesomm.telematics.data;
 
 import android.database.sqlite.SQLiteException;
+import android.graphics.Paint;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.design.widget.AppBarLayout;
@@ -24,6 +26,10 @@ import android.view.WindowManager;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.jjoe64.graphview.series.DataPoint;
+import com.jjoe64.graphview.series.LineGraphSeries;
+
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -80,6 +86,7 @@ public class DataActivity extends AppCompatActivity implements AppBarLayout.OnOf
 
 
         initData();
+        initDetails();
     }
 
 
@@ -124,16 +131,17 @@ public class DataActivity extends AppCompatActivity implements AppBarLayout.OnOf
 
     private TextView mTitle;
 
+
     private boolean mTitleVisible;
+
 
     private TextView mToolbarTitle;
 
+
     private boolean mToolbarTitleVisible;
 
-    private void setDate(String date) {
-        mTitle.setText(date);
-        mToolbarTitle.setText(date);
-    }
+
+    private TelematicsGraphView mGraphSpeed;
 
 
     private void bindActivity() {
@@ -141,6 +149,15 @@ public class DataActivity extends AppCompatActivity implements AppBarLayout.OnOf
         mToolbar = findViewById(R.id.activity_data_toolbar);
         mToolbarTitle = findViewById(R.id.activity_data_toolbar_title);
         mTitle = findViewById(R.id.activity_data_title);
+
+        mGraphSpeed = findViewById(R.id.activity_data_graph_speed);
+    }
+
+
+
+    private void setDate(String date) {
+        mTitle.setText(date);
+        mToolbarTitle.setText(date);
     }
 
 
@@ -249,5 +266,36 @@ public class DataActivity extends AppCompatActivity implements AppBarLayout.OnOf
             finish();
             return;
         }
+    }
+
+
+
+    private static final int GRAPH_DEFAULT_THICKNESS = 7;
+
+
+    private void initDetails() {
+        LineGraphSeries<DataPoint> speedValues = new LineGraphSeries<>();
+
+        if (Build.VERSION.SDK_INT >= 23) {
+            Paint color = new Paint();
+            color.setColor(getResources().getColor(R.color.colorPrimary, getTheme()));
+            color.setStrokeWidth((float) GRAPH_DEFAULT_THICKNESS);
+
+            speedValues.setCustomPaint(color);
+        } else {
+            speedValues.setThickness(GRAPH_DEFAULT_THICKNESS);
+        }
+
+        for (int i = 0; i < mData.size(); i++) {
+            JSONObject data = mData.get(i);
+
+            try {
+                speedValues.appendData(new DataPoint(i, data.getDouble(Blackbox.DATA_SPEED)), true, mData.size(), true);
+            } catch (JSONException e) {
+                Log.w("DataActivity", "Unable to add value to graph: " + e.getMessage());
+            }
+        }
+
+        mGraphSpeed.setData(speedValues);
     }
 }

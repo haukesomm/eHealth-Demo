@@ -1,15 +1,85 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <!-- Platzhalter -->
-    <TextView
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        style="@style/Text.Body1.Primary"
-        android:text="Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Lorem ipsum dolor sit amet,"/>
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/Text.Subheading.Primary"
+            android:text="@string/activity_data_route_title"
+            android:drawableStart="@drawable/ic_map"
+            android:drawablePadding="@dimen/margin_small"
+            android:drawableTint="@color/colorPrimary"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_default"
+            android:layout_marginBottom="@dimen/margin_small"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/Text.Body1.Secondary"
+                android:text="@string/activity_data_route_from"/>
+
+            <TextView
+                android:id="@+id/activity_data_route_start"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_small"
+                android:layout_marginEnd="@dimen/margin_small"
+                android:gravity="center_vertical"
+                style="@style/Text.Body1.Primary"
+                android:textColor="@android:color/white"
+                android:text="@string/unknown"
+                android:drawableStart="@drawable/ic_map_start"
+                android:drawablePadding="@dimen/margin_small"
+                android:drawableTint="@android:color/white"
+                android:background="@drawable/shape_chip"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/Text.Body1.Secondary"
+                android:text="@string/activity_data_route_to"/>
+
+            <TextView
+                android:id="@+id/activity_data_route_destination"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_small"
+                android:gravity="center_vertical"
+                style="@style/Text.Body1.Primary"
+                android:textColor="@android:color/white"
+                android:text="@string/unknown"
+                android:drawableStart="@drawable/ic_map_destination"
+                android:drawablePadding="@dimen/margin_small"
+                android:drawableTint="@android:color/white"
+                android:background="@drawable/shape_chip"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <View
+        style="@style/Divider" />
+
+    <de.haukesomm.telematics.data.TelematicsGraphView
+        android:id="@+id/activity_data_graph_speed"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:graphTitle="@string/activity_data_graph_speed_title"
+        app:graphIcon="@drawable/ic_stats_timeline"
+        app:graphUnit="@string/data_unit_mph"/>
 
 </LinearLayout>
