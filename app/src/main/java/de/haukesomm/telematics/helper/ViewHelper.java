@@ -14,7 +14,7 @@ import android.view.animation.AlphaAnimation;
 
 /**
  * Created on 20.12.17
- *
+ * <p>
  * This class provides different methods which might be helpful with {@link View}s.
  *
  * @author Hauke Sommerfeld

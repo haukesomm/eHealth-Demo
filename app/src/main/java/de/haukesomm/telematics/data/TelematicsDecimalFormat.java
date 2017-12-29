@@ -13,7 +13,7 @@ import java.text.DecimalFormat;
 
 /**
  * Created on 28.12.17
- *
+ * <p>
  * This class represents the default decimal format of the app.
  *
  * @author Hauke Sommerfeld

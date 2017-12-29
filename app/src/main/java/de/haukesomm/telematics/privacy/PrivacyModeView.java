@@ -23,10 +23,11 @@ import de.haukesomm.telematics.R;
 
 /**
  * Created on 28.11.17
- *
+ * <p>
  * This View can be used to display the 'Privacy Mode/Score' of the user.
  * All available Privacy modes are listed in the {@link PrivacyMode} enum and can either be set
- * programmatically via {@link #} or directly in the XML file using the 'app:score' attribute.
+ * programmatically via {@link #setMode(PrivacyMode)} or in the XML file using the 'score' attribute.
+ * <br>
  * In case no mode was set the View displays a placeholder without any information.
  *
  * @author Hauke Sommerfeld

@@ -34,9 +34,9 @@ import de.haukesomm.telematics.R;
 
 /**
  * Created on 04.11.17
- *
- * This class stores the blackbox-data from the space detection vehicle.
  * <p>
+ * This class stores the blackbox-data from the space detection vehicle.
+ * <br>
  * Since there is no real vehicle the database populates itself with mockup-data provided in form of
  * csv-files on first access.
  *
@@ -169,8 +169,6 @@ public class Blackbox extends SQLiteOpenHelper {
 
 
     /**
-     * Construcor of the Blackbox SQLiteOpenHelper.
-     *
      * @param context The app's context to use for the database connection.
      */
     public Blackbox(@NonNull Context context) {
@@ -189,8 +187,8 @@ public class Blackbox extends SQLiteOpenHelper {
 
 
     /**
-     * This method gets called when Blackbox is accessed for the first time and populates it with
-     * mockup-data from {@link #MOCKUP_DATA_DIR}.
+     * This method is called when the Blackbox is accessed for the first time and populates it with
+     * mockup-data from {@link #MOCKUP_DATA_DIR}.<br>
      * A new table is created for each csv-file. Each file contains data from one day.
      *
      * @param database The database which has been created.
@@ -312,9 +310,10 @@ public class Blackbox extends SQLiteOpenHelper {
 
     /**
      * This method opens a connection to the database and must be called before the Blackbox can be
-     * accessed.
+     * accessed.<p>
      * A {@link OpenListener} can be passed as an argument so it will be called once the Blackbox is
-     * open. In most cases this method should be called from an asynchronous context.
+     * open.<br>
+     * In most cases this method should be called from an asynchronous context.
      *
      * @param listener  The listener to call
      */

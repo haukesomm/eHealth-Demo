@@ -28,7 +28,7 @@ import de.haukesomm.telematics.data.BlackboxCacheAdapter;
 
 /**
  * Created on 27.11.17
- *
+ * <p>
  * This Fragment provides a list of all {@link Blackbox} entries in a reverse (newest-to-oldest)
  * order.
  *

@@ -30,10 +30,10 @@ import de.haukesomm.telematics.privacy.PrivacyModeView;
 
 /**
  * Created on 27.11.17
- *
+ * <p>
  * This Fragment provides an overview over the user's
- * {@link de.haukesomm.telematics.privacy.PrivacyMode} settings and his 5 most recent driving
- * activities.
+ * {@link de.haukesomm.telematics.privacy.PrivacyMode} settings and his 5 most recent sets of
+ * driving data.
  *
  * @author Hauke Sommerfeld
  */

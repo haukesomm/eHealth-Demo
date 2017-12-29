@@ -39,7 +39,7 @@ import de.haukesomm.telematics.helper.ViewHelper;
 
 /**
  * Created on 09.12.17
- *
+ * <p>
  * This Activity displays detailed information about a {@link Blackbox} table in form of various
  * diagrams for speed, height, etc. as well as a map.
  *

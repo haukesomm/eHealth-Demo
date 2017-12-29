@@ -11,7 +11,7 @@ package de.haukesomm.telematics.privacy;
 
 /**
  * Created on 28.11.17
- *
+ * <p>
  * This enum defines all available privacy modes.
  *
  * @author Hauke Sommerfeld
@@ -24,15 +24,23 @@ public enum PrivacyMode {
     OBFUSCATION(100);
 
 
-
-    public static PrivacyMode fromID(int percentage) throws ClassNotFoundException {
+    /**
+     * This method tries to find a PrivacyMode by its ID an returns it if found.
+     * <br>
+     * A {@link ClassNotFoundException} will be thrown if no PrivacyMode was found.
+     *
+     * @param id                        ID of the PrivacyMode
+     * @return                          Privacy mode with the specified ID
+     * @throws ClassNotFoundException   in case no PrivacyMode was found
+     */
+    public static PrivacyMode fromID(int id) throws ClassNotFoundException {
         for (PrivacyMode mode : PrivacyMode.values()) {
-            if (mode.getID() == percentage) {
+            if (mode.getID() == id) {
                 return mode;
             }
         }
 
-        throw new ClassNotFoundException("There is no privacy mode with percentage " + percentage);
+        throw new ClassNotFoundException("There is no privacy mode with percentage " + id);
     }
 
 
@@ -46,7 +54,11 @@ public enum PrivacyMode {
     }
 
 
-
+    /**
+     * This method returns the ID of a given PrivacyMode
+     *
+     * @return  ID
+     */
     public int getID() {
         return mID;
     }

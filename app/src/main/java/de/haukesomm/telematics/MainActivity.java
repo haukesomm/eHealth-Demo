@@ -25,10 +25,10 @@ import android.widget.Toast;
 
 /**
  * Created on 27.11.17
- *
+ * <p>
  * This Activity provides the main interface of the app where the user can select multiple sets of
- * data and see his current {@link de.haukesomm.telematics.privacy.PrivacyMode} settings.
- * It mainly consists of multiple Fragments for better compatibility in the future.
+ * data and see his current {@link de.haukesomm.telematics.privacy.PrivacyMode} settings.<br>
+ * It mainly consists of multiple Fragments for future compatibility.
  *
  * @see OverviewFragment
  * @see TimelineFragment

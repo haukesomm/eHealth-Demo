@@ -29,7 +29,7 @@ import de.haukesomm.telematics.R;
 
 /**
  * Created on 27.12.17
- *
+ * <p>
  * This View is a more powerful {@link GraphView} featuring an additional title, headline as well as
  * maximum and minimum value statistics.
  *
@@ -38,15 +38,13 @@ import de.haukesomm.telematics.R;
 public class TelematicsGraphView extends LinearLayout {
 
     /**
-     * {@inheritDoc}
+     * Ust this constructor to create the View programmatically.
      *
-     *
-     * There are some additional params that can be used:
-     *
-     * @param icon  Icon to use for the graph
-     * @param title The title of the Graph
-     * @param unit  Unit of the provided data
-     * @param data  The actual data to use for the graph
+     * @param context   The app's context
+     * @param icon      Icon to use for the graph
+     * @param title     The title of the Graph
+     * @param unit      Unit of the provided data
+     * @param data      The actual data to use for the graph
      */
     public TelematicsGraphView(@NonNull Context context, @Nullable Drawable icon, @Nullable String title,
                                @NonNull String unit, @NonNull LineGraphSeries<DataPoint> data) {
@@ -57,7 +55,10 @@ public class TelematicsGraphView extends LinearLayout {
 
 
     /**
-     * {@inheritDoc}
+     * This constructor is used when the View is created from XML.
+     *
+     * @param context   The app's context
+     * @param attrs     {@link AttributeSet} containing the XML-attributes
      */
     public TelematicsGraphView(@NonNull Context context, @NonNull AttributeSet attrs) {
         super(context, attrs);

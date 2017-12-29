@@ -23,7 +23,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.text.DateFormat;
-import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -33,9 +32,9 @@ import de.haukesomm.telematics.R;
 
 /**
  * Created on 19.11.17
- *
+ * <p>
  * This class is a subclass of {@link BaseAdapter} and functions as a List- or Spinner-Adapter for
- * data of the Blackbox's cache-table in form of {@link JSONObject}s.
+ * data of the Blackbox's cache-table in form of {@link JSONObject}s.<br>
  * For each cache entry a view representing the start- and destination-locations as well as the
  * average speed will be generated.
  *
