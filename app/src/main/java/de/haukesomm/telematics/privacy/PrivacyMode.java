@@ -17,10 +17,38 @@ package de.haukesomm.telematics.privacy;
  * @author Hauke Sommerfeld
  */
 public enum PrivacyMode {
+    /**
+     * Unknown or missing mode.<br>
+     * This mode should never actually be available to the user and only functions as some sort of
+     * fallback in case somthing goes wrong.
+     */
     UNKNOWN(-1),
+
+    /**
+     * Submit all data to the insurance (minimal privacy).<br>
+     * The insurance plan might rise or lower in price depending completely on the driving habits of
+     * the user.
+     */
     MAXIMUM_DATA(0),
+
+    /**
+     * Submit only the data explicitly selected by the user.<br>
+     * The insurance plan might rise or lower in price depending on the driving habits of
+     * the user but with upper and lower limits as well as a higher initial price.
+     */
     USER_DEFINED(45),
+
+    /**
+     * Submit only a bare minimum of data to the insurance.<br>
+     * The insurance plan might slightly rise or lower in price depending on the driving habits of
+     * the user. The initial price is slightly higher than default. Upper and lower limits apply.
+     */
     MINIMUM_DATA(65),
+
+    /**
+     * Do not submit any data at all (maximum privacy).<br>
+     * A default plan with a fixed price (higher than the general upper limit) applies.
+     */
     OBFUSCATION(100);
 
 
