@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <declare-styleable name="PrivacyModeView">
-        <attr name="score" format="enum">
+        <attr name="mode" format="enum">
             <enum name="unknown" value="-1"/>
             <enum name="maximum_data" value="0"/>
             <enum name="user_defined" value="45"/>

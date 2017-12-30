@@ -58,7 +58,7 @@ public class OverviewFragment extends Fragment {
 
 
         PrivacyModeView privacyMode = view.findViewById(R.id.fragment_overview_privacyMode);
-        privacyMode.setMode(PrivacyMode.UNKNOWN);
+        //privacyMode.setMode(PrivacyMode.UNKNOWN);
 
 
         Blackbox blackbox = new Blackbox(getContext());
