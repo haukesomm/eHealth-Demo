@@ -429,6 +429,24 @@ public class Blackbox extends SQLiteOpenHelper {
      * <p>
      * An {@link IllegalStateException} will be thrown if the Blackbox is not open.
      *
+     * @param index The indey of the table the data should be retrieved from.
+     * @return      Returns a list of all data-sets in a table of in form of {@link JSONObject}s.
+     */
+    public ArrayList<JSONObject> getEntireTable(int index) {
+        if (mDatabase == null || !mDatabase.isOpen()) {
+            throw new IllegalStateException("Call open() before accessing the database!");
+        }
+
+        return getEntireTable(mDatabase, getTables().get(index));
+    }
+
+
+    /**
+     * This method can be used to obtain a list of all data-sets in a specific table of the
+     * BlackBox in form of {@link JSONObject}s.
+     * <p>
+     * An {@link IllegalStateException} will be thrown if the Blackbox is not open.
+     *
      * @param table The table the data should be retrieved from. Format: [PREFIX][DATE(yyyymmdd)]
      * @return      Returns a list of all data-sets in a table of in form of {@link JSONObject}s.
      */
@@ -466,6 +484,23 @@ public class Blackbox extends SQLiteOpenHelper {
         cursor.close();
 
         return jsonObjects;
+    }
+
+
+
+    /**
+     * This method returns the number of tables of the Blackbox.
+     * <p>
+     * An {@link IllegalStateException} will be thrown if the Blackbox is not open.
+     *
+     * @return  Number of tables
+     */
+    public int getCount() {
+        if (mDatabase == null || !mDatabase.isOpen()) {
+            throw new IllegalStateException("Call open() before accessing the database!");
+        }
+
+        return getTables(mDatabase).size();
     }
 
 
