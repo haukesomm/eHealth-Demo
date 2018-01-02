@@ -13,7 +13,6 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -141,7 +140,7 @@ public class BlackboxAdapter extends BaseAdapter {
             TextView dateText = view.findViewById(R.id.blackbox_data_preview_date);
 
             SimpleDateFormat formatIn = new SimpleDateFormat("yyyyMMdd");
-            Date rawDate = formatIn.parse(table.replace(Blackbox.MOCKUP_TABLE_PREFIX, ""));
+            Date rawDate = formatIn.parse(table.replace(Blackbox.DATA_TABLE_PREFIX, ""));
 
             DateFormat formatOut = DateFormat.getDateInstance();
             date = formatOut.format(rawDate);

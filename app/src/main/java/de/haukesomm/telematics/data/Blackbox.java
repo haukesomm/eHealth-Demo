@@ -28,9 +28,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.List;
-
-import de.haukesomm.telematics.R;
 
 /**
  * Created on 04.11.17
@@ -64,12 +61,12 @@ public class Blackbox extends SQLiteOpenHelper {
     private static final String MOCKUP_DATA_DIR = "mockup-data";
 
 
+
     /**
      * Prefix of all database tables containing mockup-data.
      * This might become important in case the app switches to real-world-data at some point.
      */
-    public static final String MOCKUP_TABLE_PREFIX = "MOCKUP_";
-
+    public static final String DATA_TABLE_PREFIX = "data_";
 
 
     /**
@@ -168,7 +165,7 @@ public class Blackbox extends SQLiteOpenHelper {
         }
 
         for (String assetName : mockupAssets) {
-            String tableName = MOCKUP_TABLE_PREFIX + assetName.split("\\.")[0];
+            String tableName = DATA_TABLE_PREFIX + assetName.split("\\.")[0];
 
             database.execSQL("CREATE TABLE " + tableName + " ("
                     + DATA_ID               + " INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, "
@@ -324,7 +321,7 @@ public class Blackbox extends SQLiteOpenHelper {
 
         ArrayList<String> tables = new ArrayList<>();
 
-        Cursor cursor = mDatabase.rawQuery("SELECT name FROM sqlite_master WHERE type='table' AND name LIKE 'MOCKUP_%' order by name", null);
+        Cursor cursor = mDatabase.rawQuery("SELECT name FROM sqlite_master WHERE type='table' AND name LIKE '" + Blackbox.DATA_TABLE_PREFIX + "%' order by name", null);
         if (cursor.moveToFirst()) {
             while (!cursor.isAfterLast()) {
                 tables.add(cursor.getString( cursor.getColumnIndex("name")));
@@ -346,7 +343,7 @@ public class Blackbox extends SQLiteOpenHelper {
      * @param table The table the data should be added to. Format: [PREFIX][DATE(yyyymmdd)]
      * @param data  The vehicle data in form of a JSONObject which should be added to the Blackbox.
      *
-     * @see #MOCKUP_TABLE_PREFIX
+     * @see #DATA_TABLE_PREFIX
      */
     @SuppressWarnings("unused")
     public void add(@NonNull String table, @NonNull JSONObject data) {
