@@ -24,7 +24,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 import de.haukesomm.telematics.data.Blackbox;
-import de.haukesomm.telematics.data.BlackboxCacheAdapter;
+import de.haukesomm.telematics.data.BlackboxAdapter;
 
 /**
  * Created on 27.11.17
@@ -53,16 +53,13 @@ public class TimelineFragment extends Fragment {
         Blackbox blackbox = new Blackbox(getContext());
         blackbox.open();
 
-        ArrayList<JSONObject> previews = new ArrayList<>();
-        for (String table : blackbox.getTables()) {
-            previews.add(blackbox.getCachedValues(table));
-        }
+        ArrayList<String> previews = blackbox.getTables();
         Collections.reverse(previews);
 
         blackbox.close();
 
         ListView recents = view.findViewById(R.id.fragment_timeline_list);
-        BlackboxCacheAdapter adapter = new BlackboxCacheAdapter(getContext(), previews);
+        BlackboxAdapter adapter = new BlackboxAdapter(getContext(), blackbox, previews);
         recents.setAdapter(adapter);
 
 

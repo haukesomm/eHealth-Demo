@@ -18,14 +18,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 
-import org.json.JSONObject;
-
 import java.util.ArrayList;
 import java.util.Collections;
 
 import de.haukesomm.telematics.data.Blackbox;
-import de.haukesomm.telematics.data.BlackboxCacheAdapter;
-import de.haukesomm.telematics.privacy.PrivacyMode;
+import de.haukesomm.telematics.data.BlackboxAdapter;
 import de.haukesomm.telematics.privacy.PrivacyModeView;
 
 /**
@@ -64,18 +61,18 @@ public class OverviewFragment extends Fragment {
         Blackbox blackbox = new Blackbox(getContext());
         blackbox.open();
 
-        ArrayList<JSONObject> previews = new ArrayList<>();
         ArrayList<String> tables = blackbox.getTables();
         Collections.reverse(tables);
+        ArrayList<String> previews = new ArrayList<>();
 
         for (int i = 0; i < MAX_PREVIEWS; i++) {
-            previews.add(blackbox.getCachedValues(tables.get(i)));
+            previews.add(tables.get(i));
         }
 
         blackbox.close();
 
         ListView recents = view.findViewById(R.id.fragment_overview_list);
-        BlackboxCacheAdapter adapter = new BlackboxCacheAdapter(getContext(), previews);
+        BlackboxAdapter adapter = new BlackboxAdapter(getContext(), blackbox, previews);
         recents.setAdapter(adapter);
 
 

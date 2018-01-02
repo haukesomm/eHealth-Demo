@@ -12,6 +12,8 @@ package de.haukesomm.telematics.data;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -25,8 +27,8 @@ import org.json.JSONObject;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 import de.haukesomm.telematics.R;
 
@@ -40,7 +42,7 @@ import de.haukesomm.telematics.R;
  *
  * @author Hauke Sommerfeld
  */
-public class BlackboxCacheAdapter extends BaseAdapter {
+public class BlackboxAdapter extends BaseAdapter {
 
     /**
      * This constructor takes the app's context and a list of JSONObjects representing the cache-
@@ -48,11 +50,22 @@ public class BlackboxCacheAdapter extends BaseAdapter {
      * action needed.
      *
      * @param context   The app's context
-     * @param data      Cached data from the Blackbox in form of JSONObjects
+     * @param tables    List of tables to display
      */
-    public BlackboxCacheAdapter(Context context, List<JSONObject> data) {
+    public BlackboxAdapter(@NonNull Context context, @NonNull Blackbox blackbox,
+                           @NonNull ArrayList<String> tables) {
         mContext = context;
-        mData = data;
+
+        mBlackbox = blackbox;
+        mBlackbox.open();
+
+        mTables = tables;
+    }
+
+
+    @Override
+    public void finalize() {
+        mBlackbox.close();
     }
 
 
@@ -61,7 +74,10 @@ public class BlackboxCacheAdapter extends BaseAdapter {
 
 
 
-    private final List<JSONObject> mData;
+    private final Blackbox mBlackbox;
+
+
+    private final ArrayList<String> mTables;
 
 
     /**
@@ -71,7 +87,7 @@ public class BlackboxCacheAdapter extends BaseAdapter {
      */
     @Override
     public int getCount() {
-        return mData.size();
+        return mTables.size();
     }
 
 
@@ -83,7 +99,7 @@ public class BlackboxCacheAdapter extends BaseAdapter {
      */
     @Override
     public Object getItem(int position) {
-        return mData.get(position);
+        return mBlackbox.getEntireTable(position);
     }
 
 
@@ -107,7 +123,8 @@ public class BlackboxCacheAdapter extends BaseAdapter {
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
 
-        final JSONObject data = mData.get(position);
+        final String table = mTables.get(position);
+        final ArrayList<JSONObject> data = mBlackbox.getEntireTable(table);
 
 
         View view = convertView;
@@ -124,36 +141,44 @@ public class BlackboxCacheAdapter extends BaseAdapter {
             TextView dateText = view.findViewById(R.id.blackbox_data_preview_date);
 
             SimpleDateFormat formatIn = new SimpleDateFormat("yyyyMMdd");
-            Date rawDate = formatIn.parse(data.getString(Blackbox.CACHE_TABLE).replace(Blackbox.MOCKUP_TABLE_PREFIX, ""));
+            Date rawDate = formatIn.parse(table.replace(Blackbox.MOCKUP_TABLE_PREFIX, ""));
 
             DateFormat formatOut = DateFormat.getDateInstance();
             date = formatOut.format(rawDate);
 
             dateText.setText(date);
-        } catch (JSONException | ParseException e) {
-            Log.w("BlackboxCacheAdapter", "Unable to set date: " + e.getMessage());
+        } catch (ParseException e) {
+            Log.w("BlackboxAdapter", "Unable to set date: " + e.getMessage());
         }
 
+        /* Re-enable when Google Maps geocoding API is implemented
         try {
             TextView start = view.findViewById(R.id.blackbox_data_preview_start);
             start.setText(data.getString(Blackbox.CACHE_LOCATION_START));
         } catch (JSONException e) {
-            Log.w("BlackboxCacheAdapter", "Unable to set start: " + e.getMessage());
+            Log.w("BlackboxAdapter", "Unable to set start: " + e.getMessage());
         }
 
         try {
             TextView destination = view.findViewById(R.id.blackbox_data_preview_destination);
             destination.setText(data.getString(Blackbox.CACHE_LOCATION_DESTINATION));
         } catch (JSONException e) {
-            Log.w("BlackboxCacheAdapter", "Unable to set destination: " + e.getMessage());
-        }
+            Log.w("BlackboxAdapter", "Unable to set destination: " + e.getMessage());
+        }*/
 
         try {
+            double averageSpeed = 0.0d;
+            for (JSONObject entry : data) {
+                double speed = entry.getDouble(Blackbox.DATA_SPEED);
+                averageSpeed += speed;
+            }
+            averageSpeed /= data.size();
+
             TextView speed = view.findViewById(R.id.blackbox_data_preview_averageSpeed);
-            speed.setText(new TelematicsDecimalFormat().format(data.getDouble(Blackbox.CACHE_AVERAGE_SPEED))
+            speed.setText(new TelematicsDecimalFormat().format(averageSpeed)
                     + " " + mContext.getString(R.string.data_unit_mph));
         } catch (JSONException e) {
-            Log.w("BlackboxCacheAdapter", "Unable to set averageSpeed: " + e.getMessage());
+            Log.w("BlackboxAdapter", "Unable to calculate speed: " + e.getMessage());
         }
 
 
@@ -161,14 +186,10 @@ public class BlackboxCacheAdapter extends BaseAdapter {
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                try {
-                    Intent dataActivity = new Intent(mContext, DataActivity.class);
-                    dataActivity.putExtra(DataActivity.EXTRA_BLACKBOX_TABLE, data.getString(Blackbox.CACHE_TABLE));
-                    dataActivity.putExtra(DataActivity.EXTRA_DATE, _date);
-                    mContext.startActivity(dataActivity);
-                } catch (JSONException j) {
-                    Log.e("BlackboxCacheAdapter", "Error getting table: " + j.getMessage());
-                }
+                Intent dataActivity = new Intent(mContext, DataActivity.class);
+                dataActivity.putExtra(DataActivity.EXTRA_BLACKBOX_TABLE, table);
+                dataActivity.putExtra(DataActivity.EXTRA_DATE, _date);
+                mContext.startActivity(dataActivity);
             }
         });
 
