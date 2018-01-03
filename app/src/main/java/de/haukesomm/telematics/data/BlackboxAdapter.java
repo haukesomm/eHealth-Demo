@@ -114,6 +114,11 @@ public class BlackboxAdapter extends BaseAdapter {
     }
 
 
+
+    private final GeocodeApiClient mGeocodeApiClient = new GeocodeApiClient();
+
+
+
     /**
      * This method generates the actual view for each object.
      *
@@ -122,10 +127,6 @@ public class BlackboxAdapter extends BaseAdapter {
     @SuppressLint({"InflateParams", "SetTextI18n", "SimpleDateFormat"})
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
-
-        final String table = mTables.get(position);
-        final ArrayList<JSONObject> data = mBlackbox.getEntireTable(table);
-
 
         View view = convertView;
         if (view == null)
@@ -138,83 +139,81 @@ public class BlackboxAdapter extends BaseAdapter {
         }
 
 
-        String date = null;
+
+        final String table = mTables.get(position);
+        final ArrayList<JSONObject> data = mBlackbox.getEntireTable(table);
+
+
+        final String date = generateDateFromTable(table);
+        TextView dateText = view.findViewById(R.id.blackbox_data_preview_date);
+        dateText.setText(date);
+
+
+        final TextView start = view.findViewById(R.id.blackbox_data_preview_start);
         try {
-            TextView dateText = view.findViewById(R.id.blackbox_data_preview_date);
-
-            SimpleDateFormat formatIn = new SimpleDateFormat("yyyyMMdd");
-            Date rawDate = formatIn.parse(table.replace(Blackbox.DATA_TABLE_PREFIX, ""));
-
-            DateFormat formatOut = DateFormat.getDateInstance();
-            date = formatOut.format(rawDate);
-
-            dateText.setText(date);
-        } catch (ParseException e) {
-            Log.w("BlackboxAdapter", "Unable to set date: " + e.getMessage());
-        }
-
-
-        final GeocodeApiClient geocoder = new GeocodeApiClient();
-
-        try {
-            final TextView start = view.findViewById(R.id.blackbox_data_preview_start);
-
             double latitude = data.get(0).getDouble(Blackbox.DATA_LATITUDE);
             double longitude = data.get(0).getDouble(Blackbox.DATA_LONGITUDE);
 
-            geocoder.requestAddress(latitude, longitude, new GeocodeApiClient.ResponseListener() {
-                @Override
-                public void onResponse(JSONObject response) {
-                    try {
-                        String city = geocoder.decodeCity(response);
-                        if (city != null) {
-                            start.setText(city);
-                        }
-                    } catch (JSONException e) {
-                        //
-                    }
-                }
-            });
+            //requestAddress(latitude, longitude, start);
         } catch (JSONException e) {
             Log.w("BlackboxAdapter", "Unable to set start: " + e.getMessage());
         }
 
+        final TextView destination = view.findViewById(R.id.blackbox_data_preview_destination);
         try {
-            final TextView destination = view.findViewById(R.id.blackbox_data_preview_destination);
-
             double latitude = data.get(data.size() - 1).getDouble(Blackbox.DATA_LATITUDE);
             double longitude = data.get(data.size() - 1).getDouble(Blackbox.DATA_LONGITUDE);
 
-            geocoder.requestAddress(latitude, longitude, new GeocodeApiClient.ResponseListener() {
-                @Override
-                public void onResponse(JSONObject response) {
-                    try {
-                        String city = geocoder.decodeCity(response);
-                        if (city != null) {
-                            destination.setText(city);
-                        }
-                    } catch (JSONException e) {
-                        //
-                    }
-                }
-            });
+            //requestAddress(latitude, longitude, destination);
         } catch (JSONException e) {
             Log.w("BlackboxAdapter", "Unable to set destination: " + e.getMessage());
         }
 
 
-        final String _date = date;
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent dataActivity = new Intent(mContext, DataActivity.class);
                 dataActivity.putExtra(DataActivity.EXTRA_BLACKBOX_TABLE, table);
-                dataActivity.putExtra(DataActivity.EXTRA_DATE, _date);
+                dataActivity.putExtra(DataActivity.EXTRA_DATE, date);
                 mContext.startActivity(dataActivity);
             }
         });
 
 
         return view;
+    }
+
+
+
+    private String generateDateFromTable(String table) {
+        try {
+            SimpleDateFormat formatIn = new SimpleDateFormat(Blackbox.DATA_TABLE_DATE_FORMAT);
+            Date rawDate = formatIn.parse(table.replace(Blackbox.DATA_TABLE_PREFIX, ""));
+
+            DateFormat formatOut = DateFormat.getDateInstance();
+            return formatOut.format(rawDate);
+        } catch (ParseException e) {
+            Log.w("BlackboxAdapter", "Unable to generate date from table: " + e.getMessage());
+            return table;
+        }
+    }
+
+
+
+    private void requestAddress(double latitude, double longitude, final TextView out) {
+        mGeocodeApiClient.requestAddress(latitude, longitude, new GeocodeApiClient.ResponseListener() {
+            @Override
+            public void onResponse(JSONObject response) {
+                try {
+                    String city = mGeocodeApiClient.decodeCity(response);
+                    if (city != null) {
+                        out.setText(city);
+                    }
+                } catch (JSONException e) {
+                    Log.w("BlackboxAdapter", "Unable to request address: " + e.getMessage());
+                }
+            }
+        });
     }
 }

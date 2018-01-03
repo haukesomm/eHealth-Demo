@@ -70,6 +70,12 @@ public class Blackbox extends SQLiteOpenHelper {
 
 
     /**
+     * Format of the table name's date (e.g. 'data_[DATE]' -> 'data_20170603').
+     */
+    public static final String DATA_TABLE_DATE_FORMAT = "yyyyMMdd";
+
+
+    /**
      * This String is used to identify the id of a specific data-set.
      * It is used for both the database's tables and JSON-objects which are used to transfer data.
      */
