@@ -169,13 +169,14 @@ public class BlackboxAdapter extends BaseAdapter {
             double averageSpeed = 0.0d;
             for (JSONObject entry : data) {
                 double speed = entry.getDouble(Blackbox.DATA_SPEED);
+                speed = Data.convert(speed, Blackbox.UNIT_SPEED, Data.PREFERRED_SPEED_UNIT);
                 averageSpeed += speed;
             }
             averageSpeed /= data.size();
 
             TextView speed = view.findViewById(R.id.blackbox_data_preview_averageSpeed);
             speed.setText(new TelematicsDecimalFormat().format(averageSpeed)
-                    + " " + mContext.getString(R.string.data_unit_speed_mph_short));
+                    + " " + mContext.getString(Data.PREFERRED_SPEED_UNIT.getShortNameRes()));
         } catch (JSONException e) {
             Log.w("BlackboxAdapter", "Unable to calculate speed: " + e.getMessage());
         }
