@@ -175,7 +175,7 @@ public class BlackboxAdapter extends BaseAdapter {
 
             TextView speed = view.findViewById(R.id.blackbox_data_preview_averageSpeed);
             speed.setText(new TelematicsDecimalFormat().format(averageSpeed)
-                    + " " + mContext.getString(R.string.data_unit_mph));
+                    + " " + mContext.getString(R.string.data_unit_speed_mph_short));
         } catch (JSONException e) {
             Log.w("BlackboxAdapter", "Unable to calculate speed: " + e.getMessage());
         }

@@ -80,6 +80,6 @@
         android:layout_height="wrap_content"
         app:graphTitle="@string/activity_data_graph_speed_title"
         app:graphIcon="@drawable/ic_stats_timeline"
-        app:graphUnit="@string/data_unit_mph"/>
+        app:graphUnit="@string/data_unit_speed_mph_short"/>
 
 </LinearLayout>
