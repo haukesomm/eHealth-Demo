@@ -5,71 +5,42 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <LinearLayout
-        android:layout_width="match_parent"
+    <TextView
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        style="@style/Text.Subheading.Primary"
+        android:text="@string/activity_data_route_title"
+        android:drawableStart="@drawable/ic_map"
+        android:drawablePadding="@dimen/margin_small"
+        android:drawableTint="@color/colorPrimary"/>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            style="@style/Text.Subheading.Primary"
-            android:text="@string/activity_data_route_title"
-            android:drawableStart="@drawable/ic_map"
-            android:drawablePadding="@dimen/margin_small"
-            android:drawableTint="@color/colorPrimary"/>
+    <TextView
+        android:id="@+id/activity_data_route_start"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_default"
+        android:gravity="center_vertical"
+        style="@style/Text.Body1.Primary"
+        android:textColor="@android:color/white"
+        android:text="@string/unknown"
+        android:drawableStart="@drawable/ic_map_start"
+        android:drawablePadding="@dimen/margin_small"
+        android:drawableTint="@android:color/white"
+        android:background="@drawable/shape_chip"/>
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_default"
-            android:layout_marginBottom="@dimen/margin_small"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                style="@style/Text.Body1.Secondary"
-                android:text="@string/activity_data_route_from"/>
-
-            <TextView
-                android:id="@+id/activity_data_route_start"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/margin_small"
-                android:layout_marginEnd="@dimen/margin_small"
-                android:gravity="center_vertical"
-                style="@style/Text.Body1.Primary"
-                android:textColor="@android:color/white"
-                android:text="@string/unknown"
-                android:drawableStart="@drawable/ic_map_start"
-                android:drawablePadding="@dimen/margin_small"
-                android:drawableTint="@android:color/white"
-                android:background="@drawable/shape_chip"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                style="@style/Text.Body1.Secondary"
-                android:text="@string/activity_data_route_to"/>
-
-            <TextView
-                android:id="@+id/activity_data_route_destination"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/margin_small"
-                android:gravity="center_vertical"
-                style="@style/Text.Body1.Primary"
-                android:textColor="@android:color/white"
-                android:text="@string/unknown"
-                android:drawableStart="@drawable/ic_map_destination"
-                android:drawablePadding="@dimen/margin_small"
-                android:drawableTint="@android:color/white"
-                android:background="@drawable/shape_chip"/>
-
-        </LinearLayout>
-
-    </LinearLayout>
+    <TextView
+        android:id="@+id/activity_data_route_destination"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_default"
+        android:gravity="center_vertical"
+        style="@style/Text.Body1.Primary"
+        android:textColor="@android:color/white"
+        android:text="@string/unknown"
+        android:drawableStart="@drawable/ic_map_destination"
+        android:drawablePadding="@dimen/margin_small"
+        android:drawableTint="@android:color/white"
+        android:background="@drawable/shape_chip"/>
 
     <View
         style="@style/Divider" />

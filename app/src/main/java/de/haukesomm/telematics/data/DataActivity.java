@@ -36,6 +36,7 @@ import java.util.ArrayList;
 
 import de.haukesomm.telematics.R;
 import de.haukesomm.telematics.helper.ViewHelper;
+import de.haukesomm.telematics.net.GeocodeApiClient;
 
 /**
  * Created on 09.12.17
@@ -86,7 +87,8 @@ public class DataActivity extends AppCompatActivity implements AppBarLayout.OnOf
 
 
         initData();
-        initDetails();
+        initRoute();
+        initGraphs();
     }
 
 
@@ -141,6 +143,13 @@ public class DataActivity extends AppCompatActivity implements AppBarLayout.OnOf
     private boolean mToolbarTitleVisible;
 
 
+
+    private TextView mRouteStart;
+
+
+    private TextView mRouteDestination;
+
+
     private TelematicsGraphView mGraphSpeed;
 
 
@@ -150,6 +159,8 @@ public class DataActivity extends AppCompatActivity implements AppBarLayout.OnOf
         mToolbarTitle = findViewById(R.id.activity_data_toolbar_title);
         mTitle = findViewById(R.id.activity_data_title);
 
+        mRouteStart = findViewById(R.id.activity_data_route_start);
+        mRouteDestination = findViewById(R.id.activity_data_route_destination);
         mGraphSpeed = findViewById(R.id.activity_data_graph_speed);
     }
 
@@ -270,10 +281,52 @@ public class DataActivity extends AppCompatActivity implements AppBarLayout.OnOf
 
 
 
+    private void initRoute() {
+        final GeocodeApiClient geocoder = new GeocodeApiClient();
+
+        try {
+            double startLat = mData.get(0).getDouble(Blackbox.DATA_LATITUDE);
+            double startLng = mData.get(0).getDouble(Blackbox.DATA_LONGITUDE);
+
+            geocoder.requestAddress(startLat, startLng, new GeocodeApiClient.ResponseListener() {
+                @Override
+                public void onResponse(JSONObject response) {
+                    try {
+                        mRouteStart.setText(geocoder.decodeFormattedAddress(response));
+                    } catch (JSONException e) {
+                        //
+                    }
+                }
+            });
+        } catch (JSONException e) {
+            //
+        }
+
+        try {
+            double destLat = mData.get(mData.size() - 1).getDouble(Blackbox.DATA_LATITUDE);
+            double destLng = mData.get(mData.size() - 1).getDouble(Blackbox.DATA_LONGITUDE);
+
+            geocoder.requestAddress(destLat, destLng, new GeocodeApiClient.ResponseListener() {
+                @Override
+                public void onResponse(JSONObject response) {
+                    try {
+                        mRouteDestination.setText(geocoder.decodeFormattedAddress(response));
+                    } catch (JSONException e) {
+                        //
+                    }
+                }
+            });
+        } catch (JSONException e) {
+            //
+        }
+    }
+
+
+
     private static final int GRAPH_DEFAULT_THICKNESS = 7;
 
 
-    private void initDetails() {
+    private void initGraphs() {
         LineGraphSeries<DataPoint> speedValues = new LineGraphSeries<>();
 
         if (Build.VERSION.SDK_INT >= 23) {
