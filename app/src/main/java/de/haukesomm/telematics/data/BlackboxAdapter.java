@@ -30,6 +30,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import de.haukesomm.telematics.R;
+import de.haukesomm.telematics.net.GeocodeApiClient;
 
 /**
  * Created on 19.11.17
@@ -130,9 +131,11 @@ public class BlackboxAdapter extends BaseAdapter {
         if (view == null)
         {
             view = LayoutInflater.from(mContext).inflate(R.layout.blackbox_data_preview, null, false);
+            int padding = (int) mContext.getResources().getDimension(R.dimen.margin_default);
+            view.setPadding(padding, padding / 2, padding, padding / 2);
+        } else {
+            return view;
         }
-        int padding = (int) mContext.getResources().getDimension(R.dimen.margin_default);
-        view.setPadding(padding, padding / 2, padding, padding / 2);
 
 
         String date = null;
@@ -150,35 +153,53 @@ public class BlackboxAdapter extends BaseAdapter {
             Log.w("BlackboxAdapter", "Unable to set date: " + e.getMessage());
         }
 
-        /* Re-enable when Google Maps geocoding API is implemented
+
+        final GeocodeApiClient geocoder = new GeocodeApiClient();
+
         try {
-            TextView start = view.findViewById(R.id.blackbox_data_preview_start);
-            start.setText(data.getString(Blackbox.CACHE_LOCATION_START));
+            final TextView start = view.findViewById(R.id.blackbox_data_preview_start);
+
+            double latitude = data.get(0).getDouble(Blackbox.DATA_LATITUDE);
+            double longitude = data.get(0).getDouble(Blackbox.DATA_LONGITUDE);
+
+            geocoder.requestAddress(latitude, longitude, new GeocodeApiClient.ResponseListener() {
+                @Override
+                public void onResponse(JSONObject response) {
+                    try {
+                        String city = geocoder.decodeCity(response);
+                        if (city != null) {
+                            start.setText(city);
+                        }
+                    } catch (JSONException e) {
+                        //
+                    }
+                }
+            });
         } catch (JSONException e) {
             Log.w("BlackboxAdapter", "Unable to set start: " + e.getMessage());
         }
 
         try {
-            TextView destination = view.findViewById(R.id.blackbox_data_preview_destination);
-            destination.setText(data.getString(Blackbox.CACHE_LOCATION_DESTINATION));
+            final TextView destination = view.findViewById(R.id.blackbox_data_preview_destination);
+
+            double latitude = data.get(data.size() - 1).getDouble(Blackbox.DATA_LATITUDE);
+            double longitude = data.get(data.size() - 1).getDouble(Blackbox.DATA_LONGITUDE);
+
+            geocoder.requestAddress(latitude, longitude, new GeocodeApiClient.ResponseListener() {
+                @Override
+                public void onResponse(JSONObject response) {
+                    try {
+                        String city = geocoder.decodeCity(response);
+                        if (city != null) {
+                            destination.setText(city);
+                        }
+                    } catch (JSONException e) {
+                        //
+                    }
+                }
+            });
         } catch (JSONException e) {
             Log.w("BlackboxAdapter", "Unable to set destination: " + e.getMessage());
-        }*/
-
-        try {
-            double averageSpeed = 0.0d;
-            for (JSONObject entry : data) {
-                double speed = entry.getDouble(Blackbox.DATA_SPEED);
-                speed = Data.convert(speed, Blackbox.UNIT_SPEED, Data.PREFERRED_SPEED_UNIT);
-                averageSpeed += speed;
-            }
-            averageSpeed /= data.size();
-
-            TextView speed = view.findViewById(R.id.blackbox_data_preview_averageSpeed);
-            speed.setText(new TelematicsDecimalFormat().format(averageSpeed)
-                    + " " + mContext.getString(Data.PREFERRED_SPEED_UNIT.getShortNameRes()));
-        } catch (JSONException e) {
-            Log.w("BlackboxAdapter", "Unable to calculate speed: " + e.getMessage());
         }
 
 
