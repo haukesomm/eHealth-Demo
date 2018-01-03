@@ -79,7 +79,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:graphTitle="@string/activity_data_graph_speed_title"
-        app:graphIcon="@drawable/ic_stats_timeline"
-        app:graphUnit="@string/data_unit_speed_mph_short"/>
+        app:graphIcon="@drawable/ic_stats_timeline"/>
 
 </LinearLayout>

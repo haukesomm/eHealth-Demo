@@ -6,17 +6,40 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/view_graph_telematics_title"
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="center_vertical"
-        style="@style/Text.Subheading.Primary"
-        android:text="@string/unknown"
-        android:drawableStart="@drawable/ic_stats_timeline"
-        android:drawablePadding="@dimen/margin_small"
-        android:drawableTint="@color/colorPrimary"
-        tools:targetApi="m" />
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:id="@+id/view_graph_telematics_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            style="@style/Text.Subheading.Primary"
+            android:text="@string/unknown"
+            android:drawableStart="@drawable/ic_stats_timeline"
+            android:drawablePadding="@dimen/margin_small"
+            android:drawableTint="@color/colorPrimary"
+            tools:targetApi="m" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_default"
+            style="@style/Text.Caption.Secondary"
+            android:text="Unit:"/>
+
+        <TextView
+            android:id="@+id/view_graph_telematics_unit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_small"
+            style="@style/Text.Caption.Secondary"
+            android:text="@string/unknown"/>
+
+    </LinearLayout>
 
     <com.jjoe64.graphview.GraphView
         android:id="@+id/view_graph_telematics_graph"

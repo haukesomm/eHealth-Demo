@@ -47,10 +47,12 @@ public class TelematicsGraphView extends LinearLayout {
      * @param data      The actual data to use for the graph
      */
     public TelematicsGraphView(@NonNull Context context, @Nullable Drawable icon, @Nullable String title,
-                               @NonNull String unit, @NonNull LineGraphSeries<DataPoint> data) {
+                               @NonNull Data.Unit unit, @NonNull LineGraphSeries<DataPoint> data) {
         super(context);
-        init(icon, title, unit);
-        setData(data);
+        mContext = context;
+
+        init(icon, title);
+        setData(data, unit);
     }
 
 
@@ -62,32 +64,38 @@ public class TelematicsGraphView extends LinearLayout {
      */
     public TelematicsGraphView(@NonNull Context context, @NonNull AttributeSet attrs) {
         super(context, attrs);
+        mContext = context;
 
         TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.TelematicsGraphView);
         Drawable icon = typedArray.getDrawable(R.styleable.TelematicsGraphView_graphIcon);
         String title = typedArray.getString(R.styleable.TelematicsGraphView_graphTitle);
-        String unit = typedArray.getString(R.styleable.TelematicsGraphView_graphUnit);
         typedArray.recycle();
 
-        init(icon, title, unit);
+        init(icon, title);
     }
 
 
 
-    private void init(Drawable icon, String title, String unit) {
+    private void init(Drawable icon, String title) {
         inflate(getContext(), R.layout.view_graph_telematics, this);
         bindView();
 
-        mUnit = unit;
-
         mTitle.setCompoundDrawablesWithIntrinsicBounds(icon, null, null, null);
         mTitle.setCompoundDrawablePadding((int) getResources().getDimension(R.dimen.margin_small));
-        mTitle.setText(title + " [" + unit + "]");
+        mTitle.setText(title);
     }
+
+
+
+    private Context mContext;
 
 
 
     private TextView mTitle;
+
+
+    private TextView mUnit;
+
 
 
     private GraphView mGraph;
@@ -101,6 +109,7 @@ public class TelematicsGraphView extends LinearLayout {
 
     private void bindView() {
         mTitle = findViewById(R.id.view_graph_telematics_title);
+        mUnit = findViewById(R.id.view_graph_telematics_unit);
         mGraph = findViewById(R.id.view_graph_telematics_graph);
         mMaximum = findViewById(R.id.view_graph_telematics_maximum_value);
         mMinimum = findViewById(R.id.view_graph_telematics_minimum_value);
@@ -108,10 +117,10 @@ public class TelematicsGraphView extends LinearLayout {
 
 
 
-    private String mUnit;
-
-
     private Series<DataPoint> mData;
+
+
+    private Data.Unit mDataUnit;
 
 
     /**
@@ -120,8 +129,15 @@ public class TelematicsGraphView extends LinearLayout {
      *
      * @param data  The graph's data
      */
-    public void setData(@NonNull Series<DataPoint> data) {
+    public void setData(@NonNull Series<DataPoint> data, @Nullable Data.Unit unit) {
         mData = data;
+        mDataUnit = unit;
+
+
+        if (mDataUnit != null) {
+            mUnit.setText(mContext.getString(mDataUnit.getFullNameRes()));
+        }
+
 
         mGraph.removeAllSeries();
         mGraph.addSeries(mData);
@@ -138,7 +154,7 @@ public class TelematicsGraphView extends LinearLayout {
         labelRenderer.setHorizontalLabelsVisible(false);
 
         TelematicsDecimalFormat format = new TelematicsDecimalFormat();
-        mMaximum.setText(format.format(mData.getHighestValueY()) + " " + mUnit);
-        mMinimum.setText(format.format(mData.getLowestValueY()) + " " + mUnit);
+        mMaximum.setText(format.format(mData.getHighestValueY()) + " " + mContext.getString(mDataUnit.getShortNameRes()));
+        mMinimum.setText(format.format(mData.getLowestValueY()) + " " + mContext.getString(mDataUnit.getShortNameRes()));
     }
 }
