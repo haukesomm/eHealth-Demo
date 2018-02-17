@@ -7,3 +7,7 @@ local.properties
 build/
 app/build/
 .gradle
+
+# Signing configs:
+signing_release.properties
+signing_debug.properties
