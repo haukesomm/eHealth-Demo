@@ -1,0 +1,5 @@
+# Ignore the key file since the api keys should
+# usually remain private.
+# Also see 'git update-index --skip-worktree <file_name>'
+# for more information.
+api_keys.xml
