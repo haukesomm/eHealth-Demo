@@ -26,6 +26,15 @@ import android.view.WindowManager;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapFragment;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.LatLngBounds;
+import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.PolylineOptions;
 import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
 
@@ -33,6 +42,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 
 import de.haukesomm.telematics.R;
 import de.haukesomm.telematics.helper.ViewHelper;
@@ -87,6 +98,7 @@ public class DataActivity extends AppCompatActivity implements AppBarLayout.OnOf
 
 
         initData();
+        initMap();
         initRoute();
         initGraphs();
     }
@@ -277,6 +289,60 @@ public class DataActivity extends AppCompatActivity implements AppBarLayout.OnOf
             finish();
             return;
         }
+    }
+
+
+
+    private GoogleMap mMap;
+
+
+    private void initMap() {
+        final List<LatLng> positions = new LinkedList<>();
+
+        for (JSONObject data : mData) {
+            try {
+                LatLng position = new LatLng(
+                        data.getDouble(Blackbox.DATA_LATITUDE),
+                        data.getDouble(Blackbox.DATA_LONGITUDE)
+                );
+                positions.add(position);
+            } catch (JSONException e) {
+                Log.w("DataActivity", "Unable to get LatLng data: " + e.getMessage());
+            }
+        }
+
+
+        SupportMapFragment map = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.activity_data_map);
+        map.getMapAsync(new OnMapReadyCallback() {
+            @Override
+            public void onMapReady(GoogleMap googleMap) {
+                mMap = googleMap;
+                initMapMarkers(positions);
+            }
+        });
+    }
+
+
+    private void initMapMarkers(List<LatLng> positions) {
+        LatLngBounds.Builder bounds = LatLngBounds.builder();
+        PolylineOptions path = new PolylineOptions()
+                .color(getResources().getColor(R.color.colorPrimary))
+                .width(20f);
+
+        // Starting position
+        mMap.addMarker(
+                new MarkerOptions().position(positions.get(0)));
+        // Destination marker
+        mMap.addMarker(
+                new MarkerOptions().position(positions.get(positions.size() - 1)));
+
+        for (LatLng position : positions) {
+            bounds.include(position);
+            path.add(position);
+        }
+
+        mMap.moveCamera(CameraUpdateFactory.newLatLngBounds(bounds.build(), 1000, 1000, 200));
+        mMap.addPolyline(path);
     }
 
 
