@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Insert your Google Maps / Geo API Key here -->
+    <!--
+    Insert your Google Maps / Geo API Key here:
     <string name="api_google_geo"></string>
+    -->
 </resources>
