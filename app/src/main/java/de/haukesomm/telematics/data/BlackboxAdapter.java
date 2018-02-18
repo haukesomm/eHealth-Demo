@@ -20,7 +20,6 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.text.DateFormat;
@@ -30,7 +29,6 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import de.haukesomm.telematics.R;
-import de.haukesomm.telematics.net.GeocodeApiClient;
 
 /**
  * Created on 19.11.17
@@ -115,10 +113,6 @@ public class BlackboxAdapter extends BaseAdapter {
 
 
 
-    private final GeocodeApiClient mGeocodeApiClient = new GeocodeApiClient();
-
-
-
     /**
      * This method generates the actual view for each object.
      *
@@ -150,24 +144,10 @@ public class BlackboxAdapter extends BaseAdapter {
 
 
         final TextView start = view.findViewById(R.id.blackbox_data_preview_start);
-        try {
-            double latitude = data.get(0).getDouble(Blackbox.DATA_LATITUDE);
-            double longitude = data.get(0).getDouble(Blackbox.DATA_LONGITUDE);
-
-            //requestAddress(latitude, longitude, start);
-        } catch (JSONException e) {
-            Log.w("BlackboxAdapter", "Unable to set start: " + e.getMessage());
-        }
+        // Set location
 
         final TextView destination = view.findViewById(R.id.blackbox_data_preview_destination);
-        try {
-            double latitude = data.get(data.size() - 1).getDouble(Blackbox.DATA_LATITUDE);
-            double longitude = data.get(data.size() - 1).getDouble(Blackbox.DATA_LONGITUDE);
-
-            //requestAddress(latitude, longitude, destination);
-        } catch (JSONException e) {
-            Log.w("BlackboxAdapter", "Unable to set destination: " + e.getMessage());
-        }
+        // Set location
 
 
         view.setOnClickListener(new View.OnClickListener() {
@@ -197,23 +177,5 @@ public class BlackboxAdapter extends BaseAdapter {
             Log.w("BlackboxAdapter", "Unable to generate date from table: " + e.getMessage());
             return table;
         }
-    }
-
-
-
-    private void requestAddress(double latitude, double longitude, final TextView out) {
-        mGeocodeApiClient.requestAddress(latitude, longitude, new GeocodeApiClient.ResponseListener() {
-            @Override
-            public void onResponse(JSONObject response) {
-                try {
-                    String city = mGeocodeApiClient.decodeCity(response);
-                    if (city != null) {
-                        out.setText(city);
-                    }
-                } catch (JSONException e) {
-                    Log.w("BlackboxAdapter", "Unable to request address: " + e.getMessage());
-                }
-            }
-        });
     }
 }
