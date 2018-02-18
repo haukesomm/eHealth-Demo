@@ -11,6 +11,8 @@ package de.haukesomm.telematics.data;
 
 import android.database.sqlite.SQLiteException;
 import android.graphics.Paint;
+import android.location.Address;
+import android.location.Geocoder;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -41,13 +43,13 @@ import com.jjoe64.graphview.series.LineGraphSeries;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
 import de.haukesomm.telematics.R;
 import de.haukesomm.telematics.helper.ViewHelper;
-import de.haukesomm.telematics.net.GeocodeApiClient;
 
 /**
  * Created on 09.12.17
@@ -347,43 +349,36 @@ public class DataActivity extends AppCompatActivity implements AppBarLayout.OnOf
 
 
 
+    private Geocoder mGeocoder;
+
+
     private void initRoute() {
-        final GeocodeApiClient geocoder = new GeocodeApiClient();
+        mGeocoder = new Geocoder(this);
 
+        double startLat, startLng;
+        double destLat, destLng;
         try {
-            double startLat = mData.get(0).getDouble(Blackbox.DATA_LATITUDE);
-            double startLng = mData.get(0).getDouble(Blackbox.DATA_LONGITUDE);
+            startLat = mData.get(0).getDouble(Blackbox.DATA_LATITUDE);
+            startLng = mData.get(0).getDouble(Blackbox.DATA_LONGITUDE);
 
-            geocoder.requestAddress(startLat, startLng, new GeocodeApiClient.ResponseListener() {
-                @Override
-                public void onResponse(JSONObject response) {
-                    try {
-                        mRouteStart.setText(geocoder.decodeFormattedAddress(response));
-                    } catch (JSONException e) {
-                        //
-                    }
-                }
-            });
+            destLat = mData.get(mData.size() - 1).getDouble(Blackbox.DATA_LATITUDE);
+            destLng = mData.get(mData.size() - 1).getDouble(Blackbox.DATA_LONGITUDE);
         } catch (JSONException e) {
-            //
+            Log.w("DataActivity", "Unable to init route: " + e.getMessage());
+            return;
         }
 
-        try {
-            double destLat = mData.get(mData.size() - 1).getDouble(Blackbox.DATA_LATITUDE);
-            double destLng = mData.get(mData.size() - 1).getDouble(Blackbox.DATA_LONGITUDE);
+        mRouteStart.setText(getAddressFromLatLng(startLat, startLng));
+        mRouteDestination.setText(getAddressFromLatLng(destLat, destLng));
+    }
 
-            geocoder.requestAddress(destLat, destLng, new GeocodeApiClient.ResponseListener() {
-                @Override
-                public void onResponse(JSONObject response) {
-                    try {
-                        mRouteDestination.setText(geocoder.decodeFormattedAddress(response));
-                    } catch (JSONException e) {
-                        //
-                    }
-                }
-            });
-        } catch (JSONException e) {
-            //
+
+    private String getAddressFromLatLng(double lat, double lng) {
+        try {
+            Address address = mGeocoder.getFromLocation(lat, lng, 1).get(0);
+            return address.getAddressLine(0);
+        } catch (IOException e) {
+            return getString(R.string.unknown);
         }
     }
 
