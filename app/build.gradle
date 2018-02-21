@@ -28,7 +28,7 @@ android {
     buildToolsVersion '27.0.1'
     defaultConfig {
         applicationId "de.haukesomm.telematics"
-        minSdkVersion 21
+        minSdkVersion 23
         targetSdkVersion 27
         versionCode 1
         versionName "0.0.1"

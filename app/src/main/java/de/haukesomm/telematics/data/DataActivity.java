@@ -13,7 +13,6 @@ import android.database.sqlite.SQLiteException;
 import android.graphics.Paint;
 import android.location.Address;
 import android.location.Geocoder;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.design.widget.AppBarLayout;
@@ -30,7 +29,6 @@ import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
@@ -289,7 +287,6 @@ public class DataActivity extends AppCompatActivity implements AppBarLayout.OnOf
             Log.e("DataActivity", "Invalid Blackbox table specified.");
             Toast.makeText(this, R.string.data_notAvailable, Toast.LENGTH_SHORT).show();
             finish();
-            return;
         }
     }
 
@@ -328,7 +325,7 @@ public class DataActivity extends AppCompatActivity implements AppBarLayout.OnOf
     private void initMapMarkers(List<LatLng> positions) {
         LatLngBounds.Builder bounds = LatLngBounds.builder();
         PolylineOptions path = new PolylineOptions()
-                .color(getResources().getColor(R.color.colorPrimary))
+                .color(getColor(R.color.colorPrimary))
                 .width(20f);
 
         // Starting position
@@ -390,15 +387,10 @@ public class DataActivity extends AppCompatActivity implements AppBarLayout.OnOf
     private void initGraphs() {
         LineGraphSeries<DataPoint> speedValues = new LineGraphSeries<>();
 
-        if (Build.VERSION.SDK_INT >= 23) {
-            Paint color = new Paint();
-            color.setColor(getResources().getColor(R.color.colorPrimary, getTheme()));
-            color.setStrokeWidth((float) GRAPH_DEFAULT_THICKNESS);
-
-            speedValues.setCustomPaint(color);
-        } else {
-            speedValues.setThickness(GRAPH_DEFAULT_THICKNESS);
-        }
+        Paint color = new Paint();
+        color.setColor(getColor(R.color.colorPrimary));
+        color.setStrokeWidth((float) GRAPH_DEFAULT_THICKNESS);
+        speedValues.setCustomPaint(color);
 
         for (int i = 0; i < mData.size(); i++) {
             JSONObject data = mData.get(i);
