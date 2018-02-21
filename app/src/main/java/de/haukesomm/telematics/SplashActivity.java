@@ -26,6 +26,49 @@ import de.haukesomm.telematics.data.Blackbox;
  */
 public class SplashActivity extends AppCompatActivity {
 
+    private static final long DURATION = 1500L;
+
+
+
+    private Blackbox.OpenListener mLaunchListener = new Blackbox.OpenListener() {
+        @Override
+        public void onBlackboxOpened() {
+            mBlackbox.close();
+
+            Intent mainActivity = new Intent(getApplicationContext(), MainActivity.class);
+            startActivity(mainActivity);
+            overridePendingTransition(android.R.anim.fade_in, R.anim.none);
+        }
+    };
+
+
+
+    private final Runnable mLaunchRunnable = new Runnable() {
+        @Override
+        public void run() {
+            mBlackbox.open(mLaunchListener);
+        }
+    };
+
+
+
+    private Blackbox mBlackbox;
+
+
+    private Handler mLaunchHandler = new Handler();
+
+
+    private void startDelayedLaunch() {
+        mLaunchHandler.postDelayed(mLaunchRunnable, DURATION);
+    }
+
+
+    private void cancelDelayedLaunch() {
+        mLaunchHandler.removeCallbacks(mLaunchRunnable);
+    }
+
+
+
     /**
      * {@inheritDoc}
      */
@@ -34,25 +77,27 @@ public class SplashActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
+        mBlackbox = new Blackbox(this);
+        startDelayedLaunch();
+    }
 
-        final Blackbox blackbox = new Blackbox(this);
 
-        final Blackbox.OpenListener openListener = new Blackbox.OpenListener() {
-            @Override
-            public void onBlackboxOpened() {
-                blackbox.close();
+    /**
+     * Cancels the delayed application launch on Activity pause.
+     */
+    @Override
+    public void onPause() {
+        cancelDelayedLaunch();
+        super.onPause();
+    }
 
-                Intent mainActivity = new Intent(getApplicationContext(), MainActivity.class);
-                startActivity(mainActivity);
-                overridePendingTransition(android.R.anim.fade_in, R.anim.none);
-            }
-        };
 
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                blackbox.open(openListener);
-            }
-        }, 1500L);
+    /**
+     * Resumes the delayed application launch on Activity pause.
+     */
+    @Override
+    public void onResume() {
+        startDelayedLaunch();
+        super.onResume();
     }
 }
