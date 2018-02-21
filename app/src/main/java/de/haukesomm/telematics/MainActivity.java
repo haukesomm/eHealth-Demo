@@ -47,13 +47,6 @@ public class MainActivity extends AppCompatActivity {
 
         bindActivity();
 
-        Toolbar toolbar = findViewById(R.id.activity_main_toolbar);
-        setSupportActionBar(toolbar);
-        if (getSupportActionBar() != null) {
-            getSupportActionBar().setTitle(R.string.app_name);
-        }
-
-
         initSearch();
         initFragments();
     }
@@ -104,6 +97,12 @@ public class MainActivity extends AppCompatActivity {
 
     private void bindActivity() {
         setContentView(R.layout.activity_main);
+
+        Toolbar toolbar = findViewById(R.id.activity_main_toolbar);
+        setSupportActionBar(toolbar);
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setTitle(R.string.app_name);
+        }
 
         mFragmentTabLayout = findViewById(R.id.activity_main_tabs);
         mFragmentPager = findViewById(R.id.activity_main_pager);
