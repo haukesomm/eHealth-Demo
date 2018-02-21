@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.activity_main);
+        bindActivity();
 
         Toolbar toolbar = findViewById(R.id.activity_main_toolbar);
         setSupportActionBar(toolbar);
@@ -87,14 +87,125 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+    private TabLayout mFragmentTabLayout;
+
+
+    private ViewPager mFragmentPager;
+
+
+    private OverviewFragment mOverviewFragment;
+
+
+    private TimelineFragment mTimelineFragment;
+
+
     private FloatingActionButton mSearchButton;
+
+
+    private void bindActivity() {
+        setContentView(R.layout.activity_main);
+
+        mFragmentTabLayout = findViewById(R.id.activity_main_tabs);
+        mFragmentPager = findViewById(R.id.activity_main_pager);
+        mOverviewFragment = new OverviewFragment();
+        mTimelineFragment = new TimelineFragment();
+
+        mSearchButton = findViewById(R.id.activity_main_searchButton);
+    }
+
+
+
+    private FragmentStatePagerAdapter mFragmentAdapter =
+            new FragmentStatePagerAdapter(getSupportFragmentManager()) {
+        @Override
+        public Fragment getItem(int position) {
+            switch (position) {
+                case 0:
+                    return mOverviewFragment;
+                case 1:
+                    return mTimelineFragment;
+                default:
+                    return new Fragment();
+            }
+        }
+
+
+        @Override
+        public int getCount() {
+            return 2;
+        }
+    };
+
+
+    private TabLayout.OnTabSelectedListener mFragmentTabListener =
+            new TabLayout.OnTabSelectedListener() {
+        @Override
+        public void onTabSelected(final TabLayout.Tab tab) {
+            mFragmentPager.setCurrentItem(tab.getPosition());
+
+            mSearchButtonHandler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    if (tab == mTimelineTab) {
+                        mSearchButton.show();
+                    }
+                }
+            }, 400L);
+        }
+
+
+        @Override
+        public void onTabUnselected(final TabLayout.Tab tab) {
+            mSearchButtonHandler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    if (tab == mTimelineTab) {
+                        mSearchButton.hide();
+                    }
+                }
+            }, 200L);
+        }
+
+
+        @Override
+        public void onTabReselected(TabLayout.Tab tab) {
+            // Do nothing
+        }
+    };
+
+
+    private TabLayout.Tab mOverviewTab;
+
+
+    private TabLayout.Tab mTimelineTab;
+
+
+    /**
+     * This method initializes the Activity's ViewPager and TabLayout containing the Fragments
+     * providing the actual UI as well as the needed navigation elements.
+     */
+    private void initFragments() {
+        mOverviewTab = mFragmentTabLayout.newTab().setText(R.string.fragment_overview_title);
+        mFragmentTabLayout.addTab(mOverviewTab);
+
+        mTimelineTab = mFragmentTabLayout.newTab().setText(R.string.fragment_timeline_title);
+        mFragmentTabLayout.addTab(mTimelineTab);
+
+
+        mFragmentPager.setAdapter(mFragmentAdapter);
+        mFragmentPager.addOnPageChangeListener(
+                new TabLayout.TabLayoutOnPageChangeListener(mFragmentTabLayout));
+
+
+        mFragmentTabLayout.addOnTabSelectedListener(mFragmentTabListener);
+    }
+
 
 
     private Handler mSearchButtonHandler = new Handler();
 
 
     private void initSearch() {
-        mSearchButton = findViewById(R.id.activity_main_searchButton);
         mSearchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -103,81 +214,4 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-
-
-
-    /**
-     * This method initializes the Activity's ViewPager and TabLayout containing the Fragments
-     * providing the actual UI as well as the needed navigation elements.
-     */
-    private void initFragments() {
-        TabLayout tabLayout = findViewById(R.id.activity_main_tabs);
-
-        TabLayout.Tab overviewTab = tabLayout.newTab().setText(R.string.fragment_overview_title);
-        tabLayout.addTab(overviewTab);
-
-        final TabLayout.Tab timelineTab = tabLayout.newTab().setText(R.string.fragment_timeline_title);
-        tabLayout.addTab(timelineTab);
-
-
-        final ViewPager pager = findViewById(R.id.activity_main_pager);
-        pager.setAdapter(new FragmentStatePagerAdapter(getSupportFragmentManager()) {
-
-            @Override
-            public Fragment getItem(int position) {
-                switch (position) {
-                    case 0:
-                        return new OverviewFragment();
-                    case 1:
-                        return new TimelineFragment();
-                    default:
-                        return new Fragment();
-                }
-            }
-
-
-            @Override
-            public int getCount() {
-                return 2;
-            }
-        });
-        pager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
-
-
-        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
-            @Override
-            public void onTabSelected(final TabLayout.Tab tab) {
-                pager.setCurrentItem(tab.getPosition());
-
-                mSearchButtonHandler.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        if (tab == timelineTab) {
-                            mSearchButton.show();
-                        }
-                    }
-                }, 400L);
-            }
-
-
-            @Override
-            public void onTabUnselected(final TabLayout.Tab tab) {
-                mSearchButtonHandler.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        if (tab == timelineTab) {
-                            mSearchButton.hide();
-                        }
-                    }
-                }, 200L);
-            }
-
-
-            @Override
-            public void onTabReselected(TabLayout.Tab tab) {
-                // Do nothing
-            }
-        });
-    }
-
 }
