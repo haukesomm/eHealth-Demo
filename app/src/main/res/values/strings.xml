@@ -4,6 +4,7 @@
 
     <!-- General -->
     <string name="unknown">Unknown</string>
+    <string name="moreInformation">More Information</string>
 
     <!-- Overview Fragment -->
     <string name="fragment_overview_title">Overview</string>
@@ -32,4 +33,12 @@
     <!-- Settings -->
     <string name="settings_title">Settings</string>
     <string name="settings_privacy">Privacy Settings</string>
+
+    <!-- Privacy Setings -->
+    <string name="fragment_privacyModeChooser_title">Select a Privacy Mode</string>
+    <string name="fragment_privacyModeChooser_info">
+        Please note: Your insurance plan may rise or lower in price depending on the selected
+        privacy mode.\n
+        Have a look at the decumentation below in case you are unsure which option to choose.
+    </string>
 </resources>
