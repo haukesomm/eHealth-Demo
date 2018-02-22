@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/activity_preferences_privacy_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:elevation="4dp"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
+
+    <fragment
+        android:id="@+id/activity_preferences_privacy_fragment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:name="de.haukesomm.telematics.privacy.PrivacyModeChooserFragment" />
+
+    <View
+        style="@style/Divider" />
+
+    <fragment
+        android:id="@+id/activity_preferences_privacy_fragment_userdefined"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:name="de.haukesomm.telematics.privacy.CustomPrivacyModeFragment" />
+
+</LinearLayout>

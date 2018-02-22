@@ -14,4 +14,8 @@
     <style name="AppTheme.TransparentStatusBar" parent="AppTheme">
         <item name="android:windowTranslucentStatus">true</item>
     </style>
+
+    <style name="AppTheme.Preferences" parent="AppTheme">
+        <item name="colorAccent">@color/colorPrimary</item>
+    </style>
 </resources>
