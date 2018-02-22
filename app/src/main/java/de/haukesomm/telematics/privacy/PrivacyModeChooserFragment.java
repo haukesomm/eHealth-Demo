@@ -1,6 +1,6 @@
 /*
  * This file is part of the "Telematics App Mockup" project.
- * Copyright 2017, Hauke Sommerfeld and Sarah Schulz-Mukisa
+ * Copyright 2017-2018, Hauke Sommerfeld and Sarah Schulz-Mukisa
  *  
  * Licensed under the MIT license.
  * A copy can be obtained under the following link:
@@ -27,6 +27,7 @@ import de.haukesomm.telematics.R;
 /**
  * Created on 21.02.18
  * <p>
+ * This Fragment lets the user choose his preferred {@link PrivacyMode}.
  *
  * @author Hauke Sommerfeld
  */
@@ -85,6 +86,12 @@ public class PrivacyModeChooserFragment extends Fragment {
      * This Interface is used to notify the attached Activity about {@link PrivacyMode} changes.
      */
     public interface ModeChangedListener {
+
+        /**
+         * This method is called when the user selects a new {@link PrivacyMode}.
+         *
+         * @param mode  New mode
+         */
         void onModeChanged(PrivacyMode mode);
     }
 
