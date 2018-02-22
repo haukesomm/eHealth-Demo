@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Keys -->
+    <string name="pref_int_privacy_general_interval" translatable="false">privacy_general_interval</string>
+    <string name="pref_bool_privacy_general_auto" translatable="false">privacy_general_auto</string>
+    <string name="pref_bool_privacy_data_time" translatable="false">privacy_data_time</string>
+    <string name="pref_bool_privacy_data_space" translatable="false">privacy_data_space</string>
+    <string name="pref_bool_privacy_data_gps" translatable="false">privacy_data_gps</string>
+    <string name="pref_bool_privacy_data_speed" translatable="false">privacy_data_speed</string>
+    
+    <!-- Misc -->
+    <string-array name="pref_int_privacy_general_interval_entries">
+        <item>One minute</item>
+        <item>Two minutes</item>
+        <item>Five minutes</item>
+        <item>Thirty minutes</item>
+        <item>One hour</item>
+    </string-array>
+    <string-array name="pref_int_privacy_general_interval_values">
+        <item>1</item>
+        <item>2</item>
+        <item>5</item>
+        <item>30</item>
+        <item>60</item>
+    </string-array>
+</resources>

@@ -41,4 +41,16 @@
         privacy mode.\n
         Have a look at the decumentation below in case you are unsure which option to choose.
     </string>
+    <string name="fragment_customPrivacyMode_general">General</string>
+    <string name="fragment_customPrivacyMode_general_interval_title">Data collection interval</string>
+    <string name="fragment_customPrivacyMode_general_auto_title">Automatically submit data</string>
+    <string name="fragment_customPrivacyMode_data">Which data would you like to submit?</string>
+    <string name="fragment_customPrivacyMode_data_time_title">Timestamps</string>
+    <string name="fragment_customPrivacyMode_data_time_summary">Analyze your driving habits</string>
+    <string name="fragment_customPrivacyMode_data_space_title">Vehicle space</string>
+    <string name="fragment_customPrivacyMode_data_space_summary">Monitor safety distance</string>
+    <string name="fragment_customPrivacyMode_data_gps_title">GPS location</string>
+    <string name="fragment_customPrivacyMode_data_gps_summary">Check for risk areas (e.g. high traffic roads)</string>
+    <string name="fragment_customPrivacyMode_data_speed_title">Speed</string>
+    <string name="fragment_customPrivacyMode_data_speed_summary">Monitor vehicle speed</string>
 </resources>
