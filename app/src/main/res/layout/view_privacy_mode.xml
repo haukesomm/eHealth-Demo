@@ -24,6 +24,7 @@
         android:text="@string/unknown"/>
 
     <Button
+        android:id="@+id/view_privacyMode_settingsButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"

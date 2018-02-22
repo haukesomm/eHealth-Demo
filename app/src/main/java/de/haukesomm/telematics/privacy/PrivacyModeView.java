@@ -10,11 +10,14 @@
 package de.haukesomm.telematics.privacy;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.TypedArray;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -75,10 +78,21 @@ public class PrivacyModeView extends LinearLayout {
     private TextView mText;
 
 
+    private Button mPrivacySettingsButton;
+
+
     private void init() {
         inflate(getContext(), R.layout.view_privacy_mode, this);
-        mIcon = findViewById(R.id.view_privacyMode_icon);
-        mText = findViewById(R.id.view_privacyMode_text);
+        mIcon                    = findViewById(R.id.view_privacyMode_icon);
+        mText                    = findViewById(R.id.view_privacyMode_text);
+        mPrivacySettingsButton   = findViewById(R.id.view_privacyMode_settingsButton);
+        mPrivacySettingsButton.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent privacySettings = new Intent(getContext(), PrivacyPreferenceActivity.class);
+                getContext().startActivity(privacySettings);
+            }
+        });
     }
 
 
@@ -91,23 +105,23 @@ public class PrivacyModeView extends LinearLayout {
     public void setMode(@NonNull PrivacyMode mode) {
         switch (mode) {
             case UNKNOWN:
-                mIcon.setImageDrawable(getResources().getDrawable(R.drawable.ic_privacy_unknown));
+                mIcon.setImageDrawable(getContext().getDrawable(R.drawable.ic_privacy_unknown));
                 mText.setText(R.string.unknown);
                 break;
             case MAXIMUM_DATA:
-                mIcon.setImageDrawable(getResources().getDrawable(R.drawable.ic_privacy_maximumdata));
+                mIcon.setImageDrawable(getContext().getDrawable(R.drawable.ic_privacy_maximumdata));
                 mText.setText(R.string.privacy_mode_maximumData);
                 break;
             case USER_DEFINED:
-                mIcon.setImageDrawable(getResources().getDrawable(R.drawable.ic_privacy_userdefined));
+                mIcon.setImageDrawable(getContext().getDrawable(R.drawable.ic_privacy_userdefined));
                 mText.setText(R.string.privacy_mode_userDefined);
                 break;
             case MINIMUM_DATA:
-                mIcon.setImageDrawable(getResources().getDrawable(R.drawable.ic_privacy_minimumdata));
+                mIcon.setImageDrawable(getContext().getDrawable(R.drawable.ic_privacy_minimumdata));
                 mText.setText(R.string.privacy_mode_minimumData);
                 break;
             case OBFUSCATION:
-                mIcon.setImageDrawable(getResources().getDrawable(R.drawable.ic_privacy_obfuscation));
+                mIcon.setImageDrawable(getContext().getDrawable(R.drawable.ic_privacy_obfuscation));
                 mText.setText(R.string.privacy_mode_obfuscation);
                 break;
         }
