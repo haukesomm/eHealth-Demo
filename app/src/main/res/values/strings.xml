@@ -35,7 +35,7 @@
     <string name="settings_privacy">Privacy Settings</string>
 
     <!-- Privacy Setings -->
-    <string name="fragment_privacyModeChooser_title">Select a Privacy Mode</string>
+    <string name="fragment_privacyModeChooser_title">Privacy Mode</string>
     <string name="fragment_privacyModeChooser_info">
         Please note: Your insurance plan may rise or lower in price depending on the selected
         privacy mode.\n
