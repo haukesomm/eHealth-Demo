@@ -20,7 +20,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import de.haukesomm.telematics.R;
 
@@ -69,12 +72,43 @@ public class PrivacyModeChooserFragment extends Fragment {
 
 
 
+    private LinearLayout mContent;
+
+
+    private ImageView mContentToggle;
+
+
     private Spinner mPrivacyModes;
 
 
-    private View setupFragment(View view) {
-        mPrivacyModes = view.findViewById(R.id.fragment_preferences_privacy_modes);
+    private View setupFragment(final View view) {
+        mContent = view.findViewById(R.id.fragment_preferences_privacy_content);
 
+        mContentToggle =
+                view.findViewById(R.id.fragment_preferences_privacy_content_toggle);
+        mContentToggle.setOnClickListener(new View.OnClickListener() {
+            private boolean _visible = true;
+
+            private TextView _contentHidden =
+                    view.findViewById(R.id.fragment_preferences_privacy_content_hidden);
+
+            @Override
+            public void onClick(View v) {
+                _visible = !_visible;
+
+                mContent.setVisibility(_visible
+                        ? View.VISIBLE
+                        : View.GONE);
+                _contentHidden.setVisibility(!_visible
+                        ? View.VISIBLE
+                        : View.GONE);
+                mContentToggle.setImageDrawable(getContext().getDrawable(_visible
+                        ? R.drawable.ic_less
+                        : R.drawable.ic_more));
+            }
+        });
+
+        mPrivacyModes = mContent.findViewById(R.id.fragment_preferences_privacy_modes);
         initModes();
 
         return view;
@@ -121,5 +155,16 @@ public class PrivacyModeChooserFragment extends Fragment {
                 // Do nothing
             }
         });
+    }
+
+
+    /**
+     * this method enables/disables the optional collapse of this Fragment in order to save space.
+     * A dedicated button will appear.
+     *
+     * @param collapsible True if collapse allowed
+     */
+    public void setCollapsible(boolean collapsible) {
+        mContentToggle.setVisibility(collapsible ? View.VISIBLE : View.GONE);
     }
 }

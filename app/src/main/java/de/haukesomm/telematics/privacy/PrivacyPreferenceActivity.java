@@ -74,6 +74,7 @@ public class PrivacyPreferenceActivity extends AppCompatActivity
 
         mModeChooser = (PrivacyModeChooserFragment)
                 getSupportFragmentManager().findFragmentById(R.id.activity_preferences_privacy_fragment);
+        mModeChooser.setCollapsible(true);
         mCustomPreferences = (CustomPrivacyModeFragment)
                 getFragmentManager().findFragmentById(R.id.activity_preferences_privacy_fragment_userdefined);
     }
