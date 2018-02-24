@@ -27,34 +27,34 @@ public enum PrivacyMode {
      * This mode should never actually be available to the user and only functions as some sort of
      * fallback in case somthing goes wrong.
      */
-    UNKNOWN(-1, R.string.privacy_mode_unknown_title, R.drawable.ic_privacy_unknown),
+    UNKNOWN(-1, R.string.privacy_mode_unknown_title, R.drawable.ic_privacy_mode_unknown),
 
     /**
      * Submit all data to the insurance (minimal privacy).<br>
      * The insurance plan might rise or lower in price depending completely on the driving habits of
      * the user.
      */
-    MAXIMUM_DATA(0, R.string.privacy_mode_maximumData_title, R.drawable.ic_privacy_maximumdata),
+    MAXIMUM_DATA(0, R.string.privacy_mode_maximumData_title, R.drawable.ic_privacy_mode_maximumdata),
 
     /**
      * Submit only the data explicitly selected by the user.<br>
      * The insurance plan might rise or lower in price depending on the driving habits of
      * the user but with upper and lower limits as well as a higher initial price.
      */
-    USER_DEFINED(45, R.string.privacy_mode_userDefined_title, R.drawable.ic_privacy_userdefined),
+    USER_DEFINED(45, R.string.privacy_mode_userDefined_title, R.drawable.ic_privacy_mode_userdefined),
 
     /**
      * Submit only a bare minimum of data to the insurance.<br>
      * The insurance plan might slightly rise or lower in price depending on the driving habits of
      * the user. The initial price is slightly higher than default. Upper and lower limits apply.
      */
-    MINIMUM_DATA(65, R.string.privacy_mode_minimumData_title, R.drawable.ic_privacy_minimumdata),
+    MINIMUM_DATA(65, R.string.privacy_mode_minimumData_title, R.drawable.ic_privacy_mode_minimumdata),
 
     /**
      * Do not submit any data at all (maximum privacy).<br>
      * A default plan with a fixed price (higher than the general upper limit) applies.
      */
-    OBFUSCATION(100, R.string.privacy_mode_obfuscation_title, R.drawable.ic_privacy_obfuscation);
+    OBFUSCATION(100, R.string.privacy_mode_obfuscation_title, R.drawable.ic_privacy_mode_obfuscation);
 
 
     /**

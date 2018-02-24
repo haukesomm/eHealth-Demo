@@ -12,7 +12,7 @@
         android:layout_width="72dp"
         android:layout_height="72dp"
         android:layout_margin="@dimen/margin_small"
-        android:src="@drawable/ic_privacy_unknown"
+        android:src="@drawable/ic_privacy_mode_unknown"
         android:tint="@color/colorPrimary"/>
 
     <TextView
