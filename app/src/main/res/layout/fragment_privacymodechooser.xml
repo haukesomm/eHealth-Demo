@@ -6,7 +6,7 @@
     android:layout_height="match_parent">
 
     <ImageView
-        android:id="@+id/fragment_preferences_privacy_content_toggle"
+        android:id="@+id/fragment_privacyModeChooser_content_toggle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="@dimen/margin_default"
@@ -18,26 +18,26 @@
         android:visibility="invisible"/>
 
     <TextView
-        android:id="@+id/fragment_preferences_privacy_title"
+        android:id="@+id/fragment_privacyModeChooser_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/margin_default"
         android:layout_alignParentStart="true"
-        android:layout_toStartOf="@id/fragment_preferences_privacy_content_toggle"
-        android:layout_alignBaseline="@id/fragment_preferences_privacy_content_toggle"
+        android:layout_toStartOf="@id/fragment_privacyModeChooser_content_toggle"
+        android:layout_alignBaseline="@id/fragment_privacyModeChooser_content_toggle"
         style="@style/Text.Subheading.Primary"
         android:textColor="@color/colorPrimary"
         android:text="@string/fragment_privacyModeChooser_title"/>
 
     <LinearLayout
-        android:id="@+id/fragment_preferences_privacy_content"
+        android:id="@+id/fragment_privacyModeChooser_content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/fragment_preferences_privacy_title"
+        android:layout_below="@id/fragment_privacyModeChooser_title"
         android:orientation="vertical">
 
         <Spinner
-            android:id="@+id/fragment_preferences_privacy_modes"
+            android:id="@+id/fragment_privacyModeChooser_modes"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/margin_default"/>
@@ -50,7 +50,7 @@
             android:text="@string/fragment_privacyModeChooser_info"/>
 
         <Button
-            android:id="@+id/fragment_preferences_privacy_help"
+            android:id="@+id/fragment_privacyModeChooser_info"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
@@ -60,11 +60,11 @@
     </LinearLayout>
 
     <TextView
-        android:id="@+id/fragment_preferences_privacy_content_hidden"
+        android:id="@+id/fragment_privacyModeChooser_content_hidden"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/margin_default"
-        android:layout_below="@id/fragment_preferences_privacy_title"
+        android:layout_below="@id/fragment_privacyModeChooser_title"
         style="@style/Text.Body1.Secondary"
         android:text="@string/fragment_privacyModeChooser_contentHidden"
         android:visibility="invisible"/>

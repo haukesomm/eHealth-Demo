@@ -82,15 +82,15 @@ public class PrivacyModeChooserFragment extends Fragment {
 
 
     private View setupFragment(final View view) {
-        mContent = view.findViewById(R.id.fragment_preferences_privacy_content);
+        mContent = view.findViewById(R.id.fragment_privacyModeChooser_content);
 
         mContentToggle =
-                view.findViewById(R.id.fragment_preferences_privacy_content_toggle);
+                view.findViewById(R.id.fragment_privacyModeChooser_content_toggle);
         mContentToggle.setOnClickListener(new View.OnClickListener() {
             private boolean _visible = true;
 
             private TextView _contentHidden =
-                    view.findViewById(R.id.fragment_preferences_privacy_content_hidden);
+                    view.findViewById(R.id.fragment_privacyModeChooser_content_hidden);
 
             @Override
             public void onClick(View v) {
@@ -108,7 +108,7 @@ public class PrivacyModeChooserFragment extends Fragment {
             }
         });
 
-        mPrivacyModes = mContent.findViewById(R.id.fragment_preferences_privacy_modes);
+        mPrivacyModes = mContent.findViewById(R.id.fragment_privacyModeChooser_modes);
         initModes();
 
         return view;
