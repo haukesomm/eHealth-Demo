@@ -34,6 +34,18 @@
     <string name="settings_title">Settings</string>
     <string name="settings_privacy">Privacy Settings</string>
 
+    <!-- Privacy Modes -->
+    <string name="privacy_mode_unknown_title">Unknown</string>
+    <string name="privacy_mode_unknown_description">This mode should never actually occur.</string>
+    <string name="privacy_mode_maximumData_title">Maximum Data</string>
+    <string name="privacy_mode_maximumData_description">0% - Personalized Plan\nMaximum Amount of Data</string>
+    <string name="privacy_mode_userDefined_title">User Defined</string>
+    <string name="privacy_mode_userDefined_description">0–65% - Flexible Plan\nSelected Data Only</string>
+    <string name="privacy_mode_minimumData_title">Minimum Data</string>
+    <string name="privacy_mode_minimumData_description">65% - Flexible Plan\nMinimum Amount of Data</string>
+    <string name="privacy_mode_obfuscation_title">Obfuscation</string>
+    <string name="privacy_mode_obfuscation_description">100% - Standard Plan\nObfuscation Mode</string>
+
     <!-- Privacy Setings -->
     <string name="fragment_privacyModeChooser_title">Privacy Mode</string>
     <string name="fragment_privacyModeChooser_info">

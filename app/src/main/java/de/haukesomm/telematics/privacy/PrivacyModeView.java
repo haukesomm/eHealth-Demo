@@ -103,28 +103,8 @@ public class PrivacyModeView extends LinearLayout {
      * @param mode  {@link PrivacyMode} that should be displayed
      */
     public void setMode(@NonNull PrivacyMode mode) {
-        switch (mode) {
-            case UNKNOWN:
-                mIcon.setImageDrawable(getContext().getDrawable(R.drawable.ic_privacy_unknown));
-                mText.setText(R.string.unknown);
-                break;
-            case MAXIMUM_DATA:
-                mIcon.setImageDrawable(getContext().getDrawable(R.drawable.ic_privacy_maximumdata));
-                mText.setText(R.string.privacy_mode_maximumData);
-                break;
-            case USER_DEFINED:
-                mIcon.setImageDrawable(getContext().getDrawable(R.drawable.ic_privacy_userdefined));
-                mText.setText(R.string.privacy_mode_userDefined);
-                break;
-            case MINIMUM_DATA:
-                mIcon.setImageDrawable(getContext().getDrawable(R.drawable.ic_privacy_minimumdata));
-                mText.setText(R.string.privacy_mode_minimumData);
-                break;
-            case OBFUSCATION:
-                mIcon.setImageDrawable(getContext().getDrawable(R.drawable.ic_privacy_obfuscation));
-                mText.setText(R.string.privacy_mode_obfuscation);
-                break;
-        }
+        mIcon.setImageDrawable(getContext().getDrawable(mode.getDrawableRes()));
+        mText.setText(mode.getNameRes());
     }
 
 }
