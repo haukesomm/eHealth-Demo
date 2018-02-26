@@ -9,7 +9,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         style="@style/Text.Subheading.Primary"
-        android:text="@string/activity_data_route_title"
+        android:text="@string/data_route_title"
         android:drawableStart="@drawable/ic_map"
         android:drawablePadding="@dimen/margin_small"
         android:drawableTint="@color/colorPrimary"/>
@@ -49,7 +49,7 @@
         android:id="@+id/activity_data_graph_speed"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:graphTitle="@string/activity_data_graph_speed_title"
+        app:graphTitle="@string/data_graph_speed_title"
         app:graphIcon="@drawable/ic_stats_timeline"/>
 
 </LinearLayout>

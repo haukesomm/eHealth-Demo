@@ -3,11 +3,11 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <PreferenceCategory
-        android:title="@string/fragment_customPrivacyMode_general">
+        android:title="@string/privacy_custom_general">
 
         <ListPreference
             android:key="@string/pref_int_privacy_general_interval"
-            android:title="@string/fragment_customPrivacyMode_general_interval_title"
+            android:title="@string/privacy_custom_general_interval_title"
             android:summary="%s"
             android:entries="@array/pref_int_privacy_general_interval_entries"
             android:entryValues="@array/pref_int_privacy_general_interval_values"
@@ -15,32 +15,32 @@
 
         <SwitchPreference
             android:key="@string/pref_bool_privacy_general_auto"
-            android:title="@string/fragment_customPrivacyMode_general_auto_title"/>
+            android:title="@string/privacy_custom_general_auto_title"/>
 
     </PreferenceCategory>
 
     <PreferenceCategory
-        android:title="@string/fragment_customPrivacyMode_data">
+        android:title="@string/privacy_custom_data">
 
         <CheckBoxPreference
             android:key="@string/pref_bool_privacy_data_time"
-            android:title="@string/fragment_customPrivacyMode_data_time_title"
-            android:summary="@string/fragment_customPrivacyMode_data_time_summary"/>
+            android:title="@string/privacy_custom_data_time_title"
+            android:summary="@string/privacy_custom_data_time_summary"/>
 
         <CheckBoxPreference
             android:key="@string/pref_bool_privacy_data_space"
-            android:title="@string/fragment_customPrivacyMode_data_space_title"
-            android:summary="@string/fragment_customPrivacyMode_data_space_summary"/>
+            android:title="@string/privacy_custom_data_space_title"
+            android:summary="@string/privacy_custom_data_space_summary"/>
 
         <CheckBoxPreference
             android:key="@string/pref_bool_privacy_data_gps"
-            android:title="@string/fragment_customPrivacyMode_data_gps_title"
-            android:summary="@string/fragment_customPrivacyMode_data_gps_summary"/>
+            android:title="@string/privacy_custom_data_gps_title"
+            android:summary="@string/privacy_custom_data_gps_summary"/>
 
         <CheckBoxPreference
             android:key="@string/pref_bool_privacy_data_speed"
-            android:title="@string/fragment_customPrivacyMode_data_speed_title"
-            android:summary="@string/fragment_customPrivacyMode_data_speed_summary"/>
+            android:title="@string/privacy_custom_speed_title"
+            android:summary="@string/privacy_custom_data_speed_summary"/>
 
     </PreferenceCategory>
 

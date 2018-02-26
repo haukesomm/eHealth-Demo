@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<resources>
+    <string name="app_name">Telematics</string>
+
+    <string name="data_delete">Delete</string>
+    <string name="data_graph_maximum">Maximum</string>
+    <string name="data_graph_minimum">Minimum</string>
+    <string name="data_graph_speed_title">Speed</string>
+    <string name="data_notAvailable">No data available</string>
+    <string name="data_report">Report false data</string>
+    <string name="data_route_title">Route</string>
+    <string name="data_title">Your driving data</string>
+    <string name="data_unit_speed_kph_full">Kilometers per hour</string>
+    <string name="data_unit_speed_kph_short">kph</string>
+    <string name="data_unit_speed_mph_full">Miles per hour</string>
+    <string name="data_unit_speed_mph_short">mph</string>
+
+    <string name="main_overview">Overview</string>
+    <string name="main_recent">Recent Activity</string>
+    <string name="main_score">Your Privacy Score</string>
+    <string name="main_timeline">Timeline</string>
+
+    <string name="privacy_chooser_contentHidden">Tap on the arrow to expand this section.</string>
+    <string name="privacy_chooser_info">
+        Please note: Your insurance plan may rise or lower in price depending on the selected
+        privacy mode.\n
+        Have a look at the decumentation below in case you are unsure which option to choose.
+    </string>
+    <string name="privacy_chooser_moreInfo">More Information</string>
+    <string name="privacy_chooser_title">Privacy Mode</string>
+    <string name="privacy_custom_data">Which data would you like to submit?</string>
+    <string name="privacy_custom_data_gps_summary">Check for risk areas (e.g. high traffic roads)</string>
+    <string name="privacy_custom_data_gps_title">GPS location</string>
+    <string name="privacy_custom_data_space_summary">Monitor safety distance</string>
+    <string name="privacy_custom_data_space_title">Vehicle space</string>
+    <string name="privacy_custom_data_speed_summary">Monitor vehicle speed</string>
+    <string name="privacy_custom_data_time_summary">Analyze your driving habits</string>
+    <string name="privacy_custom_data_time_title">Timestamps</string>
+    <string name="privacy_custom_general">General</string>
+    <string name="privacy_custom_general_auto_title">Automatically submit data</string>
+    <string name="privacy_custom_general_interval_title">Data collection interval</string>
+    <string name="privacy_custom_speed_title">Speed</string>
+    <string name="privacy_mode_custom_description">0–65% - Flexible Plan\nSelected Data Only</string>
+    <string name="privacy_mode_custom_title">User Defined</string>
+    <string name="privacy_mode_maximum_description">0% - Personalized Plan\nMaximum Amount of Data</string>
+    <string name="privacy_mode_maximum_title">Maximum Data</string>
+    <string name="privacy_mode_minimum_description">65% - Flexible Plan\nMinimum Amount of Data</string>
+    <string name="privacy_mode_minimum_title">Minimum Data</string>
+    <string name="privacy_mode_obfuscation_description">100% - Standard Plan\nObfuscation Mode</string>
+    <string name="privacy_mode_obfuscation_title">Obfuscation</string>
+    <string name="privacy_mode_unknown_description">This mode should never actually occur.</string>
+    <string name="privacy_mode_unknown_title">Unknown</string>
+
+    <string name="settings_privacy">Privacy Settings</string>
+    <string name="settings_title">Settings</string>
+
+    <string name="unknown">Unknown</string>
+</resources>

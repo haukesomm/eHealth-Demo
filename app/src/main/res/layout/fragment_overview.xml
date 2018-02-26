@@ -21,7 +21,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/margin_small"
                 style="@style/Text.Subheading.Primary"
-                android:text="@string/fragment_overview_privacyScore"
+                android:text="@string/main_score"
                 android:drawableStart="@drawable/ic_lightbulb"
                 android:drawablePadding="@dimen/margin_small"/>
 
@@ -51,7 +51,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/margin_small"
                 style="@style/Text.Subheading.Primary"
-                android:text="@string/fragment_overview_recents"
+                android:text="@string/main_recent"
                 android:drawableStart="@drawable/ic_recent"
                 android:drawablePadding="@dimen/margin_small"/>
 

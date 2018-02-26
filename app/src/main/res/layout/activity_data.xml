@@ -42,7 +42,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     style="@style/Text.Subheading.Primary"
-                    android:text="@string/activity_data_title"/>
+                    android:text="@string/data_title"/>
 
             </LinearLayout>
 

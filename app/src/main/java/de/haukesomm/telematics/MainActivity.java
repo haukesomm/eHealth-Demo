@@ -184,10 +184,10 @@ public class MainActivity extends AppCompatActivity {
      * providing the actual UI as well as the needed navigation elements.
      */
     private void initFragments() {
-        mOverviewTab = mFragmentTabLayout.newTab().setText(R.string.fragment_overview_title);
+        mOverviewTab = mFragmentTabLayout.newTab().setText(R.string.main_overview);
         mFragmentTabLayout.addTab(mOverviewTab);
 
-        mTimelineTab = mFragmentTabLayout.newTab().setText(R.string.fragment_timeline_title);
+        mTimelineTab = mFragmentTabLayout.newTab().setText(R.string.main_timeline);
         mFragmentTabLayout.addTab(mTimelineTab);
 
 
