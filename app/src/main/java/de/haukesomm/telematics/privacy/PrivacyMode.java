@@ -78,15 +78,15 @@ public enum PrivacyMode {
 
 
 
-    int mID;
+    private int mID;
 
 
     @StringRes
-    int mNameRes;
+    private int mNameRes;
 
 
     @DrawableRes
-    int mDrawableRes;
+    private int mDrawableRes;
 
 
 
