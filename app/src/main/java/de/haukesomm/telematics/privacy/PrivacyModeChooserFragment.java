@@ -137,7 +137,7 @@ public class PrivacyModeChooserFragment extends Fragment {
     private void initModes() {
         assert getContext() != null : "Fragment not attached to any Activity!";
 
-        final PrivacyMode[] modes = PrivacyMode.values();
+        final PrivacyMode[] modes = PrivacyMode.userModes();
 
         mPrivacyModes.setAdapter(new PrivacyModeAdapter(getContext(), modes));
         mPrivacyModes.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {

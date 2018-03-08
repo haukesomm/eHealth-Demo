@@ -12,6 +12,9 @@ package de.haukesomm.telematics.privacy;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.StringRes;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import de.haukesomm.telematics.R;
 
 /**
@@ -55,6 +58,23 @@ public enum PrivacyMode {
      * A default plan with a fixed price (higher than the general upper limit) applies.
      */
     OBFUSCATION(100, R.string.privacy_mode_obfuscation_title, R.drawable.ic_privacy_mode_obfuscation);
+
+
+    /**
+     * This method returns all user accessible PrivacyModes, which are all modes except those used
+     * for error purposes or error handling. Their IDs are always greater equal than zero.
+     *
+     * @return  Array of user accessible modes
+     */
+    public static PrivacyMode[] userModes() {
+        List<PrivacyMode> modes = new ArrayList<>();
+        for (PrivacyMode m : values()) {
+            if (m.getID() >= 0) {
+                modes.add(m);
+            }
+        }
+        return modes.toArray(new PrivacyMode[modes.size()]);
+    }
 
 
     /**
