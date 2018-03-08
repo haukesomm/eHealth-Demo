@@ -139,8 +139,7 @@ public class PrivacyModeChooserFragment extends Fragment {
 
         final PrivacyMode[] modes = PrivacyMode.values();
 
-        mPrivacyModes.setAdapter(new ArrayAdapter<>(
-                getContext(), android.R.layout.simple_spinner_dropdown_item, modes));
+        mPrivacyModes.setAdapter(new PrivacyModeAdapter(getContext(), modes));
         mPrivacyModes.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
