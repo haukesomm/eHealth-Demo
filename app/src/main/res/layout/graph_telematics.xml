@@ -13,7 +13,7 @@
         android:gravity="center_vertical">
 
         <TextView
-            android:id="@+id/view_graph_telematics_title"
+            android:id="@+id/graph_telematics_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
@@ -32,7 +32,7 @@
             android:text="Unit:"/>
 
         <TextView
-            android:id="@+id/view_graph_telematics_unit"
+            android:id="@+id/graph_telematics_unit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/margin_small"
@@ -42,7 +42,7 @@
     </LinearLayout>
 
     <com.jjoe64.graphview.GraphView
-        android:id="@+id/view_graph_telematics_graph"
+        android:id="@+id/graph_telematics_graph"
         android:layout_width="match_parent"
         android:layout_height="160dp"
         android:layout_marginTop="@dimen/margin_default"
@@ -54,7 +54,7 @@
         android:layout_height="wrap_content">
 
         <TextView
-            android:id="@+id/view_graph_telematics_maximum_title"
+            android:id="@+id/graph_telematics_maximum_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
@@ -64,21 +64,21 @@
             android:text="@string/data_graph_maximum"/>
 
         <TextView
-            android:id="@+id/view_graph_telematics_maximum_value"
+            android:id="@+id/graph_telematics_maximum_value"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/margin_default"
-            android:layout_toEndOf="@id/view_graph_telematics_maximum_title"
-            android:layout_alignBaseline="@id/view_graph_telematics_maximum_title"
+            android:layout_toEndOf="@id/graph_telematics_maximum_title"
+            android:layout_alignBaseline="@id/graph_telematics_maximum_title"
             android:gravity="center_vertical"
             style="@style/Text.Body1.Secondary"
             android:text="@string/unknown"/>
 
         <TextView
-            android:id="@+id/view_graph_telematics_minimum_title"
+            android:id="@+id/graph_telematics_minimum_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/view_graph_telematics_maximum_title"
+            android:layout_below="@id/graph_telematics_maximum_title"
             android:gravity="center_vertical"
             style="@style/Text.Body1.Primary"
             android:drawableStart="@drawable/ic_stats_low"
@@ -86,12 +86,12 @@
             android:text="@string/data_graph_minimum"/>
 
         <TextView
-            android:id="@+id/view_graph_telematics_minimum_value"
+            android:id="@+id/graph_telematics_minimum_value"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toEndOf="@id/view_graph_telematics_minimum_title"
-            android:layout_alignBaseline="@id/view_graph_telematics_minimum_title"
-            android:layout_alignStart="@id/view_graph_telematics_maximum_value"
+            android:layout_toEndOf="@id/graph_telematics_minimum_title"
+            android:layout_alignBaseline="@id/graph_telematics_minimum_title"
+            android:layout_alignStart="@id/graph_telematics_maximum_value"
             android:gravity="center_vertical"
             style="@style/Text.Body1.Secondary"
             android:text="@string/unknown"/>

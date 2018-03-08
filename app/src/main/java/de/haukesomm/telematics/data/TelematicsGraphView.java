@@ -77,7 +77,7 @@ public class TelematicsGraphView extends LinearLayout {
 
 
     private void init(Drawable icon, String title) {
-        inflate(getContext(), R.layout.view_graph_telematics, this);
+        inflate(getContext(), R.layout.graph_telematics, this);
         bindView();
 
         mTitle.setCompoundDrawablesWithIntrinsicBounds(icon, null, null, null);
@@ -108,11 +108,11 @@ public class TelematicsGraphView extends LinearLayout {
 
 
     private void bindView() {
-        mTitle = findViewById(R.id.view_graph_telematics_title);
-        mUnit = findViewById(R.id.view_graph_telematics_unit);
-        mGraph = findViewById(R.id.view_graph_telematics_graph);
-        mMaximum = findViewById(R.id.view_graph_telematics_maximum_value);
-        mMinimum = findViewById(R.id.view_graph_telematics_minimum_value);
+        mTitle = findViewById(R.id.graph_telematics_title);
+        mUnit = findViewById(R.id.graph_telematics_unit);
+        mGraph = findViewById(R.id.graph_telematics_graph);
+        mMaximum = findViewById(R.id.graph_telematics_maximum_value);
+        mMinimum = findViewById(R.id.graph_telematics_minimum_value);
     }
 
 

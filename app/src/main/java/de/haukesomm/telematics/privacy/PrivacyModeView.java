@@ -82,10 +82,10 @@ public class PrivacyModeView extends LinearLayout {
 
 
     private void init() {
-        inflate(getContext(), R.layout.view_privacy_mode, this);
-        mIcon                    = findViewById(R.id.view_privacyMode_icon);
-        mText                    = findViewById(R.id.view_privacyMode_text);
-        mPrivacySettingsButton   = findViewById(R.id.view_privacyMode_settingsButton);
+        inflate(getContext(), R.layout.privacy_mode_overview, this);
+        mIcon                    = findViewById(R.id.privacy_mode_overview_icon);
+        mText                    = findViewById(R.id.privacy_mode_overview_text);
+        mPrivacySettingsButton   = findViewById(R.id.privacy_mode_overview_settings);
         mPrivacySettingsButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
