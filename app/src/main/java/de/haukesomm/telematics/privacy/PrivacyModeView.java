@@ -64,7 +64,6 @@ public class PrivacyModeView extends LinearLayout {
                     typedArray.getInt(R.styleable.PrivacyModeView_mode, 0)));
         } catch (ClassNotFoundException e) {
             Log.d("PrivacyScoreView", "Invalid privacy mode: " + e.getMessage());
-            setMode(PrivacyMode.MAXIMUM_DATA);
         } finally {
             typedArray.recycle();
         }
