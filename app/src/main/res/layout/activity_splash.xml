@@ -11,7 +11,7 @@
         style="@style/Text.Headline.Primary"
         android:fontFamily="sans-serif-light"
         android:text="@string/app_name"
-        android:drawableTop="@mipmap/ic_telematics_launcher"
+        android:drawableTop="@mipmap/ic_launcher"
         android:drawablePadding="@dimen/margin_default"/>
 
 </LinearLayout>
