@@ -37,21 +37,21 @@ public enum PrivacyMode {
      * The insurance plan might rise or lower in price depending completely on the driving habits of
      * the user.
      */
-    MAXIMUM_DATA(0, R.string.privacy_mode_maximum_title, R.drawable.ic_privacy_mode_maximumdata),
+    MAXIMUM_DATA(0, R.string.privacy_mode_maximum_title, R.drawable.ic_privacy_mode_maximum),
 
     /**
      * Submit only the data explicitly selected by the user.<br>
      * The insurance plan might rise or lower in price depending on the driving habits of
      * the user but with upper and lower limits as well as a higher initial price.
      */
-    USER_DEFINED(45, R.string.privacy_mode_custom_title, R.drawable.ic_privacy_mode_userdefined),
+    USER_DEFINED(45, R.string.privacy_mode_custom_title, R.drawable.ic_privacy_mode_user),
 
     /**
      * Submit only a bare minimum of data to the insurance.<br>
      * The insurance plan might slightly rise or lower in price depending on the driving habits of
      * the user. The initial price is slightly higher than default. Upper and lower limits apply.
      */
-    MINIMUM_DATA(65, R.string.privacy_mode_minimum_title, R.drawable.ic_privacy_mode_minimumdata),
+    MINIMUM_DATA(65, R.string.privacy_mode_minimum_title, R.drawable.ic_privacy_mode_minimum),
 
     /**
      * Do not submit any data at all (maximum privacy).<br>
