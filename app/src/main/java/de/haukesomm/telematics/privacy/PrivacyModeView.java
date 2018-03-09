@@ -69,14 +69,8 @@ public class PrivacyModeView extends LinearLayout {
         init();
 
         TypedArray typedArray  = context.obtainStyledAttributes(attrs, R.styleable.PrivacyModeView);
-        try {
-            setMode(PrivacyMode.fromID(
-                    typedArray.getInt(R.styleable.PrivacyModeView_mode, 0)));
-        } catch (ClassNotFoundException e) {
-            Log.d("PrivacyScoreView", "Invalid privacy mode: " + e.getMessage());
-        } finally {
-            typedArray.recycle();
-        }
+        setMode(PrivacyMode.fromID(typedArray.getInt(R.styleable.PrivacyModeView_mode, 0)));
+        typedArray.recycle();
     }
 
 

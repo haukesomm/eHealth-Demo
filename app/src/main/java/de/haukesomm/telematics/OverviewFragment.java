@@ -54,7 +54,7 @@ public class OverviewFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        
+
         mPrefs = PreferenceManager.getDefaultSharedPreferences(getContext());
 
 
@@ -99,12 +99,8 @@ public class OverviewFragment extends Fragment {
     public void updatePrivacyMode() {
         int id = mPrefs
                 .getInt(getString(R.string.pref_int_privacy_lastModeID), PrivacyMode.UNKNOWN.getID());
-        try {
-            PrivacyMode mode = PrivacyMode.fromID(id);
-            mPrivacyModeView.setMode(mode);
-        } catch (ClassNotFoundException c) {
-            Log.w("OverviewFragment", "Unable to update PrivacyModeView: " + c.getMessage());
-        }
+        PrivacyMode mode = PrivacyMode.fromID(id);
+        mPrivacyModeView.setMode(mode);
     }
 
 }

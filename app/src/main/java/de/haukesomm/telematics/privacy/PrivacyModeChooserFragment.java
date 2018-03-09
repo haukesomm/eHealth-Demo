@@ -150,15 +150,11 @@ public class PrivacyModeChooserFragment extends Fragment {
         final PrivacyMode[] modes = PrivacyMode.userModes();
 
         mPrivacyModes.setAdapter(new PrivacyModeAdapter(getContext(), modes));
-        // Remove Exception from PrivacyMode.fromID() and return UNKNOWN instead
-        try {
-            int id = mPrefs.getInt(getString(R.string.pref_int_privacy_lastModeID), modes[0].getID());
-            PrivacyMode mode = PrivacyMode.fromID(id);
-            mPrivacyModes.setSelection(Arrays.asList(modes).indexOf(mode));
-        } catch (ClassNotFoundException c) {
-            Log.w("PrivacyModeChooser",
-                    "There was an error initializing the modes: " + c.getMessage());
-        }
+
+        int lastID = mPrefs.getInt(getString(R.string.pref_int_privacy_lastModeID), modes[0].getID());
+        PrivacyMode lastMode = PrivacyMode.fromID(lastID);
+        mPrivacyModes.setSelection(Arrays.asList(modes).indexOf(lastMode));
+
         mPrivacyModes.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             private SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getContext());
 

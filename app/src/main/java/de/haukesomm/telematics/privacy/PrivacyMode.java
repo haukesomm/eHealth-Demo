@@ -79,21 +79,19 @@ public enum PrivacyMode {
 
     /**
      * This method tries to find a PrivacyMode by its ID an returns it if found.
-     * <br>
-     * A {@link ClassNotFoundException} will be thrown if no PrivacyMode was found.
+     * If no mode can be found, this method returns {@link #UNKNOWN}.
      *
      * @param id                        ID of the PrivacyMode
      * @return                          Privacy mode with the specified ID
-     * @throws ClassNotFoundException   in case no PrivacyMode was found
      */
-    public static PrivacyMode fromID(int id) throws ClassNotFoundException {
+    public static PrivacyMode fromID(int id) {
         for (PrivacyMode mode : PrivacyMode.values()) {
             if (mode.getID() == id) {
                 return mode;
             }
         }
 
-        throw new ClassNotFoundException("There is no privacy mode with percentage " + id);
+        return UNKNOWN;
     }
 
 
