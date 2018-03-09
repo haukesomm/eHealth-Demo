@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Keys -->
+    <string name="pref_int_privacy_lastModeID" translatable="false">privacy_lastModeID</string>
     <string name="pref_int_privacy_general_interval" translatable="false">privacy_general_interval</string>
     <string name="pref_bool_privacy_general_auto" translatable="false">privacy_general_auto</string>
     <string name="pref_bool_privacy_data_time" translatable="false">privacy_data_time</string>

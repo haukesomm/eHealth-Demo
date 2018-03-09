@@ -10,7 +10,9 @@
 package de.haukesomm.telematics.privacy;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -141,12 +143,19 @@ public class PrivacyModeChooserFragment extends Fragment {
 
         mPrivacyModes.setAdapter(new PrivacyModeAdapter(getContext(), modes));
         mPrivacyModes.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            private SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getContext());
+
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                PrivacyMode mode = modes[position];
+
+                prefs.edit()
+                        .putInt(getString(R.string.pref_int_privacy_lastModeID), mode.getID())
+                        .apply();
+
                 if (mModeListener != null) {
-                    mModeListener.onModeChanged(modes[position]);
+                    mModeListener.onModeChanged(mode);
                 }
-                // To-do: Update settings
             }
 
             @Override
