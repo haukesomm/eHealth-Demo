@@ -27,6 +27,8 @@ import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import java.util.Arrays;
+
 import de.haukesomm.telematics.R;
 
 /**
@@ -38,12 +40,18 @@ import de.haukesomm.telematics.R;
  */
 public class PrivacyModeChooserFragment extends Fragment {
 
+    private SharedPreferences mPrefs;
+
+
+
     /**
      * {@inheritDoc}
      */
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
             @Nullable Bundle savedInstanceState) {
+
+        mPrefs = PreferenceManager.getDefaultSharedPreferences(getContext());
 
         return setupFragment(inflater.inflate(R.layout.fragment_privacymodechooser, container, false));
     }
@@ -142,6 +150,15 @@ public class PrivacyModeChooserFragment extends Fragment {
         final PrivacyMode[] modes = PrivacyMode.userModes();
 
         mPrivacyModes.setAdapter(new PrivacyModeAdapter(getContext(), modes));
+        // Remove Exception from PrivacyMode.fromID() and return UNKNOWN instead
+        try {
+            int id = mPrefs.getInt(getString(R.string.pref_int_privacy_lastModeID), modes[0].getID());
+            PrivacyMode mode = PrivacyMode.fromID(id);
+            mPrivacyModes.setSelection(Arrays.asList(modes).indexOf(mode));
+        } catch (ClassNotFoundException c) {
+            Log.w("PrivacyModeChooser",
+                    "There was an error initializing the modes: " + c.getMessage());
+        }
         mPrivacyModes.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             private SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getContext());
 

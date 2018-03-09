@@ -9,6 +9,7 @@
 
 package de.haukesomm.telematics;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
@@ -22,6 +23,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
+
+import de.haukesomm.telematics.privacy.PrivacyModeView;
 
 /**
  * Created on 27.11.17
@@ -76,6 +79,20 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        switch (requestCode) {
+            case PrivacyModeView.REQUEST_SELECT_PRIVACY_MODE:
+                mOverviewFragment.updatePrivacyMode();
+                break;
+        }
     }
 
 

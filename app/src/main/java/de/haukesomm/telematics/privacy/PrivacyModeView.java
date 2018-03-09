@@ -14,6 +14,7 @@ import android.content.Intent;
 import android.content.res.TypedArray;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AppCompatActivity;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
@@ -36,6 +37,15 @@ import de.haukesomm.telematics.R;
  * @author Hauke Sommerfeld
  */
 public class PrivacyModeView extends LinearLayout {
+
+    /**
+     * This Activity request code is used to launch the {@link PrivacyPreferenceActivity} and
+     * notify the launching Activity (only if the provided {@link Context} is an Activity-Context!)
+     * that the settings were closed.
+     */
+    public static final int REQUEST_SELECT_PRIVACY_MODE = 1;
+
+
 
     /**
      * Use this constructor to create an instance of PrivacyModeView programmatically.
@@ -71,6 +81,10 @@ public class PrivacyModeView extends LinearLayout {
 
 
 
+    private boolean mActivityContext;
+
+
+
     private ImageView mIcon;
 
 
@@ -80,7 +94,10 @@ public class PrivacyModeView extends LinearLayout {
     private Button mPrivacySettingsButton;
 
 
+
     private void init() {
+        mActivityContext = getContext() instanceof AppCompatActivity;
+
         inflate(getContext(), R.layout.privacy_mode_overview, this);
         mIcon                    = findViewById(R.id.privacy_mode_overview_icon);
         mText                    = findViewById(R.id.privacy_mode_overview_text);
@@ -89,10 +106,15 @@ public class PrivacyModeView extends LinearLayout {
             @Override
             public void onClick(View v) {
                 Intent privacySettings = new Intent(getContext(), PrivacyPreferenceActivity.class);
-                getContext().startActivity(privacySettings);
+                if (mActivityContext) {
+                    ((AppCompatActivity) getContext()).startActivityForResult(privacySettings, REQUEST_SELECT_PRIVACY_MODE);
+                } else {
+                    getContext().startActivity(privacySettings);
+                }
             }
         });
     }
+
 
 
     /**

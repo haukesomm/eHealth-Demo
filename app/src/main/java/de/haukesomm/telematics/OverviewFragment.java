@@ -9,10 +9,13 @@
 
 package de.haukesomm.telematics;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,6 +26,7 @@ import java.util.Collections;
 
 import de.haukesomm.telematics.data.Blackbox;
 import de.haukesomm.telematics.data.BlackboxAdapter;
+import de.haukesomm.telematics.privacy.PrivacyMode;
 import de.haukesomm.telematics.privacy.PrivacyModeView;
 
 /**
@@ -40,12 +44,20 @@ public class OverviewFragment extends Fragment {
 
 
 
+    private SharedPreferences mPrefs;
+
+
+
     /**
      * {@inheritDoc}
      */
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
+        
+        mPrefs = PreferenceManager.getDefaultSharedPreferences(getContext());
+
+
 
         View view = inflater.inflate(R.layout.fragment_overview, container, false);
 
@@ -54,8 +66,8 @@ public class OverviewFragment extends Fragment {
         }
 
 
-        PrivacyModeView privacyMode = view.findViewById(R.id.fragment_overview_privacyMode);
-        //privacyMode.setMode(PrivacyMode.UNKNOWN);
+        mPrivacyModeView = view.findViewById(R.id.fragment_overview_privacyMode);
+        updatePrivacyMode();
 
 
         Blackbox blackbox = new Blackbox(getContext());
@@ -77,6 +89,22 @@ public class OverviewFragment extends Fragment {
 
 
         return view;
+    }
+
+
+
+    private PrivacyModeView mPrivacyModeView;
+
+
+    public void updatePrivacyMode() {
+        int id = mPrefs
+                .getInt(getString(R.string.pref_int_privacy_lastModeID), PrivacyMode.UNKNOWN.getID());
+        try {
+            PrivacyMode mode = PrivacyMode.fromID(id);
+            mPrivacyModeView.setMode(mode);
+        } catch (ClassNotFoundException c) {
+            Log.w("OverviewFragment", "Unable to update PrivacyModeView: " + c.getMessage());
+        }
     }
 
 }
