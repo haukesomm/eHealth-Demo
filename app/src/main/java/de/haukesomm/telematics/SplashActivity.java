@@ -82,6 +82,11 @@ public class SplashActivity extends AppCompatActivity {
     }
 
 
+
+    private boolean mFirstLaunch = true;
+
+
+
     /**
      * Cancels the delayed application launch on Activity pause.
      */
@@ -97,7 +102,11 @@ public class SplashActivity extends AppCompatActivity {
      */
     @Override
     public void onResume() {
-        startDelayedLaunch();
+        if (mFirstLaunch) {
+            mFirstLaunch = false;
+        } else {
+            startDelayedLaunch();
+        }
         super.onResume();
     }
 }
