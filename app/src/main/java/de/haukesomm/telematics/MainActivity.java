@@ -70,6 +70,7 @@ public class MainActivity extends AppCompatActivity {
      */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        // TODO Add settings activity
         /* Currently there is no need for a dedicated settings activity
         switch (item.getItemId())
         {

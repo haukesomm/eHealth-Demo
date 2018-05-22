@@ -129,8 +129,9 @@ public class DataActivity extends AppCompatActivity implements AppBarLayout.OnOf
                 finish();
                 return true;
 
-            case R.id.activity_data_menuAction_delete:
-                return true;
+            // TODO Add delete option
+            /*case R.id.activity_data_menuAction_delete:
+                return true;*/
 
             case R.id.activity_data_menuAction_report:
                 AlertDialog.Builder dialog = new AlertDialog.Builder(this);
