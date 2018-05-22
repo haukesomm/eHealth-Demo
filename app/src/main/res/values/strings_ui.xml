@@ -6,6 +6,7 @@
     <string name="data_graph_maximum">Maximum</string>
     <string name="data_graph_minimum">Minimum</string>
     <string name="data_graph_speed_title">Speed</string>
+    <string name="data_map_mapsNotInstalled">Please install the Google Maps app.</string>
     <string name="data_notAvailable">No data available</string>
     <string name="data_report">Report false data</string>
     <string name="data_route_title">Route</string>

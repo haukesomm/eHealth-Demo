@@ -9,13 +9,16 @@
 
 package de.haukesomm.telematics.data;
 
+import android.content.Intent;
 import android.database.sqlite.SQLiteException;
 import android.graphics.Paint;
 import android.location.Address;
 import android.location.Geocoder;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.design.widget.AppBarLayout;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -156,6 +159,10 @@ public class DataActivity extends AppCompatActivity implements AppBarLayout.OnOf
 
 
 
+    private FloatingActionButton mOpenInMapsButton;
+
+
+
     private TextView mRouteStart;
 
 
@@ -170,6 +177,8 @@ public class DataActivity extends AppCompatActivity implements AppBarLayout.OnOf
         mToolbar = findViewById(R.id.activity_data_toolbar);
         mToolbarTitle = findViewById(R.id.activity_data_toolbar_title);
         mTitle = findViewById(R.id.activity_data_title);
+
+        mOpenInMapsButton = findViewById(R.id.activity_data_openInMaps);
 
         mRouteStart = findViewById(R.id.activity_data_route_start);
         mRouteDestination = findViewById(R.id.activity_data_route_destination);
@@ -311,19 +320,43 @@ public class DataActivity extends AppCompatActivity implements AppBarLayout.OnOf
         }
 
 
+        LatLngBounds.Builder builder = LatLngBounds.builder();
+        for (LatLng position : positions) {
+            builder.include(position);
+        }
+        final LatLngBounds bounds = builder.build();
+
+
         SupportMapFragment map = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.activity_data_map);
         map.getMapAsync(new OnMapReadyCallback() {
             @Override
             public void onMapReady(GoogleMap googleMap) {
                 mMap = googleMap;
-                initMapMarkers(positions);
+                initMapMarkers(bounds, positions);
+            }
+        });
+
+
+        mOpenInMapsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                LatLng center = bounds.getCenter();
+                Uri intentUri = Uri.parse("geo:" + center.latitude + "," + center.longitude + "?z=9");
+
+                Intent mapIntent = new Intent(Intent.ACTION_VIEW, intentUri);
+                mapIntent.setPackage("com.google.android.apps.maps");
+                if (mapIntent.resolveActivity(getPackageManager()) != null) {
+                    startActivity(mapIntent);
+                } else {
+                    Toast.makeText(getApplicationContext(), R.string.data_map_mapsNotInstalled,
+                            Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }
 
 
-    private void initMapMarkers(List<LatLng> positions) {
-        LatLngBounds.Builder bounds = LatLngBounds.builder();
+    private void initMapMarkers(LatLngBounds bounds, List<LatLng> positions) {
         PolylineOptions path = new PolylineOptions()
                 .color(getColor(R.color.colorPrimary))
                 .width(20f);
@@ -336,11 +369,10 @@ public class DataActivity extends AppCompatActivity implements AppBarLayout.OnOf
                 new MarkerOptions().position(positions.get(positions.size() - 1)));
 
         for (LatLng position : positions) {
-            bounds.include(position);
             path.add(position);
         }
 
-        mMap.moveCamera(CameraUpdateFactory.newLatLngBounds(bounds.build(), 1000, 1000, 200));
+        mMap.moveCamera(CameraUpdateFactory.newLatLngBounds(bounds, 1000, 1000, 200));
         mMap.addPolyline(path);
     }
 
