@@ -70,13 +70,12 @@ public class MainActivity extends AppCompatActivity {
      */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        /* Currently there is no need for a dedicated settings activity
         switch (item.getItemId())
         {
             case R.id.activity_main_menuAction_settings:
-                Toast.makeText(this, "This feature is not yet implemented.",
-                        Toast.LENGTH_LONG).show();
                 return true;
-        }
+        }*/
 
         return super.onOptionsItemSelected(item);
     }

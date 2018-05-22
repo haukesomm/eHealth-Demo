@@ -2,10 +2,11 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <!-- Currently there is no need for a dedicated settings activity
     <item
         android:id="@+id/activity_main_menuAction_settings"
         android:icon="@drawable/ic_settings"
         android:title="@string/settings_title"
-        app:showAsAction="ifRoom"/>
+        app:showAsAction="ifRoom"/>-->
 
 </menu>
