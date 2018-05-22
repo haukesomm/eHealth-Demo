@@ -23,7 +23,7 @@
 
     <string name="main_overview">Overview</string>
     <string name="main_recent">Recent Activity</string>
-    <string name="main_score">Your Privacy Score</string>
+    <string name="main_mode">Your Privacy Mode</string>
     <string name="main_timeline">Timeline</string>
 
     <string name="privacy_chooser_contentHidden">Tap on the arrow to expand this section.</string>
