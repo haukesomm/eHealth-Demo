@@ -19,6 +19,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -129,9 +130,17 @@ public class DataActivity extends AppCompatActivity implements AppBarLayout.OnOf
                 return true;
 
             case R.id.activity_data_menuAction_delete:
+                return true;
+
             case R.id.activity_data_menuAction_report:
-                Toast.makeText(this, "This feature is not yet implemented.",
-                        Toast.LENGTH_LONG).show();
+                AlertDialog.Builder dialog = new AlertDialog.Builder(this);
+                dialog.setIcon(R.drawable.ic_report);
+                dialog.setTitle(R.string.data_report_title);
+                dialog.setMessage(R.string.data_report_message);
+                // Dummy buttons for demo purposes only
+                dialog.setNegativeButton(R.string.cancel, null);
+                dialog.setPositiveButton(R.string.data_report_proceed, null);
+                dialog.show();
                 return true;
         }
 

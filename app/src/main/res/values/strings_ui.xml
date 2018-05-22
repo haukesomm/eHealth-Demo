@@ -8,7 +8,12 @@
     <string name="data_graph_speed_title">Speed</string>
     <string name="data_map_mapsNotInstalled">Please install the Google Maps app.</string>
     <string name="data_notAvailable">No data available</string>
-    <string name="data_report">Report false data</string>
+    <string name="data_report_title">Report false data</string>
+    <string name="data_report_message">If you encounter false data that has a negative effect on
+        your insurance plan you can report it here. It will be checked by a professional and we will
+        inform you once it was removed. Abuse of this feature will result in extra charges. Are you
+        sure you want to proceed?</string>
+    <string name="data_report_proceed">Report</string>
     <string name="data_route_title">Route</string>
     <string name="data_title">Your driving data</string>
     <string name="data_unit_speed_kph_full">Kilometers per hour</string>
@@ -56,4 +61,5 @@
     <string name="settings_title">Settings</string>
 
     <string name="unknown">Unknown</string>
+    <string name="cancel">Cancel</string>
 </resources>
