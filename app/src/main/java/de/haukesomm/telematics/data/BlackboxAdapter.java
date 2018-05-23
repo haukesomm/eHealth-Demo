@@ -12,6 +12,8 @@ package de.haukesomm.telematics.data;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.location.Address;
+import android.location.Geocoder;
 import android.support.annotation.NonNull;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -20,8 +22,10 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -143,11 +147,13 @@ public class BlackboxAdapter extends BaseAdapter {
         dateText.setText(date);
 
 
+        Geocoder geocoder = new Geocoder(mContext);
+
         final TextView start = view.findViewById(R.id.blackbox_data_preview_start);
-        // Set location
+        setAddress(geocoder, data.get(0), start);
 
         final TextView destination = view.findViewById(R.id.blackbox_data_preview_destination);
-        // Set location
+        setAddress(geocoder, data.get(data.size() - 1), destination);
 
 
         view.setOnClickListener(new View.OnClickListener() {
@@ -176,6 +182,26 @@ public class BlackboxAdapter extends BaseAdapter {
         } catch (ParseException e) {
             Log.w("BlackboxAdapter", "Unable to generate date from table: " + e.getMessage());
             return table;
+        }
+    }
+
+
+
+    private void setAddress(Geocoder geocoder, JSONObject blackboxData, TextView textView) {
+        try {
+            Address address = geocoder.getFromLocation(
+                    Double.parseDouble(blackboxData.getString(Blackbox.DATA_LATITUDE)),
+                    Double.parseDouble(blackboxData.getString(Blackbox.DATA_LONGITUDE)), 1).get(0);
+
+            String street = address.getThoroughfare();
+            String locality = address.getLocality();
+            String formattedAddress = (street != null ? street: "")
+                    + (street != null && locality != null ? ", " : "")
+                    + (locality != null ? locality : "");
+
+            textView.setText(formattedAddress);
+        } catch (IOException | JSONException e) {
+            // Do nothing (text set to 'unknown' by default via XML resource)
         }
     }
 }
