@@ -1,29 +1,6 @@
 apply plugin: 'com.android.application'
 
-def signingReleaseFile = rootProject.file("signing_release.properties")
-def signingReleaseProps = new Properties()
-signingReleaseProps.load(new FileInputStream(signingReleaseFile))
-
-def debugReleaseFile = rootProject.file("signing_debug.properties")
-def debugReleaseProps = new Properties()
-debugReleaseProps.load(new FileInputStream(debugReleaseFile))
-
 android {
-    signingConfigs {
-        GooglePlayRelease {
-            keyAlias signingReleaseProps['keyAlias']
-            keyPassword signingReleaseProps['keyPassword']
-            storeFile file(signingReleaseProps['storeFile'])
-            storePassword signingReleaseProps['storePassword']
-        }
-
-        Debug {
-            keyAlias debugReleaseProps['keyAlias']
-            keyPassword debugReleaseProps['keyPassword']
-            storeFile file(debugReleaseProps['storeFile'])
-            storePassword debugReleaseProps['storePassword']
-        }
-    }
     compileSdkVersion 27
     buildToolsVersion '27.0.3'
     defaultConfig {
@@ -38,10 +15,6 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            signingConfig signingConfigs.GooglePlayRelease
-        }
-        debug {
-            signingConfig signingConfigs.Debug
         }
     }
     productFlavors {
