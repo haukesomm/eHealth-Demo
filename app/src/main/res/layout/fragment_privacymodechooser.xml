@@ -26,7 +26,7 @@
         android:layout_toStartOf="@id/fragment_privacyModeChooser_content_toggle"
         android:layout_alignBaseline="@id/fragment_privacyModeChooser_content_toggle"
         style="@style/Text.Subheading.Primary"
-        android:textColor="@color/colorPrimary"
+        android:textColor="@color/colorAccent"
         android:text="@string/privacy_chooser_title"/>
 
     <LinearLayout

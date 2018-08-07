@@ -9,6 +9,6 @@
         android:layout_height="200dp"
         android:layout_gravity="center"
         android:src="@drawable/ic_telematics"
-        android:tint="@android:color/white"/>
+        android:tint="@color/colorAccent"/>
 
 </FrameLayout>

@@ -13,6 +13,7 @@
         android:gravity="center_vertical"
         android:text="@string/privacy_mode_unknown_title"
         android:drawableStart="@drawable/ic_privacy_mode_unknown"
-        android:drawablePadding="@dimen/margin_default"/>
+        android:drawablePadding="@dimen/margin_default"
+        android:drawableTint="@color/colorAccent"/>
 
 </FrameLayout>

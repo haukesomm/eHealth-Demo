@@ -21,7 +21,7 @@
         style="@style/Text.Caption.Secondary"
         android:drawableStart="@drawable/ic_map_start"
         android:drawablePadding="@dimen/margin_tiny"
-        android:drawableTint="@color/colorPrimary"
+        android:drawableTint="@color/colorAccent"
         android:text="@string/data_notAvailable"/>
 
     <TextView
@@ -33,7 +33,7 @@
         style="@style/Text.Caption.Secondary"
         android:drawableStart="@drawable/ic_map_destination"
         android:drawablePadding="@dimen/margin_tiny"
-        android:drawableTint="@color/colorPrimary"
+        android:drawableTint="@color/colorAccent"
         android:text="@string/data_notAvailable"/>
 
     <ImageView
@@ -43,6 +43,6 @@
         android:layout_alignParentEnd="true"
         android:layout_below="@id/blackbox_data_preview_date"
         android:src="@drawable/ic_info"
-        android:tint="@color/colorPrimary"/>
+        android:tint="@color/colorAccent"/>
 
 </RelativeLayout>

@@ -430,7 +430,7 @@ public class DataActivity extends AppCompatActivity implements AppBarLayout.OnOf
         LineGraphSeries<DataPoint> speedValues = new LineGraphSeries<>();
 
         Paint color = new Paint();
-        color.setColor(getColor(R.color.colorPrimary));
+        color.setColor(getColor(R.color.colorAccent));
         color.setStrokeWidth((float) GRAPH_DEFAULT_THICKNESS);
         speedValues.setCustomPaint(color);
 

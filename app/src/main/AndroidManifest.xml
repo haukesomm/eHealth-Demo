@@ -61,7 +61,7 @@
 
         <activity
             android:name=".privacy.PrivacyPreferenceActivity"
-            android:theme="@style/AppTheme.Preferences"
+            android:theme="@style/AppTheme"
             android:screenOrientation="portrait">
 
             <intent-filter>
