@@ -7,7 +7,7 @@
  * https://github.com/haukesomm/Telematics-App-Mockup/blob/master/LICENSE
  */
 
-package de.haukesomm.telematics;
+package de.haukesomm.healthdemo;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -24,16 +24,16 @@ import android.widget.ListView;
 import java.util.ArrayList;
 import java.util.Collections;
 
-import de.haukesomm.telematics.data.Blackbox;
-import de.haukesomm.telematics.data.BlackboxAdapter;
-import de.haukesomm.telematics.privacy.PrivacyMode;
-import de.haukesomm.telematics.privacy.PrivacyModeView;
+import de.haukesomm.healthdemo.data.Blackbox;
+import de.haukesomm.healthdemo.data.BlackboxAdapter;
+import de.haukesomm.healthdemo.privacy.PrivacyMode;
+import de.haukesomm.healthdemo.privacy.PrivacyModeView;
 
 /**
  * Created on 27.11.17
  * <p>
  * This Fragment provides an overview over the user's
- * {@link de.haukesomm.telematics.privacy.PrivacyMode} settings and his 5 most recent sets of
+ * {@link de.haukesomm.healthdemo.privacy.PrivacyMode} settings and his 5 most recent sets of
  * driving data.
  *
  * @author Hauke Sommerfeld

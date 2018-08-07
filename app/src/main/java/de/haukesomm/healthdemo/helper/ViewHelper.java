@@ -7,7 +7,7 @@
  * https://github.com/haukesomm/Telematics-App-Mockup/blob/master/LICENSE
  */
 
-package de.haukesomm.telematics.helper;
+package de.haukesomm.healthdemo.helper;
 
 import android.view.View;
 import android.view.animation.AlphaAnimation;

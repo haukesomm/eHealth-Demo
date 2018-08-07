@@ -7,7 +7,7 @@
  * https://github.com/haukesomm/Telematics-App-Mockup/blob/master/LICENSE
  */
 
-package de.haukesomm.telematics.data;
+package de.haukesomm.healthdemo.data;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -32,7 +32,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-import de.haukesomm.telematics.R;
+import de.haukesomm.healthdemo.R;
 
 /**
  * Created on 19.11.17

@@ -45,7 +45,7 @@
     <View
         style="@style/Divider" />
 
-    <de.haukesomm.telematics.data.TelematicsGraphView
+    <de.haukesomm.healthdemo.data.TelematicsGraphView
         android:id="@+id/activity_data_graph_speed"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

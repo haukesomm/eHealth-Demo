@@ -7,7 +7,7 @@
  * https://github.com/haukesomm/Telematics-App-Mockup/blob/master/LICENSE
  */
 
-package de.haukesomm.telematics.data;
+package de.haukesomm.healthdemo.data;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -25,7 +25,7 @@ import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
 import com.jjoe64.graphview.series.Series;
 
-import de.haukesomm.telematics.R;
+import de.haukesomm.healthdemo.R;
 
 /**
  * Created on 27.12.17

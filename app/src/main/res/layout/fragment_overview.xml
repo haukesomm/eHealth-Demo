@@ -25,7 +25,7 @@
                 android:drawableStart="@drawable/ic_lightbulb"
                 android:drawablePadding="@dimen/margin_small"/>
 
-            <de.haukesomm.telematics.privacy.PrivacyModeView
+            <de.haukesomm.healthdemo.privacy.PrivacyModeView
                 android:id="@+id/fragment_overview_privacyMode"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

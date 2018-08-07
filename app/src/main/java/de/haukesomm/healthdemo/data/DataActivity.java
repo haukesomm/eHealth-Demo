@@ -7,7 +7,7 @@
  * https://github.com/haukesomm/Telematics-App-Mockup/blob/master/LICENSE
  */
 
-package de.haukesomm.telematics.data;
+package de.haukesomm.healthdemo.data;
 
 import android.content.Intent;
 import android.database.sqlite.SQLiteException;
@@ -50,8 +50,8 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
-import de.haukesomm.telematics.R;
-import de.haukesomm.telematics.helper.ViewHelper;
+import de.haukesomm.healthdemo.R;
+import de.haukesomm.healthdemo.helper.ViewHelper;
 
 /**
  * Created on 09.12.17

@@ -7,7 +7,7 @@
  * https://github.com/haukesomm/Telematics-App-Mockup/blob/master/LICENSE
  */
 
-package de.haukesomm.telematics.data;
+package de.haukesomm.healthdemo.data;
 
 import java.text.DecimalFormat;
 

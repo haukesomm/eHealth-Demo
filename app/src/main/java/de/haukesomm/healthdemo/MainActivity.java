@@ -7,7 +7,7 @@
  * https://github.com/haukesomm/Telematics-App-Mockup/blob/master/LICENSE
  */
 
-package de.haukesomm.telematics;
+package de.haukesomm.healthdemo;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -24,18 +24,18 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
-import de.haukesomm.telematics.privacy.PrivacyModeView;
+import de.haukesomm.healthdemo.privacy.PrivacyModeView;
 
 /**
  * Created on 27.11.17
  * <p>
  * This Activity provides the main interface of the app where the user can select multiple sets of
- * data and see his current {@link de.haukesomm.telematics.privacy.PrivacyMode} settings.<br>
+ * data and see his current {@link de.haukesomm.healthdemo.privacy.PrivacyMode} settings.<br>
  * It mainly consists of multiple Fragments for future compatibility.
  *
  * @see OverviewFragment
  * @see TimelineFragment
- * @see de.haukesomm.telematics.data.Blackbox
+ * @see de.haukesomm.healthdemo.data.Blackbox
  *
  * @author Hauke Sommerfeld
  */

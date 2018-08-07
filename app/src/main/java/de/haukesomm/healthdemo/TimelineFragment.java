@@ -7,7 +7,7 @@
  * https://github.com/haukesomm/Telematics-App-Mockup/blob/master/LICENSE
  */
 
-package de.haukesomm.telematics;
+package de.haukesomm.healthdemo;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -23,8 +23,8 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.Collections;
 
-import de.haukesomm.telematics.data.Blackbox;
-import de.haukesomm.telematics.data.BlackboxAdapter;
+import de.haukesomm.healthdemo.data.Blackbox;
+import de.haukesomm.healthdemo.data.BlackboxAdapter;
 
 /**
  * Created on 27.11.17
