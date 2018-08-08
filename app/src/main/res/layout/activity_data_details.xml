@@ -12,7 +12,7 @@
         android:text="@string/data_route_title"
         android:drawableStart="@drawable/ic_map"
         android:drawablePadding="@dimen/margin_small"
-        android:drawableTint="@color/colorPrimary"/>
+        android:drawableTint="@color/colorAccent"/>
 
     <TextView
         android:id="@+id/activity_data_route_start"

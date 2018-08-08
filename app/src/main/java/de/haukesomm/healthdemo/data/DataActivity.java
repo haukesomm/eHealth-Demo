@@ -368,7 +368,7 @@ public class DataActivity extends AppCompatActivity implements AppBarLayout.OnOf
 
     private void initMapMarkers(LatLngBounds bounds, List<LatLng> positions) {
         PolylineOptions path = new PolylineOptions()
-                .color(getColor(R.color.colorPrimary))
+                .color(getColor(R.color.colorAccent))
                 .width(20f);
 
         // Starting position
