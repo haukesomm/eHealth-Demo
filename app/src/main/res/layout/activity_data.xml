@@ -1,100 +1,87 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
-    <android.support.design.widget.AppBarLayout
-        android:id="@+id/activity_data_appbar"
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/activity_data_toolbar"
         android:layout_width="match_parent"
-        android:layout_height="300dp"
-        android:theme="@style/ThemeOverlay.AppCompat.ActionBar">
+        android:layout_height="?attr/actionBarSize"
+        android:elevation="4dp"
+        android:background="@color/colorPrimary"/>
 
-        <android.support.design.widget.CollapsingToolbarLayout
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed"
-            app:contentScrim="@color/colorPrimary"
-            app:statusBarScrim="@color/colorPrimaryDark"
-            app:titleEnabled="false">
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-            <include
-                layout="@layout/activity_data_map" />
+            <fragment
+                android:id="@+id/activity_data_map"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:name="com.google.android.gms.maps.SupportMapFragment"
+                tools:context="de.haukesomm.healthdemo.data.DataActivity" />
 
-            <LinearLayout
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/margin_default"
-                android:layout_marginStart="@dimen/keyline_indent_left_large"
-                android:layout_gravity="bottom"
-                android:orientation="vertical"
-                app:layout_collapseMode="pin">
+                android:layout_margin="@dimen/margin_default"
+                style="@style/Text.Subheading.Primary"
+                android:text="@string/data_route_title"
+                android:drawableStart="@drawable/ic_map"
+                android:drawablePadding="@dimen/margin_small"
+                android:drawableTint="@color/colorAccent"/>
 
-                <TextView
-                    android:id="@+id/activity_data_title"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
-                    style="@style/Text.Title.Primary" />
+            <TextView
+                android:id="@+id/activity_data_route_start"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_default"
+                android:layout_marginEnd="@dimen/margin_default"
+                android:gravity="center_vertical"
+                style="@style/Text.Body1.Primary"
+                android:textColor="@android:color/white"
+                android:text="@string/unknown"
+                android:drawableStart="@drawable/ic_map_start"
+                android:drawablePadding="@dimen/margin_small"
+                android:drawableTint="@android:color/white"
+                android:background="@drawable/shape_chip"/>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    style="@style/Text.Subheading.Primary"
-                    android:text="@string/data_title"/>
+            <TextView
+                android:id="@+id/activity_data_route_destination"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_default"
+                android:gravity="center_vertical"
+                style="@style/Text.Body1.Primary"
+                android:textColor="@android:color/white"
+                android:text="@string/unknown"
+                android:drawableStart="@drawable/ic_map_destination"
+                android:drawablePadding="@dimen/margin_small"
+                android:drawableTint="@android:color/white"
+                android:background="@drawable/shape_chip"/>
 
-            </LinearLayout>
+            <View
+                style="@style/Divider" />
 
-            <android.support.v7.widget.Toolbar
-                android:id="@+id/activity_data_toolbar"
+            <de.haukesomm.healthdemo.data.TelematicsGraphView
+                android:id="@+id/activity_data_graph_speed"
                 android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                android:layout_marginTop="@dimen/keyline_statusbar_height"
-                android:elevation="4dp"
-                android:background="@android:color/transparent"
-                app:layout_collapseMode="pin" >
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_default"
+                app:graphTitle="@string/data_graph_speed_title"
+                app:graphIcon="@drawable/ic_stats_timeline"/>
 
-                <TextView
-                    android:id="@+id/activity_data_toolbar_title"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    style="@style/Text.Title.Primary"
-                    android:visibility="invisible" />
+        </LinearLayout>
 
-            </android.support.v7.widget.Toolbar>
+    </ScrollView>
 
-        </android.support.design.widget.CollapsingToolbarLayout>
-
-    </android.support.design.widget.AppBarLayout>
-
-    <android.support.v4.widget.NestedScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior">
-
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <include
-                layout="@layout/activity_data_details"
-                android:layout_height="match_parent"
-                android:layout_width="match_parent"
-                android:layout_margin="@dimen/margin_default"/>
-
-        </FrameLayout>
-
-    </android.support.v4.widget.NestedScrollView>
-
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/activity_data_openInMaps"
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
-        android:layout_margin="@dimen/margin_default"
-        android:src="@drawable/ic_map"
-        android:tint="@android:color/white"
-        app:layout_anchor="@id/activity_data_appbar"
-        app:layout_anchorGravity="bottom|right|end" />
-
-</android.support.design.widget.CoordinatorLayout>
+</LinearLayout>

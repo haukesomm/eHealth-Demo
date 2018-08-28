@@ -61,7 +61,7 @@ import de.haukesomm.healthdemo.helper.ViewHelper;
  *
  * @author Hauke Sommerfeld
  */
-public class DataActivity extends AppCompatActivity implements AppBarLayout.OnOffsetChangedListener {
+public class DataActivity extends AppCompatActivity {
 
     /**
      * Use this String in the launch {@link android.content.Intent} to specify the table to display.
@@ -91,14 +91,12 @@ public class DataActivity extends AppCompatActivity implements AppBarLayout.OnOf
 
         setSupportActionBar(mToolbar);
         if (getSupportActionBar() != null) {
-            getSupportActionBar().setTitle("");
+
+            String date = getIntent().getStringExtra(EXTRA_DATE);
+            getSupportActionBar().setTitle(date != null ? date : getString(R.string.unknown));
+
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
-
-        String date = getIntent().getStringExtra(EXTRA_DATE);
-        setDate(date != null ? date : getString(R.string.unknown));
-
-        mAppBarLayout.addOnOffsetChangedListener(this);
 
 
         initData();
@@ -150,26 +148,7 @@ public class DataActivity extends AppCompatActivity implements AppBarLayout.OnOf
 
 
 
-    private AppBarLayout mAppBarLayout;
-
-
     private Toolbar mToolbar;
-
-
-    private TextView mTitle;
-
-
-    private boolean mTitleVisible;
-
-
-    private TextView mToolbarTitle;
-
-
-    private boolean mToolbarTitleVisible;
-
-
-
-    private FloatingActionButton mOpenInMapsButton;
 
 
 
@@ -183,99 +162,11 @@ public class DataActivity extends AppCompatActivity implements AppBarLayout.OnOf
 
 
     private void bindActivity() {
-        mAppBarLayout = findViewById(R.id.activity_data_appbar);
         mToolbar = findViewById(R.id.activity_data_toolbar);
-        mToolbarTitle = findViewById(R.id.activity_data_toolbar_title);
-        mTitle = findViewById(R.id.activity_data_title);
-
-        mOpenInMapsButton = findViewById(R.id.activity_data_openInMaps);
 
         mRouteStart = findViewById(R.id.activity_data_route_start);
         mRouteDestination = findViewById(R.id.activity_data_route_destination);
         mGraphSpeed = findViewById(R.id.activity_data_graph_speed);
-    }
-
-
-
-    private void setDate(String date) {
-        mTitle.setText(date);
-        mToolbarTitle.setText(date);
-    }
-
-
-
-    private static final int LENGTH_TOGGLE_ANIMATION = 200;
-
-
-    private static final float PERCENTAGE_TOGGLE_STATUSBAR_TRANSLUCENCY = 0.9f;
-
-
-    private static final float PERCENTAGE_TOGGLE_TITLE = 0.7f;
-
-
-    private static final float PERCENTAGE_TOGGLE_TOOLBAR_TITLE = 1.0f;
-
-
-    /**
-     * This method handles some custom scrolling behavior of the Activity's
-     * {@link android.support.design.widget.CoordinatorLayout}.
-     *
-     * {@inheritDoc}
-     */
-    @Override
-    public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
-        int maxScroll = appBarLayout.getTotalScrollRange();
-        float percentage = (float) Math.abs(verticalOffset) / (float) maxScroll;
-
-        handleStatusBarTranslucency(percentage);
-
-        handleTitleVisibility(percentage);
-        handleToolbarTitleVisibility(percentage);
-    }
-
-
-    private void handleStatusBarTranslucency(float percentage) {
-        Window window = getWindow();
-        if (percentage >= PERCENTAGE_TOGGLE_STATUSBAR_TRANSLUCENCY) {
-            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-        } else {
-            window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-        }
-    }
-
-
-    private void handleTitleVisibility(float percentage) {
-        if (percentage >= PERCENTAGE_TOGGLE_TITLE) {
-            if (!mTitleVisible) {
-                ViewHelper.animateSetVisibility(mTitle, LENGTH_TOGGLE_ANIMATION, View.INVISIBLE);
-                mTitleVisible = true;
-            }
-        } else {
-            if (mTitleVisible) {
-                ViewHelper.animateSetVisibility(mTitle, LENGTH_TOGGLE_ANIMATION, View.VISIBLE);
-                mTitleVisible = false;
-            }
-        }
-    }
-
-
-    private void handleToolbarTitleVisibility(float percentage) {
-        if (percentage >= PERCENTAGE_TOGGLE_TOOLBAR_TITLE) {
-            if (!mToolbarTitleVisible) {
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        ViewHelper.animateSetVisibility(mToolbarTitle, LENGTH_TOGGLE_ANIMATION, View.VISIBLE);
-                        mToolbarTitleVisible = true;
-                    }
-                }, 800L);
-            }
-        } else {
-            if (mToolbarTitleVisible) {
-                ViewHelper.animateSetVisibility(mToolbarTitle, LENGTH_TOGGLE_ANIMATION, View.INVISIBLE);
-                mToolbarTitleVisible = false;
-            }
-        }
     }
 
 
@@ -342,25 +233,8 @@ public class DataActivity extends AppCompatActivity implements AppBarLayout.OnOf
             @Override
             public void onMapReady(GoogleMap googleMap) {
                 mMap = googleMap;
+                mMap.getUiSettings().setAllGesturesEnabled(false);
                 initMapMarkers(bounds, positions);
-            }
-        });
-
-
-        mOpenInMapsButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                LatLng center = bounds.getCenter();
-                Uri intentUri = Uri.parse("geo:" + center.latitude + "," + center.longitude + "?z=9");
-
-                Intent mapIntent = new Intent(Intent.ACTION_VIEW, intentUri);
-                mapIntent.setPackage("com.google.android.apps.maps");
-                if (mapIntent.resolveActivity(getPackageManager()) != null) {
-                    startActivity(mapIntent);
-                } else {
-                    Toast.makeText(getApplicationContext(), R.string.data_map_mapsNotInstalled,
-                            Toast.LENGTH_SHORT).show();
-                }
             }
         });
     }

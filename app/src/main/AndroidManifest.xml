@@ -49,7 +49,7 @@
 
         <activity
             android:name=".data.DataActivity"
-            android:theme="@style/AppTheme.TransparentStatusBar"
+            android:theme="@style/AppTheme"
             android:screenOrientation="portrait">
 
             <intent-filter>
