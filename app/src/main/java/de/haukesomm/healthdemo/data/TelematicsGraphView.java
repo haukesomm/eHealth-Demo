@@ -25,6 +25,8 @@ import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
 import com.jjoe64.graphview.series.Series;
 
+import java.text.DecimalFormat;
+
 import de.haukesomm.healthdemo.R;
 
 /**
@@ -106,6 +108,10 @@ public class TelematicsGraphView extends LinearLayout {
 
 
 
+    private final DecimalFormat mNumberFormat = new DecimalFormat("###.##");
+
+
+
     private Series<DataPoint> mData;
 
 
@@ -133,8 +139,7 @@ public class TelematicsGraphView extends LinearLayout {
         GridLabelRenderer labelRenderer = mGraph.getGridLabelRenderer();
         labelRenderer.setHorizontalLabelsVisible(false);
 
-        TelematicsDecimalFormat format = new TelematicsDecimalFormat();
-        mMaximum.setText(format.format(mData.getHighestValueY()));
-        mMinimum.setText(format.format(mData.getLowestValueY()));
+        mMaximum.setText(mNumberFormat.format(mData.getHighestValueY()));
+        mMinimum.setText(mNumberFormat.format(mData.getLowestValueY()));
     }
 }
