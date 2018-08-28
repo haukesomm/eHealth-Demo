@@ -134,13 +134,6 @@ public class Blackbox extends SQLiteOpenHelper {
 
 
     /**
-     * Default speed unit.
-     */
-    public static final Data.Unit UNIT_SPEED = Data.SpeedUnit.MILES_PER_HOUR;
-
-
-
-    /**
      * @param context The app's context to use for the database connection.
      */
     public Blackbox(@NonNull Context context) {

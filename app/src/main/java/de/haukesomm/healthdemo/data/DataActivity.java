@@ -439,13 +439,12 @@ public class DataActivity extends AppCompatActivity implements AppBarLayout.OnOf
 
             try {
                 double speed = data.getDouble(Blackbox.DATA_SPEED);
-                speed = Data.convert(speed, Blackbox.UNIT_SPEED, Data.PREFERRED_SPEED_UNIT);
                 speedValues.appendData(new DataPoint(i, speed), true, mData.size(), true);
             } catch (JSONException e) {
                 Log.w("DataActivity", "Unable to add value to graph: " + e.getMessage());
             }
         }
 
-        mGraphSpeed.setData(speedValues, Data.PREFERRED_SPEED_UNIT);
+        mGraphSpeed.setData(speedValues);
     }
 }

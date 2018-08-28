@@ -43,16 +43,14 @@ public class TelematicsGraphView extends LinearLayout {
      * @param context   The app's context
      * @param icon      Icon to use for the graph
      * @param title     The title of the Graph
-     * @param unit      Unit of the provided data
      * @param data      The actual data to use for the graph
      */
     public TelematicsGraphView(@NonNull Context context, @Nullable Drawable icon, @Nullable String title,
-                               @NonNull Data.Unit unit, @NonNull LineGraphSeries<DataPoint> data) {
+                               @NonNull LineGraphSeries<DataPoint> data) {
         super(context);
-        mContext = context;
 
         init(icon, title);
-        setData(data, unit);
+        setData(data);
     }
 
 
@@ -64,7 +62,6 @@ public class TelematicsGraphView extends LinearLayout {
      */
     public TelematicsGraphView(@NonNull Context context, @NonNull AttributeSet attrs) {
         super(context, attrs);
-        mContext = context;
 
         TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.TelematicsGraphView);
         Drawable icon = typedArray.getDrawable(R.styleable.TelematicsGraphView_graphIcon);
@@ -87,14 +84,7 @@ public class TelematicsGraphView extends LinearLayout {
 
 
 
-    private Context mContext;
-
-
-
     private TextView mTitle;
-
-
-    private TextView mUnit;
 
 
 
@@ -109,7 +99,6 @@ public class TelematicsGraphView extends LinearLayout {
 
     private void bindView() {
         mTitle = findViewById(R.id.graph_telematics_title);
-        mUnit = findViewById(R.id.graph_telematics_unit);
         mGraph = findViewById(R.id.graph_telematics_graph);
         mMaximum = findViewById(R.id.graph_telematics_maximum_value);
         mMinimum = findViewById(R.id.graph_telematics_minimum_value);
@@ -120,23 +109,14 @@ public class TelematicsGraphView extends LinearLayout {
     private Series<DataPoint> mData;
 
 
-    private Data.Unit mDataUnit;
-
-
     /**
      * Use this method to provide the grpah's data in form of a {@link LineGraphSeries} in case you
      * created the View from XML or want to update the data.
      *
      * @param data  The graph's data
      */
-    public void setData(@NonNull Series<DataPoint> data, @Nullable Data.Unit unit) {
+    public void setData(@NonNull Series<DataPoint> data) {
         mData = data;
-        mDataUnit = unit;
-
-
-        if (mDataUnit != null) {
-            mUnit.setText(mContext.getString(mDataUnit.getFullNameRes()));
-        }
 
 
         mGraph.removeAllSeries();
@@ -154,7 +134,7 @@ public class TelematicsGraphView extends LinearLayout {
         labelRenderer.setHorizontalLabelsVisible(false);
 
         TelematicsDecimalFormat format = new TelematicsDecimalFormat();
-        mMaximum.setText(format.format(mData.getHighestValueY()) + " " + mContext.getString(mDataUnit.getShortNameRes()));
-        mMinimum.setText(format.format(mData.getLowestValueY()) + " " + mContext.getString(mDataUnit.getShortNameRes()));
+        mMaximum.setText(format.format(mData.getHighestValueY()));
+        mMinimum.setText(format.format(mData.getLowestValueY()));
     }
 }
