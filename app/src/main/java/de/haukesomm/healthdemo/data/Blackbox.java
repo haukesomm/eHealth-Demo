@@ -39,6 +39,7 @@ import java.util.ArrayList;
  *
  * @author Hauke Sommerfeld
  */
+@Deprecated
 public class Blackbox extends SQLiteOpenHelper {
 
     /*

@@ -44,6 +44,7 @@ import de.haukesomm.healthdemo.R;
  *
  * @author Hauke Sommerfeld
  */
+@Deprecated
 public class BlackboxAdapter extends BaseAdapter {
 
     /**
