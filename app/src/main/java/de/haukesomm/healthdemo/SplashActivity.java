@@ -30,29 +30,15 @@ public class SplashActivity extends AppCompatActivity {
 
 
 
-    private Blackbox.OpenListener mLaunchListener = new Blackbox.OpenListener() {
+    private final Runnable mLaunchRunnable = new Runnable() {
         @Override
-        public void onBlackboxOpened() {
-            mBlackbox.close();
-
+        public void run() {
             Intent mainActivity = new Intent(getApplicationContext(), MainActivity.class);
             startActivity(mainActivity);
             overridePendingTransition(android.R.anim.fade_in, R.anim.none);
         }
     };
 
-
-
-    private final Runnable mLaunchRunnable = new Runnable() {
-        @Override
-        public void run() {
-            mBlackbox.open(mLaunchListener);
-        }
-    };
-
-
-
-    private Blackbox mBlackbox;
 
 
     private Handler mLaunchHandler = new Handler();
@@ -77,7 +63,6 @@ public class SplashActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
-        mBlackbox = new Blackbox(this);
         startDelayedLaunch();
     }
 
