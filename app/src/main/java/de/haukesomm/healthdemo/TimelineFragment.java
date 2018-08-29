@@ -28,8 +28,8 @@ import de.haukesomm.healthdemo.data.SessionDescriptionAdapter;
 /**
  * Created on 27.11.17
  * <p>
- * This Fragment provides a list of all {@link Blackbox} entries in a reverse (newest-to-oldest)
- * order.
+ * This Fragment provides a list of all {@link de.haukesomm.healthdemo.data.Session} entries in a
+ * reverse (newest-to-oldest) order.
  *
  * @author Hauke Sommerfeld
  */

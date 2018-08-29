@@ -35,7 +35,6 @@ import de.haukesomm.healthdemo.privacy.PrivacyModeView;
  *
  * @see OverviewFragment
  * @see TimelineFragment
- * @see de.haukesomm.healthdemo.data.Blackbox
  *
  * @author Hauke Sommerfeld
  */

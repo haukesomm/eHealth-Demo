@@ -19,8 +19,7 @@ import de.haukesomm.healthdemo.data.Blackbox;
 /**
  * Created on 03.12.17
  * <p>
- * This Activity shows a splash screen on each start of the application. It also tests the Blackbox
- * connection and creates it before launching the app if necessary.
+ * This Activity shows a splash screen on each start of the application.
  *
  * @author Hauke Sommerfeld
  */
