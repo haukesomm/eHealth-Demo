@@ -43,4 +43,11 @@ public class SessionDescription {
         this.id = id;
         this.type = type;
     }
+
+
+    // No JavaDoc
+    @Override
+    public String toString() {
+        return "ID: " + id + ", Type: " + type;
+    }
 }
