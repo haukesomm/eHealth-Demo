@@ -78,7 +78,7 @@ public class SessionDatabase extends SQLiteOpenHelper implements AutoCloseable {
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("CREATE TABLE " + TABLE_SESSIONS + "("
-                + TABLE_SESSIONS_ID + " INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,"
+                + TABLE_SESSIONS_ID + " INTEGER NOT NULL PRIMARY KEY,"
                 + TABLE_SESSIONS_TYPE + " INTEGER NOT NULL);"
         );
 
@@ -194,6 +194,7 @@ public class SessionDatabase extends SQLiteOpenHelper implements AutoCloseable {
         // Insert measurement data into the table
         for (Measurement measurement : session.getMeasurements()) {
             ContentValues values = new ContentValues();
+            values.put(TIMESTAMP, measurement.timestamp);
             values.put(LATITUDE, measurement.latitude);
             values.put(LONGITUDE, measurement.longitude);
             values.put(HEARTRATE, measurement.heartrate);
@@ -202,6 +203,7 @@ public class SessionDatabase extends SQLiteOpenHelper implements AutoCloseable {
 
         // Create entry in the session-table (old id will be overridden!)
         ContentValues sessionInfo = new ContentValues();
+        sessionInfo.put(TABLE_SESSIONS_ID, session.id);
         sessionInfo.put(TABLE_SESSIONS_TYPE, session.type.alias);
         db.insert(TABLE_SESSIONS, null, sessionInfo);
     }
@@ -230,10 +232,11 @@ public class SessionDatabase extends SQLiteOpenHelper implements AutoCloseable {
                 if (measurementCursor.moveToFirst()) {
                     while (!measurementCursor.isAfterLast()) {
                         session.add(new Measurement(
-                                measurementCursor.getString(0),
-                                measurementCursor.getDouble(1),
+                                // 0 is reserved for the ID!
+                                measurementCursor.getString(1),
                                 measurementCursor.getDouble(2),
-                                measurementCursor.getInt(3)
+                                measurementCursor.getDouble(3),
+                                measurementCursor.getInt(4)
                         ));
                         measurementCursor.moveToNext();
                     }
