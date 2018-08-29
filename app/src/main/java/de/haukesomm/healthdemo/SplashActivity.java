@@ -14,8 +14,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 
-import de.haukesomm.healthdemo.data.Blackbox;
-
 /**
  * Created on 03.12.17
  * <p>

@@ -20,7 +20,6 @@ import android.widget.ListView;
 
 import java.util.List;
 
-import de.haukesomm.healthdemo.data.Blackbox;
 import de.haukesomm.healthdemo.data.SessionDatabase;
 import de.haukesomm.healthdemo.data.SessionDescription;
 import de.haukesomm.healthdemo.data.SessionDescriptionAdapter;

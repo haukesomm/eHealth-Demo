@@ -15,7 +15,6 @@ import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,8 +24,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import de.haukesomm.healthdemo.data.Blackbox;
-import de.haukesomm.healthdemo.data.BlackboxAdapter;
 import de.haukesomm.healthdemo.data.SessionDatabase;
 import de.haukesomm.healthdemo.data.SessionDescription;
 import de.haukesomm.healthdemo.data.SessionDescriptionAdapter;
