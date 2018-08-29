@@ -176,13 +176,11 @@ public class SessionDatabase extends SQLiteOpenHelper implements AutoCloseable {
      * @throws IllegalStateException    If there is no active database connection
      */
     public void add(Session session) throws IllegalStateException{
+        validateConnection();
         add(mDatabase, session);
     }
 
-    private void add(SQLiteDatabase db, Session session) throws IllegalStateException{
-        validateConnection();
-
-
+    private void add(SQLiteDatabase db, Session session) {
         final String table = convertToTableName(session.id);
 
         // Create the actual data-table
