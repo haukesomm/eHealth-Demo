@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?android:selectableItemBackground">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/keyline_height_list_doublerow">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/keyline_indent_left_small"
+            android:layout_centerVertical="true"
+            android:src="@drawable/ic_heart_outline"
+            android:tint="@color/colorAccent"/>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/keyline_indent_left_large"
+            android:layout_centerVertical="true">
+
+            <TextView
+                android:id="@+id/view_adapter_sessioninfo_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/Text.Body2.Primary"
+                android:text="@string/session_defaultTitle"/>
+
+            <TextView
+                android:id="@+id/view_adapter_sessioninfo_summary"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/Text.Body1.Secondary"
+                android:text="@string/unknown"/>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</FrameLayout>

@@ -8,4 +8,7 @@
     <dimen name="keyline_indent_left_large">72dp</dimen>
     <dimen name="keyline_indent_right_small">@dimen/keyline_indent_left_small</dimen>
     <dimen name="keyline_statusbar_height">24dp</dimen>
+    <dimen name="keyline_height_list_singlerow_icons">48dp</dimen>
+    <dimen name="keyline_height_list_singlerow_avatar">56dp</dimen>
+    <dimen name="keyline_height_list_doublerow">72dp</dimen>
 </resources>

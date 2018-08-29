@@ -23,9 +23,13 @@ import android.widget.ListView;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 import de.haukesomm.healthdemo.data.Blackbox;
 import de.haukesomm.healthdemo.data.BlackboxAdapter;
+import de.haukesomm.healthdemo.data.SessionDatabase;
+import de.haukesomm.healthdemo.data.SessionDescription;
+import de.haukesomm.healthdemo.data.SessionDescriptionAdapter;
 import de.haukesomm.healthdemo.privacy.PrivacyMode;
 import de.haukesomm.healthdemo.privacy.PrivacyModeView;
 
@@ -70,22 +74,20 @@ public class OverviewFragment extends Fragment {
         updatePrivacyMode();
 
 
-        Blackbox blackbox = new Blackbox(getContext());
-        blackbox.open();
-
-        ArrayList<String> tables = blackbox.getTables();
-        Collections.reverse(tables);
-        ArrayList<String> previews = new ArrayList<>();
-
-        for (int i = 0; i < MAX_PREVIEWS; i++) {
-            previews.add(tables.get(i));
-        }
-
-        blackbox.close();
-
         ListView recents = view.findViewById(R.id.fragment_overview_list);
-        BlackboxAdapter adapter = new BlackboxAdapter(getContext(), blackbox, previews);
-        recents.setAdapter(adapter);
+
+        try (SessionDatabase database = new SessionDatabase(getContext())) {
+            List<SessionDescription> descriptions = database.listSessions();
+
+            List<SessionDescription> newest = new ArrayList<>();
+            for (int i = 0; i < descriptions.size() && i < 5; i++) {
+                newest.add(descriptions.get(i));
+            }
+            Collections.reverse(newest);
+
+            SessionDescriptionAdapter adapter = new SessionDescriptionAdapter(getContext(), newest);
+            recents.setAdapter(adapter);
+        }
 
 
         return view;

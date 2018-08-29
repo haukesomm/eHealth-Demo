@@ -18,13 +18,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 
-import org.json.JSONObject;
-
-import java.util.ArrayList;
-import java.util.Collections;
+import java.util.List;
 
 import de.haukesomm.healthdemo.data.Blackbox;
-import de.haukesomm.healthdemo.data.BlackboxAdapter;
+import de.haukesomm.healthdemo.data.SessionDatabase;
+import de.haukesomm.healthdemo.data.SessionDescription;
+import de.haukesomm.healthdemo.data.SessionDescriptionAdapter;
 
 /**
  * Created on 27.11.17
@@ -50,17 +49,13 @@ public class TimelineFragment extends Fragment {
         }
 
 
-        Blackbox blackbox = new Blackbox(getContext());
-        blackbox.open();
-
-        ArrayList<String> previews = blackbox.getTables();
-        Collections.reverse(previews);
-
-        blackbox.close();
-
         ListView recents = view.findViewById(R.id.fragment_timeline_list);
-        BlackboxAdapter adapter = new BlackboxAdapter(getContext(), blackbox, previews);
-        recents.setAdapter(adapter);
+
+        try (SessionDatabase database = new SessionDatabase(getContext())) {
+            List<SessionDescription> descriptions = database.listSessions();
+            SessionDescriptionAdapter adapter = new SessionDescriptionAdapter(getContext(), descriptions);
+            recents.setAdapter(adapter);
+        }
 
 
         return view;
