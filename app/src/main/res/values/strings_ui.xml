@@ -58,6 +58,7 @@
     <string name="privacy_mode_unknown_title">Unknown</string>
 
     <string name="session_defaultTitle">Untitled Fitness Session</string>
+    <string name="session_heartrate">Heartrate</string>
 
     <string name="settings_privacy">Privacy Settings</string>
     <string name="settings_title">Settings</string>

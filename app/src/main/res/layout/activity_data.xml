@@ -77,8 +77,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/margin_default"
-                app:graphTitle="@string/data_graph_speed_title"
-                app:graphIcon="@drawable/ic_stats_timeline"/>
+                app:graphTitle="@string/session_heartrate"
+                app:graphIcon="@drawable/ic_heart_outline"/>
 
         </LinearLayout>
 

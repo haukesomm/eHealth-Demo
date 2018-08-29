@@ -13,6 +13,7 @@ package de.haukesomm.healthdemo.data;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -121,7 +122,9 @@ public class SessionDescriptionAdapter extends BaseAdapter {
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // Implement later
+                Intent intent = new Intent(mContext, DataActivity.class);
+                intent.putExtra(DataActivity.EXTRA_SESSION_ID, mSessionDescriptions.get(position).id);
+                mContext.startActivity(intent);
             }
         });
 

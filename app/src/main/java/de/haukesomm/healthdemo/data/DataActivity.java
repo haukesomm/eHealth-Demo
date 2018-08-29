@@ -9,25 +9,16 @@
 
 package de.haukesomm.healthdemo.data;
 
-import android.content.Intent;
-import android.database.sqlite.SQLiteException;
 import android.graphics.Paint;
 import android.location.Address;
 import android.location.Geocoder;
-import android.net.Uri;
 import android.os.Bundle;
-import android.os.Handler;
-import android.support.design.widget.AppBarLayout;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -42,39 +33,27 @@ import com.google.android.gms.maps.model.PolylineOptions;
 import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
 import de.haukesomm.healthdemo.R;
-import de.haukesomm.healthdemo.helper.ViewHelper;
 
 /**
  * Created on 09.12.17
  * <p>
- * This Activity displays detailed information about a {@link Blackbox} table in form of various
- * diagrams for speed, height, etc. as well as a map.
+ * This Activity displays detailed information about a {@link Session}.
  *
  * @author Hauke Sommerfeld
  */
 public class DataActivity extends AppCompatActivity {
 
     /**
-     * Use this String in the launch {@link android.content.Intent} to specify the table to display.
-     * This is mandatory for the Activity to work. Missing data will result in the Activity
-     * finishing.
+     * Use this String in the launch {@link android.content.Intent} to specify the {@link Session}
+     * to display. This is mandatory for the Activity to work. Missing data will result in the
+     * Activity finishing.
      */
-    public static final String EXTRA_BLACKBOX_TABLE = "blackbox_table";
-
-
-    /**
-     * Use this String in the launch {@link android.content.Intent} to specify a date/title to display.
-     */
-    public static final String EXTRA_DATE = "title";
+    public static final String EXTRA_SESSION_ID = "session_id";
 
 
 
@@ -91,10 +70,7 @@ public class DataActivity extends AppCompatActivity {
 
         setSupportActionBar(mToolbar);
         if (getSupportActionBar() != null) {
-
-            String date = getIntent().getStringExtra(EXTRA_DATE);
-            getSupportActionBar().setTitle(date != null ? date : getString(R.string.unknown));
-
+            getSupportActionBar().setTitle(R.string.session_defaultTitle);
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
 
@@ -171,32 +147,22 @@ public class DataActivity extends AppCompatActivity {
 
 
 
-    private Blackbox mBlackbox;
-
-
-    private ArrayList<JSONObject> mData;
+    private List<Measurement> mMeasurements;
 
 
     private void initData() {
-        String table = getIntent().getStringExtra(EXTRA_BLACKBOX_TABLE);
+        int id = getIntent().getIntExtra(EXTRA_SESSION_ID, -1);
 
-        if (table == null) {
-            Log.e("DataActivity", "No Blackbox table specified.");
+        if (id == -1) {
+            Log.e("DataActivity", "No Session ID specified!");
             Toast.makeText(this, R.string.data_notAvailable, Toast.LENGTH_SHORT).show();
             finish();
             return;
         }
 
 
-        mBlackbox = new Blackbox(this);
-        try {
-            mBlackbox.open();
-            mData = mBlackbox.getEntireTable(table);
-            mBlackbox.close();
-        } catch (SQLiteException e) {
-            Log.e("DataActivity", "Invalid Blackbox table specified.");
-            Toast.makeText(this, R.string.data_notAvailable, Toast.LENGTH_SHORT).show();
-            finish();
+        try (SessionDatabase database = new SessionDatabase(this)) {
+            mMeasurements = database.get(id).getMeasurements();
         }
     }
 
@@ -208,16 +174,9 @@ public class DataActivity extends AppCompatActivity {
     private void initMap() {
         final List<LatLng> positions = new LinkedList<>();
 
-        for (JSONObject data : mData) {
-            try {
-                LatLng position = new LatLng(
-                        data.getDouble(Blackbox.DATA_LATITUDE),
-                        data.getDouble(Blackbox.DATA_LONGITUDE)
-                );
-                positions.add(position);
-            } catch (JSONException e) {
-                Log.w("DataActivity", "Unable to get LatLng data: " + e.getMessage());
-            }
+        for (Measurement measurement : mMeasurements) {
+            LatLng position = new LatLng(measurement.latitude, measurement.longitude);
+            positions.add(position);
         }
 
 
@@ -268,18 +227,10 @@ public class DataActivity extends AppCompatActivity {
     private void initRoute() {
         mGeocoder = new Geocoder(this);
 
-        double startLat, startLng;
-        double destLat, destLng;
-        try {
-            startLat = mData.get(0).getDouble(Blackbox.DATA_LATITUDE);
-            startLng = mData.get(0).getDouble(Blackbox.DATA_LONGITUDE);
-
-            destLat = mData.get(mData.size() - 1).getDouble(Blackbox.DATA_LATITUDE);
-            destLng = mData.get(mData.size() - 1).getDouble(Blackbox.DATA_LONGITUDE);
-        } catch (JSONException e) {
-            Log.w("DataActivity", "Unable to init route: " + e.getMessage());
-            return;
-        }
+        double startLat = mMeasurements.get(0).latitude;
+        double startLng = mMeasurements.get(0).longitude;
+        double destLat = mMeasurements.get(mMeasurements.size() - 1).latitude;
+        double destLng = mMeasurements.get(mMeasurements.size() - 1).longitude;
 
         mRouteStart.setText(getAddressFromLatLng(startLat, startLng));
         mRouteDestination.setText(getAddressFromLatLng(destLat, destLng));
@@ -308,15 +259,10 @@ public class DataActivity extends AppCompatActivity {
         color.setStrokeWidth((float) GRAPH_DEFAULT_THICKNESS);
         speedValues.setCustomPaint(color);
 
-        for (int i = 0; i < mData.size(); i++) {
-            JSONObject data = mData.get(i);
-
-            try {
-                double speed = data.getDouble(Blackbox.DATA_SPEED);
-                speedValues.appendData(new DataPoint(i, speed), true, mData.size(), true);
-            } catch (JSONException e) {
-                Log.w("DataActivity", "Unable to add value to graph: " + e.getMessage());
-            }
+        for (int i = 0; i < mMeasurements.size(); i++) {
+            Measurement data = mMeasurements.get(i);
+            double speed = data.heartrate;
+            speedValues.appendData(new DataPoint(i, speed), true, mMeasurements.size(), true);
         }
 
         mGraphSpeed.setData(speedValues);

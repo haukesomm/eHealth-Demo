@@ -161,8 +161,8 @@ public class BlackboxAdapter extends BaseAdapter {
             @Override
             public void onClick(View view) {
                 Intent dataActivity = new Intent(mContext, DataActivity.class);
-                dataActivity.putExtra(DataActivity.EXTRA_BLACKBOX_TABLE, table);
-                dataActivity.putExtra(DataActivity.EXTRA_DATE, date);
+                //dataActivity.putExtra(DataActivity.EXTRA_BLACKBOX_TABLE, table);
+                //dataActivity.putExtra(DataActivity.EXTRA_DATE, date);
                 mContext.startActivity(dataActivity);
             }
         });
