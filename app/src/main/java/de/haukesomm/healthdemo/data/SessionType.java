@@ -11,6 +11,10 @@
 
 package de.haukesomm.healthdemo.data;
 
+import android.support.annotation.StringRes;
+
+import de.haukesomm.healthdemo.R;
+
 /**
  * Created on 25.08.18
  * <p>
@@ -24,22 +28,22 @@ public enum SessionType {
     /**
      * Default type if no other was assigned
      */
-    DEFAULT("default"),
+    DEFAULT("default", R.string.session_type_description_default),
 
     /**
      * Walking
      */
-    WALK("walk"),
+    WALK("walk", R.string.session_type_description_walk),
 
     /**
      * Running
      */
-    RUN("run"),
+    RUN("run", R.string.session_type_description_run),
 
     /**
      * Cycling
      */
-    BICYCLE("bicycle");
+    BICYCLE("bicycle", R.string.session_type_description_bicycle);
 
 
     /**
@@ -47,9 +51,16 @@ public enum SessionType {
      */
     public final String alias;
 
+    /**
+     * String resource with type description
+     */
+    @StringRes
+    public final int descriptionRes;
 
-    SessionType(String databaseAlias) {
+
+    SessionType(String databaseAlias, @StringRes int descriptionRes) {
         this.alias = databaseAlias;
+        this.descriptionRes = descriptionRes;
     }
 
 

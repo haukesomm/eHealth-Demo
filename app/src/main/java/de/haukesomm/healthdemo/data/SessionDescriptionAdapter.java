@@ -117,7 +117,7 @@ public class SessionDescriptionAdapter extends BaseAdapter {
         title.setText(description.description);
 
         TextView summary = view.findViewById(R.id.view_adapter_sessioninfo_summary);
-        summary.setText(description.type.alias);
+        summary.setText(description.type.descriptionRes);
 
         view.setOnClickListener(new View.OnClickListener() {
             @Override
