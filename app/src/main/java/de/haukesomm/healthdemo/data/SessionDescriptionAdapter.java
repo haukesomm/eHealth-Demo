@@ -113,11 +113,11 @@ public class SessionDescriptionAdapter extends BaseAdapter {
 
         SessionDescription description = mSessionDescriptions.get(position);
 
-        //TextView title = view.findViewById(R.id.view_adapter_sessioninfo_title);
-        //title.setText(""); TODO Add session title to JSON data
+        TextView title = view.findViewById(R.id.view_adapter_sessioninfo_title);
+        title.setText(description.description);
 
         TextView summary = view.findViewById(R.id.view_adapter_sessioninfo_summary);
-        summary.setText(description.toString());
+        summary.setText(description.type.alias);
 
         view.setOnClickListener(new View.OnClickListener() {
             @Override

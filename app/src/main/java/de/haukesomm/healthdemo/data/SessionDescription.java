@@ -32,6 +32,11 @@ public class SessionDescription {
      */
     public final SessionType type;
 
+    /**
+     * Session description
+     */
+    public final String description;
+
 
     /**
      * Creates a new SessionDescription from an ID and {@link SessionType}
@@ -39,9 +44,10 @@ public class SessionDescription {
      * @param id    The Session's ID
      * @param type  The Session's Type
      */
-    public SessionDescription(int id, SessionType type) {
+    public SessionDescription(int id, SessionType type, String description) {
         this.id = id;
         this.type = type;
+        this.description = description;
     }
 
 

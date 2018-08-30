@@ -68,14 +68,15 @@ public class DataActivity extends AppCompatActivity {
         setContentView(R.layout.activity_data);
         bindActivity();
 
+
+        initData();
+
         setSupportActionBar(mToolbar);
         if (getSupportActionBar() != null) {
-            getSupportActionBar().setTitle(R.string.session_defaultTitle);
+            getSupportActionBar().setTitle(mSession.description);
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
 
-
-        initData();
         initMap();
         initRoute();
         initGraphs();
@@ -147,6 +148,8 @@ public class DataActivity extends AppCompatActivity {
 
 
 
+    private Session mSession;
+
     private List<Measurement> mMeasurements;
 
 
@@ -162,7 +165,8 @@ public class DataActivity extends AppCompatActivity {
 
 
         try (SessionDatabase database = new SessionDatabase(this)) {
-            mMeasurements = database.get(id).getMeasurements();
+            mSession = database.get(id);
+            mMeasurements = mSession.getMeasurements();
         }
     }
 

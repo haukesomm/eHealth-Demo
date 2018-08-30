@@ -45,6 +45,8 @@ public class SessionDatabase extends SQLiteOpenHelper implements AutoCloseable {
 
     private static final String TABLE_SESSIONS_TYPE = "session_type";
 
+    private static final String TABLE_SESSIONS_DESCRIPTION = "session_description";
+
 
     private static final String ID = "id";
 
@@ -78,8 +80,9 @@ public class SessionDatabase extends SQLiteOpenHelper implements AutoCloseable {
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("CREATE TABLE " + TABLE_SESSIONS + "("
-                + TABLE_SESSIONS_ID + " INTEGER NOT NULL PRIMARY KEY,"
-                + TABLE_SESSIONS_TYPE + " INTEGER NOT NULL);"
+                + TABLE_SESSIONS_ID             + " INTEGER NOT NULL PRIMARY KEY,"
+                + TABLE_SESSIONS_TYPE           + " INTEGER NOT NULL,"
+                + TABLE_SESSIONS_DESCRIPTION    + " TEXT NOT NULL);"
         );
 
         initMockupData(db);
@@ -160,7 +163,8 @@ public class SessionDatabase extends SQLiteOpenHelper implements AutoCloseable {
                 while (!sessionCursor.isAfterLast()) {
                     sessions.add(new SessionDescription(
                             sessionCursor.getInt(0),
-                            SessionType.get(sessionCursor.getString(1))));
+                            SessionType.get(sessionCursor.getString(1)),
+                            sessionCursor.getString(2)));
                     sessionCursor.moveToNext();
                 }
             }
@@ -205,6 +209,7 @@ public class SessionDatabase extends SQLiteOpenHelper implements AutoCloseable {
         ContentValues sessionInfo = new ContentValues();
         sessionInfo.put(TABLE_SESSIONS_ID, session.id);
         sessionInfo.put(TABLE_SESSIONS_TYPE, session.type.alias);
+        sessionInfo.put(TABLE_SESSIONS_DESCRIPTION, session.description);
         db.insert(TABLE_SESSIONS, null, sessionInfo);
     }
 
@@ -224,7 +229,10 @@ public class SessionDatabase extends SQLiteOpenHelper implements AutoCloseable {
 
             sessionCursor.moveToFirst();
 
-            Session session = new Session(id, SessionType.get(sessionCursor.getString(1)));
+            Session session = new Session(
+                    id,
+                    SessionType.get(sessionCursor.getString(1)),
+                    sessionCursor.getString(2));
 
             try (Cursor measurementCursor = mDatabase.query(convertToTableName(id), null, null, null,
                     null, null, null)) {

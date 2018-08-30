@@ -35,8 +35,8 @@ public class Session extends SessionDescription {
      * @param id    Session ID
      * @param type  Session Type
      */
-    Session(int id, SessionType type) {
-        super(id, type);
+    Session(int id, SessionType type, String description) {
+        super(id, type, description);
     }
 
 

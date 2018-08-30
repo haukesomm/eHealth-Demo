@@ -77,15 +77,24 @@ public class SessionAssetReader {
     }
 
     private Session readSession(AssetManager manager, String name) throws IOException {
-        int id = fileNameToId(name);
-        Session session = new Session(id, SessionType.DEFAULT);
-
         JsonReader reader = new JsonReader(new InputStreamReader(manager.open(name), "UTF-8"));
+        reader.beginObject();
+
+        Session session;
+        reader.nextName();
+        SessionType type = SessionType.get(reader.nextString());
+        reader.nextName();
+        String description = reader.nextString();
+        session = new Session(0, type, description);
+
         try {
+            reader.nextName();
             session.addAll(readMeasurementArray(reader));
         } catch (IOException e) {
             reader.close();
         }
+
+        reader.endObject();
 
         return session;
     }
