@@ -19,6 +19,7 @@
         android:id="@+id/activity_preferences_privacy_fragment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/margin_default"
         android:name="de.haukesomm.healthdemo.privacy.PrivacyModeChooserFragment" />
 
     <View
