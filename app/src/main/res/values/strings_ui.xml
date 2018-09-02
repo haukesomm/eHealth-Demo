@@ -28,9 +28,9 @@
 
     <string name="privacy_chooser_contentHidden">Tap on the arrow to expand this section.</string>
     <string name="privacy_chooser_info">
-        Please note: Your insurance plan may rise or lower in price depending on the selected
-        privacy mode.\n
-        Have a look at the decumentation below in case you are unsure which option to choose.
+        Please note: This app evaluates your eHealth data in order to provide you the best
+        ad-experience possible. Changing your privacy mode may result in ads not matching your
+        interests.
     </string>
     <string name="privacy_chooser_moreInfo">More Information</string>
     <string name="privacy_chooser_title">Privacy Mode</string>
