@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <resources>
-    <string name="app_name">eHealth Demo</string>
+    <string name="app_name">eHealth demo</string>
 
     <string name="data_delete">Delete</string>
     <string name="data_graph_maximum">Maximum</string>
