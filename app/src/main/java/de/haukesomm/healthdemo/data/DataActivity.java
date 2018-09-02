@@ -104,19 +104,7 @@ public class DataActivity extends AppCompatActivity {
                 finish();
                 return true;
 
-            // TODO Add delete option
-            /*case R.id.activity_data_menuAction_delete:
-                return true;*/
-
-            case R.id.activity_data_menuAction_report:
-                AlertDialog.Builder dialog = new AlertDialog.Builder(this);
-                dialog.setIcon(R.drawable.ic_report);
-                dialog.setTitle(R.string.data_report_title);
-                dialog.setMessage(R.string.data_report_message);
-                // Dummy buttons for demo purposes only
-                dialog.setNegativeButton(R.string.cancel, null);
-                dialog.setPositiveButton(R.string.data_report_proceed, null);
-                dialog.show();
+            case R.id.activity_data_menuAction_delete:
                 return true;
         }
 
