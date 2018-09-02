@@ -28,19 +28,13 @@
             android:summary="@string/privacy_custom_data_time_summary"/>
 
         <CheckBoxPreference
-            android:key="@string/pref_bool_privacy_data_space"
-            android:title="@string/privacy_custom_data_space_title"
-            android:summary="@string/privacy_custom_data_space_summary"/>
-
-        <CheckBoxPreference
             android:key="@string/pref_bool_privacy_data_gps"
-            android:title="@string/privacy_custom_data_gps_title"
-            android:summary="@string/privacy_custom_data_gps_summary"/>
+            android:title="@string/privacy_custom_data_gps_title"/>
 
         <CheckBoxPreference
-            android:key="@string/pref_bool_privacy_data_speed"
-            android:title="@string/privacy_custom_speed_title"
-            android:summary="@string/privacy_custom_data_speed_summary"/>
+            android:key="@string/pref_bool_privacy_data_heart"
+            android:title="@string/privacy_custom_data_heart_title"
+            android:summary="@string/privacy_custom_data_heart_summary"/>
 
     </PreferenceCategory>
 

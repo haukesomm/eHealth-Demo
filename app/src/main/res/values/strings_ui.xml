@@ -2,18 +2,20 @@
 <resources>
     <string name="app_name">eHealth demo</string>
 
+    <string name="cancel">Cancel</string>
+
     <string name="data_delete">Delete</string>
     <string name="data_graph_maximum">Maximum</string>
     <string name="data_graph_minimum">Minimum</string>
     <string name="data_graph_speed_title">Speed</string>
     <string name="data_map_mapsNotInstalled">Please install the Google Maps app.</string>
     <string name="data_notAvailable">No data available</string>
-    <string name="data_report_title">Report false data</string>
     <string name="data_report_message">If you encounter false data that has a negative effect on
         your insurance plan you can report it here. It will be checked by a professional and we will
         inform you once it was removed. Abuse of this feature will result in extra charges. Are you
         sure you want to proceed?</string>
     <string name="data_report_proceed">Report</string>
+    <string name="data_report_title">Report false data</string>
     <string name="data_route_title">Route</string>
     <string name="data_title">Your driving data</string>
     <string name="data_unit_speed_kph_full">Kilometers per hour</string>
@@ -21,9 +23,9 @@
     <string name="data_unit_speed_mph_full">Miles per hour</string>
     <string name="data_unit_speed_mph_short">mph</string>
 
+    <string name="main_mode">Your Privacy Mode</string>
     <string name="main_overview">Overview</string>
     <string name="main_recent">Recent Activity</string>
-    <string name="main_mode">Your Privacy Mode</string>
     <string name="main_timeline">Timeline</string>
 
     <string name="privacy_chooser_contentHidden">Tap on the arrow to expand this section.</string>
@@ -34,18 +36,15 @@
     </string>
     <string name="privacy_chooser_moreInfo">More Information</string>
     <string name="privacy_chooser_title">Privacy Mode</string>
-    <string name="privacy_custom_data">Which data would you like to submit?</string>
-    <string name="privacy_custom_data_gps_summary">Check for risk areas (e.g. high traffic roads)</string>
+    <string name="privacy_custom_data">What data would you like to submit?</string>
     <string name="privacy_custom_data_gps_title">GPS location</string>
-    <string name="privacy_custom_data_space_summary">Monitor safety distance</string>
-    <string name="privacy_custom_data_space_title">Vehicle space</string>
-    <string name="privacy_custom_data_speed_summary">Monitor vehicle speed</string>
-    <string name="privacy_custom_data_time_summary">Analyze your driving habits</string>
+    <string name="privacy_custom_data_heart_summary">Analyze your health condition</string>
+    <string name="privacy_custom_data_heart_title">Heartrate</string>
+    <string name="privacy_custom_data_time_summary">Analyze your fitness habits</string>
     <string name="privacy_custom_data_time_title">Timestamps</string>
     <string name="privacy_custom_general">General</string>
     <string name="privacy_custom_general_auto_title">Automatically submit data</string>
     <string name="privacy_custom_general_interval_title">Data collection interval</string>
-    <string name="privacy_custom_speed_title">Speed</string>
     <string name="privacy_mode_custom_description">0–65% - Flexible Plan\nSelected Data Only</string>
     <string name="privacy_mode_custom_title">User Defined</string>
     <string name="privacy_mode_maximum_description">0% - Personalized Plan\nMaximum Amount of Data</string>
@@ -58,15 +57,14 @@
     <string name="privacy_mode_unknown_title">Unknown</string>
 
     <string name="session_defaultTitle">Untitled Fitness Session</string>
-    <string name="session_type_description_default">Default</string>
-    <string name="session_type_description_walk">Walking</string>
-    <string name="session_type_description_run">Running</string>
-    <string name="session_type_description_bicycle">Bicycle</string>
     <string name="session_heartrate">Heartrate</string>
+    <string name="session_type_description_bicycle">Bicycle</string>
+    <string name="session_type_description_default">Default</string>
+    <string name="session_type_description_run">Running</string>
+    <string name="session_type_description_walk">Walking</string>
 
     <string name="settings_privacy">Privacy Settings</string>
     <string name="settings_title">Settings</string>
 
     <string name="unknown">Unknown</string>
-    <string name="cancel">Cancel</string>
 </resources>
