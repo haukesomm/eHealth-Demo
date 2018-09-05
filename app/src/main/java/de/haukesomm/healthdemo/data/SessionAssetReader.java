@@ -19,6 +19,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Random;
 
 /**
  * Created on 26.08.18
@@ -85,7 +86,8 @@ public class SessionAssetReader {
         SessionType type = SessionType.get(reader.nextString());
         reader.nextName();
         String description = reader.nextString();
-        session = new Session(0, type, description);
+        // TODO Remove ugly workaround
+        session = new Session(Math.abs(new Random().nextInt(1000)), type, description);
 
         try {
             reader.nextName();
