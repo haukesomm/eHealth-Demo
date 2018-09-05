@@ -14,6 +14,8 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 
+import de.haukesomm.healthdemo.data.SessionDatabase;
+
 /**
  * Created on 03.12.17
  * <p>
@@ -30,6 +32,8 @@ public class SplashActivity extends AppCompatActivity {
     private final Runnable mLaunchRunnable = new Runnable() {
         @Override
         public void run() {
+            initSessionDatabase();
+
             Intent mainActivity = new Intent(getApplicationContext(), MainActivity.class);
             startActivity(mainActivity);
             overridePendingTransition(android.R.anim.fade_in, R.anim.none);
@@ -90,5 +94,12 @@ public class SplashActivity extends AppCompatActivity {
             startDelayedLaunch();
         }
         super.onResume();
+    }
+
+
+
+    private void initSessionDatabase() {
+        SessionDatabase database = new SessionDatabase(getApplicationContext());
+        database.close();
     }
 }
