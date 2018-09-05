@@ -1,0 +1,606 @@
+{
+	"type": "bicycle",
+	"description": "Bike ride to university",
+	"measurements": [
+		{
+			"timestamp": "2018-12-07T06:12:32-08:00",
+			"latitude": "53.566876",
+			"longitude": "9.984454",
+			"heartrate": 118
+		},
+		{
+			"timestamp": "2019-05-30T23:03:49-07:00",
+			"latitude": "53.566876",
+			"longitude": "9.984454",
+			"heartrate": 73
+		},
+		{
+			"timestamp": "2019-07-04T12:02:48-07:00",
+			"latitude": "53.566876",
+			"longitude": "9.984454",
+			"heartrate": 151
+		},
+		{
+			"timestamp": "2018-01-24T08:48:33-08:00",
+			"latitude": "53.566876",
+			"longitude": "9.984454",
+			"heartrate": 114
+		},
+		{
+			"timestamp": "2019-02-19T07:54:23-08:00",
+			"latitude": "53.566876",
+			"longitude": "9.984454",
+			"heartrate": 146
+		},
+		{
+			"timestamp": "2019-01-15T17:40:48-08:00",
+			"latitude": "53.566876",
+			"longitude": "9.984454",
+			"heartrate": 78
+		},
+		{
+			"timestamp": "2019-08-17T12:57:33-07:00",
+			"latitude": "53.566876",
+			"longitude": "9.984454",
+			"heartrate": 154
+		},
+		{
+			"timestamp": "2018-07-16T03:41:46-07:00",
+			"latitude": "53.566876",
+			"longitude": "9.984454",
+			"heartrate": 101
+		},
+		{
+			"timestamp": "2019-05-08T08:40:25-07:00",
+			"latitude": "53.566876",
+			"longitude": "9.984454",
+			"heartrate": 108
+		},
+		{
+			"timestamp": "2019-03-08T20:28:28-08:00",
+			"latitude": "53.566876",
+			"longitude": "9.984454",
+			"heartrate": 90
+		},
+		{
+			"timestamp": "2018-04-03T21:29:46-07:00",
+			"latitude": "53.566876",
+			"longitude": "9.984454",
+			"heartrate": 152
+		},
+		{
+			"timestamp": "2017-08-28T14:23:05-07:00",
+			"latitude": "53.566876",
+			"longitude": "9.984454",
+			"heartrate": 71
+		},
+		{
+			"timestamp": "2019-04-24T23:07:16-07:00",
+			"latitude": "53.566876",
+			"longitude": "9.984454",
+			"heartrate": 80
+		},
+		{
+			"timestamp": "2018-10-29T07:21:18-07:00",
+			"latitude": "53.566876",
+			"longitude": "9.984454",
+			"heartrate": 89
+		},
+		{
+			"timestamp": "2018-12-02T13:51:50-08:00",
+			"latitude": "53.566876",
+			"longitude": "9.984454",
+			"heartrate": 108
+		},
+		{
+			"timestamp": "2019-08-04T17:47:10-07:00",
+			"latitude": "53.566876",
+			"longitude": "9.984454",
+			"heartrate": 97
+		},
+		{
+			"timestamp": "2018-12-27T11:37:37-08:00",
+			"latitude": "53.566876",
+			"longitude": "9.984454",
+			"heartrate": 149
+		},
+		{
+			"timestamp": "2017-11-29T00:03:39-08:00",
+			"latitude": "53.566876",
+			"longitude": "9.984454",
+			"heartrate": 88
+		},
+		{
+			"timestamp": "2019-03-19T19:15:39-07:00",
+			"latitude": "53.566876",
+			"longitude": "9.984454",
+			"heartrate": 126
+		},
+		{
+			"timestamp": "2017-10-28T18:55:36-07:00",
+			"latitude": "53.566876",
+			"longitude": "9.984454",
+			"heartrate": 100
+		},
+		{
+			"timestamp": "2018-11-12T12:07:27-08:00",
+			"latitude": "53.566876",
+			"longitude": "9.984454",
+			"heartrate": 108
+		},
+		{
+			"timestamp": "2017-11-16T17:58:49-08:00",
+			"latitude": "53.566876",
+			"longitude": "9.984454",
+			"heartrate": 158
+		},
+		{
+			"timestamp": "2018-06-22T14:50:37-07:00",
+			"latitude": "53.566876",
+			"longitude": "9.984454",
+			"heartrate": 158
+		},
+		{
+			"timestamp": "2019-02-03T20:41:17-08:00",
+			"latitude": "53.566876",
+			"longitude": "9.984454",
+			"heartrate": 141
+		},
+		{
+			"timestamp": "2018-08-08T11:29:36-07:00",
+			"latitude": "53.566876",
+			"longitude": "9.984454",
+			"heartrate": 84
+		},
+		{
+			"timestamp": "2018-10-19T18:32:48-07:00",
+			"latitude": "53.566876",
+			"longitude": "9.984454",
+			"heartrate": 75
+		},
+		{
+			"timestamp": "2017-11-23T12:45:34-08:00",
+			"latitude": "53.566876",
+			"longitude": "9.984454",
+			"heartrate": 126
+		},
+		{
+			"timestamp": "2018-11-24T09:16:53-08:00",
+			"latitude": "53.566876",
+			"longitude": "9.984454",
+			"heartrate": 74
+		},
+		{
+			"timestamp": "2018-12-22T01:24:42-08:00",
+			"latitude": "53.566876",
+			"longitude": "9.984454",
+			"heartrate": 134
+		},
+		{
+			"timestamp": "2019-01-28T06:52:20-08:00",
+			"latitude": "53.566876",
+			"longitude": "9.984454",
+			"heartrate": 152
+		},
+		{
+			"timestamp": "2018-09-15T21:14:37-07:00",
+			"latitude": "53.566876",
+			"longitude": "9.984454",
+			"heartrate": 72
+		},
+		{
+			"timestamp": "2018-05-18T22:39:11-07:00",
+			"latitude": "53.566876",
+			"longitude": "9.984454",
+			"heartrate": 76
+		},
+		{
+			"timestamp": "2018-04-22T09:56:41-07:00",
+			"latitude": "53.566876",
+			"longitude": "9.984454",
+			"heartrate": 126
+		},
+		{
+			"timestamp": "2018-10-16T18:06:54-07:00",
+			"latitude": "53.566876",
+			"longitude": "9.984454",
+			"heartrate": 152
+		},
+		{
+			"timestamp": "2017-08-28T09:12:15-07:00",
+			"latitude": "53.566876",
+			"longitude": "9.984454",
+			"heartrate": 150
+		},
+		{
+			"timestamp": "2018-07-23T20:36:00-07:00",
+			"latitude": "53.566876",
+			"longitude": "9.984454",
+			"heartrate": 114
+		},
+		{
+			"timestamp": "2018-10-13T00:14:11-07:00",
+			"latitude": "53.566876",
+			"longitude": "9.984454",
+			"heartrate": 109
+		},
+		{
+			"timestamp": "2018-01-28T11:33:15-08:00",
+			"latitude": "53.566876",
+			"longitude": "9.984454",
+			"heartrate": 133
+		},
+		{
+			"timestamp": "2017-09-01T02:19:25-07:00",
+			"latitude": "53.566876",
+			"longitude": "9.984454",
+			"heartrate": 146
+		},
+		{
+			"timestamp": "2019-03-11T19:43:13-07:00",
+			"latitude": "53.566876",
+			"longitude": "9.984454",
+			"heartrate": 107
+		},
+		{
+			"timestamp": "2018-07-03T02:53:10-07:00",
+			"latitude": "53.566876",
+			"longitude": "9.984454",
+			"heartrate": 106
+		},
+		{
+			"timestamp": "2018-09-23T22:31:59-07:00",
+			"latitude": "53.566876",
+			"longitude": "9.984454",
+			"heartrate": 119
+		},
+		{
+			"timestamp": "2017-11-25T17:21:06-08:00",
+			"latitude": "53.566876",
+			"longitude": "9.984454",
+			"heartrate": 160
+		},
+		{
+			"timestamp": "2019-06-09T17:24:02-07:00",
+			"latitude": "53.566876",
+			"longitude": "9.984454",
+			"heartrate": 148
+		},
+		{
+			"timestamp": "2019-02-05T13:17:02-08:00",
+			"latitude": "53.566876",
+			"longitude": "9.984454",
+			"heartrate": 107
+		},
+		{
+			"timestamp": "2018-10-05T06:50:13-07:00",
+			"latitude": "53.566876",
+			"longitude": "9.984454",
+			"heartrate": 110
+		},
+		{
+			"timestamp": "2019-01-08T00:29:12-08:00",
+			"latitude": "53.566876",
+			"longitude": "9.984454",
+			"heartrate": 79
+		},
+		{
+			"timestamp": "2019-01-01T05:23:15-08:00",
+			"latitude": "53.566876",
+			"longitude": "9.984454",
+			"heartrate": 151
+		},
+		{
+			"timestamp": "2018-05-18T17:57:45-07:00",
+			"latitude": "53.566876",
+			"longitude": "9.984454",
+			"heartrate": 105
+		},
+		{
+			"timestamp": "2017-10-24T11:46:09-07:00",
+			"latitude": "53.566876",
+			"longitude": "9.984454",
+			"heartrate": 132
+		},
+		{
+			"timestamp": "2019-03-17T12:12:22-07:00",
+			"latitude": "53.566876",
+			"longitude": "9.984454",
+			"heartrate": 103
+		},
+		{
+			"timestamp": "2019-07-19T17:45:46-07:00",
+			"latitude": "53.566876",
+			"longitude": "9.984454",
+			"heartrate": 127
+		},
+		{
+			"timestamp": "2019-02-16T17:01:18-08:00",
+			"latitude": "53.566876",
+			"longitude": "9.984454",
+			"heartrate": 150
+		},
+		{
+			"timestamp": "2019-03-19T08:16:59-07:00",
+			"latitude": "53.566876",
+			"longitude": "9.984454",
+			"heartrate": 107
+		},
+		{
+			"timestamp": "2019-08-18T14:49:12-07:00",
+			"latitude": "53.566876",
+			"longitude": "9.984454",
+			"heartrate": 85
+		},
+		{
+			"timestamp": "2019-07-17T07:39:21-07:00",
+			"latitude": "53.566876",
+			"longitude": "9.984454",
+			"heartrate": 106
+		},
+		{
+			"timestamp": "2017-10-09T17:29:32-07:00",
+			"latitude": "53.566876",
+			"longitude": "9.984454",
+			"heartrate": 144
+		},
+		{
+			"timestamp": "2019-07-04T01:14:05-07:00",
+			"latitude": "53.566876",
+			"longitude": "9.984454",
+			"heartrate": 141
+		},
+		{
+			"timestamp": "2019-07-12T01:12:15-07:00",
+			"latitude": "53.566876",
+			"longitude": "9.984454",
+			"heartrate": 152
+		},
+		{
+			"timestamp": "2019-07-24T20:45:03-07:00",
+			"latitude": "53.566876",
+			"longitude": "9.984454",
+			"heartrate": 160
+		},
+		{
+			"timestamp": "2019-08-01T04:58:28-07:00",
+			"latitude": "53.566876",
+			"longitude": "9.984454",
+			"heartrate": 109
+		},
+		{
+			"timestamp": "2019-04-16T13:48:06-07:00",
+			"latitude": "53.566876",
+			"longitude": "9.984454",
+			"heartrate": 83
+		},
+		{
+			"timestamp": "2018-01-04T14:11:10-08:00",
+			"latitude": "53.566876",
+			"longitude": "9.984454",
+			"heartrate": 155
+		},
+		{
+			"timestamp": "2018-06-21T00:23:42-07:00",
+			"latitude": "53.566876",
+			"longitude": "9.984454",
+			"heartrate": 134
+		},
+		{
+			"timestamp": "2018-12-09T07:36:17-08:00",
+			"latitude": "53.566876",
+			"longitude": "9.984454",
+			"heartrate": 160
+		},
+		{
+			"timestamp": "2019-06-25T22:32:37-07:00",
+			"latitude": "53.566876",
+			"longitude": "9.984454",
+			"heartrate": 91
+		},
+		{
+			"timestamp": "2018-03-19T17:07:04-07:00",
+			"latitude": "53.566876",
+			"longitude": "9.984454",
+			"heartrate": 107
+		},
+		{
+			"timestamp": "2018-02-27T13:47:11-08:00",
+			"latitude": "53.566876",
+			"longitude": "9.984454",
+			"heartrate": 103
+		},
+		{
+			"timestamp": "2018-04-23T07:58:24-07:00",
+			"latitude": "53.566876",
+			"longitude": "9.984454",
+			"heartrate": 155
+		},
+		{
+			"timestamp": "2018-10-06T16:50:51-07:00",
+			"latitude": "53.566876",
+			"longitude": "9.984454",
+			"heartrate": 140
+		},
+		{
+			"timestamp": "2018-02-07T14:00:29-08:00",
+			"latitude": "53.566876",
+			"longitude": "9.984454",
+			"heartrate": 114
+		},
+		{
+			"timestamp": "2018-01-26T19:40:18-08:00",
+			"latitude": "53.566876",
+			"longitude": "9.984454",
+			"heartrate": 99
+		},
+		{
+			"timestamp": "2019-03-22T06:12:48-07:00",
+			"latitude": "53.566876",
+			"longitude": "9.984454",
+			"heartrate": 127
+		},
+		{
+			"timestamp": "2019-01-26T22:15:10-08:00",
+			"latitude": "53.566876",
+			"longitude": "9.984454",
+			"heartrate": 101
+		},
+		{
+			"timestamp": "2018-10-27T01:22:56-07:00",
+			"latitude": "53.566876",
+			"longitude": "9.984454",
+			"heartrate": 141
+		},
+		{
+			"timestamp": "2019-03-05T05:36:32-08:00",
+			"latitude": "53.566876",
+			"longitude": "9.984454",
+			"heartrate": 104
+		},
+		{
+			"timestamp": "2019-03-27T04:53:59-07:00",
+			"latitude": "53.566876",
+			"longitude": "9.984454",
+			"heartrate": 101
+		},
+		{
+			"timestamp": "2018-08-21T11:11:21-07:00",
+			"latitude": "53.566876",
+			"longitude": "9.984454",
+			"heartrate": 110
+		},
+		{
+			"timestamp": "2018-12-09T16:01:18-08:00",
+			"latitude": "53.566876",
+			"longitude": "9.984454",
+			"heartrate": 118
+		},
+		{
+			"timestamp": "2018-12-19T12:29:26-08:00",
+			"latitude": "53.566876",
+			"longitude": "9.984454",
+			"heartrate": 111
+		},
+		{
+			"timestamp": "2019-04-08T15:48:46-07:00",
+			"latitude": "53.566876",
+			"longitude": "9.984454",
+			"heartrate": 127
+		},
+		{
+			"timestamp": "2018-04-18T09:00:34-07:00",
+			"latitude": "53.566876",
+			"longitude": "9.984454",
+			"heartrate": 135
+		},
+		{
+			"timestamp": "2018-03-22T06:25:01-07:00",
+			"latitude": "53.566876",
+			"longitude": "9.984454",
+			"heartrate": 102
+		},
+		{
+			"timestamp": "2019-01-31T17:11:23-08:00",
+			"latitude": "53.566876",
+			"longitude": "9.984454",
+			"heartrate": 154
+		},
+		{
+			"timestamp": "2018-11-10T19:03:25-08:00",
+			"latitude": "53.566876",
+			"longitude": "9.984454",
+			"heartrate": 150
+		},
+		{
+			"timestamp": "2019-07-31T06:46:43-07:00",
+			"latitude": "53.566876",
+			"longitude": "9.984454",
+			"heartrate": 107
+		},
+		{
+			"timestamp": "2018-07-19T12:50:59-07:00",
+			"latitude": "53.566876",
+			"longitude": "9.984454",
+			"heartrate": 78
+		},
+		{
+			"timestamp": "2019-06-17T18:36:54-07:00",
+			"latitude": "53.566876",
+			"longitude": "9.984454",
+			"heartrate": 74
+		},
+		{
+			"timestamp": "2017-11-03T11:22:55-07:00",
+			"latitude": "53.566876",
+			"longitude": "9.984454",
+			"heartrate": 135
+		},
+		{
+			"timestamp": "2018-03-25T02:06:11-07:00",
+			"latitude": "53.566876",
+			"longitude": "9.984454",
+			"heartrate": 142
+		},
+		{
+			"timestamp": "2019-06-26T02:44:30-07:00",
+			"latitude": "53.566876",
+			"longitude": "9.984454",
+			"heartrate": 120
+		},
+		{
+			"timestamp": "2018-03-21T10:37:43-07:00",
+			"latitude": "53.566876",
+			"longitude": "9.984454",
+			"heartrate": 129
+		},
+		{
+			"timestamp": "2017-10-27T21:33:11-07:00",
+			"latitude": "53.566876",
+			"longitude": "9.984454",
+			"heartrate": 133
+		},
+		{
+			"timestamp": "2018-11-17T17:49:02-08:00",
+			"latitude": "53.566876",
+			"longitude": "9.984454",
+			"heartrate": 105
+		},
+		{
+			"timestamp": "2019-07-30T21:39:03-07:00",
+			"latitude": "53.566876",
+			"longitude": "9.984454",
+			"heartrate": 73
+		},
+		{
+			"timestamp": "2019-02-13T12:13:40-08:00",
+			"latitude": "53.566876",
+			"longitude": "9.984454",
+			"heartrate": 124
+		},
+		{
+			"timestamp": "2019-04-06T18:13:18-07:00",
+			"latitude": "53.566876",
+			"longitude": "9.984454",
+			"heartrate": 78
+		},
+		{
+			"timestamp": "2017-09-10T08:04:51-07:00",
+			"latitude": "53.566876",
+			"longitude": "9.984454",
+			"heartrate": 122
+		},
+		{
+			"timestamp": "2018-09-24T11:46:13-07:00",
+			"latitude": "53.566876",
+			"longitude": "9.984454",
+			"heartrate": 124
+		},
+		{
+			"timestamp": "2018-11-29T12:40:13-08:00",
+			"latitude": "53.562937",
+			"longitude": "9.965547",
+			"heartrate": 73
+		}
+	]
+}
