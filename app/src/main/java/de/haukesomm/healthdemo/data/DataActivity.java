@@ -105,6 +105,9 @@ public class DataActivity extends AppCompatActivity {
                 return true;
 
             case R.id.activity_data_menuAction_delete:
+                // TODO Implement
+                Toast.makeText(getApplicationContext(), "This feature was not yet implemented.",
+                        Toast.LENGTH_LONG).show();
                 return true;
         }
 
