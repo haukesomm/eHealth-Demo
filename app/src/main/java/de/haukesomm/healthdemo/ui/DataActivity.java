@@ -1,10 +1,12 @@
 /*
- * This file is part of the "Telematics App Mockup" project.
- * Copyright 2017, Hauke Sommerfeld and Sarah Schulz-Mukisa
- *  
+ * This file is part of the "eHealth-Demo" project, formerly known as
+ * "Telematics App Mockup".
+ * Copyright 2017-2018, Hauke Sommerfeld and Sarah Schulz-Mukisa
+ *
  * Licensed under the MIT license.
- * A copy can be obtained under the following link:
- * https://github.com/haukesomm/Telematics-App-Mockup/blob/master/LICENSE
+ *
+ * For more information and/or a copy of the license visit the following
+ * GitHub repository: https://github.com/haukesomm/eHealth-Demo
  */
 
 package de.haukesomm.healthdemo.ui;
