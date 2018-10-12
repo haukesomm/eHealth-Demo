@@ -23,7 +23,7 @@ import de.haukesomm.healthdemo.privacy.PrivacyMode;
  * Created on 21.02.18
  * <p>
  * This Activity contains both the {@link PrivacyModeChooserFragment} and
- * {@link CustomPrivacyModeFragment} which together make up the privacy settings.
+ * {@link PrivacyModeCustomizationFragment} which together make up the privacy settings.
  *
  * @author Hauke Sommerfeld
  */
@@ -62,7 +62,7 @@ public class PrivacyPreferenceActivity extends AppCompatActivity
     private PrivacyModeChooserFragment mModeChooser;
 
 
-    private CustomPrivacyModeFragment mCustomPreferences;
+    private PrivacyModeCustomizationFragment mCustomPreferences;
 
 
     private void bindActivity() {
@@ -78,7 +78,7 @@ public class PrivacyPreferenceActivity extends AppCompatActivity
         mModeChooser = (PrivacyModeChooserFragment)
                 getSupportFragmentManager().findFragmentById(R.id.activity_preferences_privacy_fragment);
         mModeChooser.setCollapsible(true);
-        mCustomPreferences = (CustomPrivacyModeFragment)
+        mCustomPreferences = (PrivacyModeCustomizationFragment)
                 getFragmentManager().findFragmentById(R.id.activity_preferences_privacy_fragment_userdefined);
     }
 

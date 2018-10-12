@@ -29,6 +29,6 @@
         android:id="@+id/activity_preferences_privacy_fragment_userdefined"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:name="de.haukesomm.healthdemo.ui.CustomPrivacyModeFragment" />
+        android:name="de.haukesomm.healthdemo.ui.PrivacyModeCustomizationFragment" />
 
 </LinearLayout>

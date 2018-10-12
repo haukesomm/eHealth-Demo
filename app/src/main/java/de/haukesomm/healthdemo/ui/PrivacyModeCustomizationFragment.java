@@ -25,7 +25,7 @@ import de.haukesomm.healthdemo.privacy.PrivacyMode;
  *
  * @author Hauke Sommerfeld
  */
-public class CustomPrivacyModeFragment extends PreferenceFragment {
+public class PrivacyModeCustomizationFragment extends PreferenceFragment {
 
     /**
      * {@inheritDoc}
