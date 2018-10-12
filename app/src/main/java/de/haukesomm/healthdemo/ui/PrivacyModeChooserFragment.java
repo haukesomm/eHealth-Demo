@@ -7,7 +7,7 @@
  * https://github.com/haukesomm/Telematics-App-Mockup/blob/master/LICENSE
  */
 
-package de.haukesomm.healthdemo.privacy;
+package de.haukesomm.healthdemo.ui;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -21,7 +21,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
@@ -30,6 +29,8 @@ import android.widget.TextView;
 import java.util.Arrays;
 
 import de.haukesomm.healthdemo.R;
+import de.haukesomm.healthdemo.privacy.PrivacyMode;
+import de.haukesomm.healthdemo.privacy.PrivacyModeAdapter;
 
 /**
  * Created on 21.02.18
@@ -112,9 +113,12 @@ public class PrivacyModeChooserFragment extends Fragment {
                 _contentHidden.setVisibility(!_visible
                         ? View.VISIBLE
                         : View.GONE);
-                mContentToggle.setImageDrawable(getContext().getDrawable(_visible
-                        ? R.drawable.ic_less
-                        : R.drawable.ic_more));
+
+                if (getContext() != null) {
+                    mContentToggle.setImageDrawable(getContext().getDrawable(_visible
+                            ? R.drawable.ic_less
+                            : R.drawable.ic_more));
+                }
             }
         });
 

@@ -7,7 +7,7 @@
  * https://github.com/haukesomm/Telematics-App-Mockup/blob/master/LICENSE
  */
 
-package de.haukesomm.healthdemo;
+package de.haukesomm.healthdemo.ui;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -20,6 +20,7 @@ import android.widget.ListView;
 
 import java.util.List;
 
+import de.haukesomm.healthdemo.R;
 import de.haukesomm.healthdemo.data.SessionDatabase;
 import de.haukesomm.healthdemo.data.SessionDescription;
 import de.haukesomm.healthdemo.data.SessionDescriptionAdapter;

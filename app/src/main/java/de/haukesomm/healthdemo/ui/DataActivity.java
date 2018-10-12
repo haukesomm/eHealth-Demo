@@ -7,13 +7,12 @@
  * https://github.com/haukesomm/Telematics-App-Mockup/blob/master/LICENSE
  */
 
-package de.haukesomm.healthdemo.data;
+package de.haukesomm.healthdemo.ui;
 
 import android.graphics.Paint;
 import android.location.Address;
 import android.location.Geocoder;
 import android.os.Bundle;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -38,6 +37,9 @@ import java.util.LinkedList;
 import java.util.List;
 
 import de.haukesomm.healthdemo.R;
+import de.haukesomm.healthdemo.data.Measurement;
+import de.haukesomm.healthdemo.data.Session;
+import de.haukesomm.healthdemo.data.SessionDatabase;
 
 /**
  * Created on 09.12.17

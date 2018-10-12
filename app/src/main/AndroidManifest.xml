@@ -23,7 +23,7 @@
 
 
         <activity
-            android:name=".SplashActivity"
+            android:name=".ui.SplashActivity"
             android:theme="@style/AppTheme.SplashScreen"
             android:screenOrientation="portrait"
             android:noHistory="true">
@@ -36,7 +36,7 @@
         </activity>
 
         <activity
-            android:name=".MainActivity"
+            android:name=".ui.MainActivity"
             android:theme="@style/AppTheme"
             android:screenOrientation="portrait">
 
@@ -48,7 +48,7 @@
         </activity>
 
         <activity
-            android:name=".data.DataActivity"
+            android:name=".ui.DataActivity"
             android:theme="@style/AppTheme"
             android:screenOrientation="portrait">
 
@@ -60,7 +60,7 @@
         </activity>
 
         <activity
-            android:name=".privacy.PrivacyPreferenceActivity"
+            android:name=".ui.PrivacyPreferenceActivity"
             android:theme="@style/AppTheme"
             android:screenOrientation="portrait">
 

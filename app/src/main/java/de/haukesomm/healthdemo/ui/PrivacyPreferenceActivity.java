@@ -7,7 +7,7 @@
  * https://github.com/haukesomm/Telematics-App-Mockup/blob/master/LICENSE
  */
 
-package de.haukesomm.healthdemo.privacy;
+package de.haukesomm.healthdemo.ui;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -15,6 +15,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
 import de.haukesomm.healthdemo.R;
+import de.haukesomm.healthdemo.privacy.PrivacyMode;
 
 /**
  * Created on 21.02.18

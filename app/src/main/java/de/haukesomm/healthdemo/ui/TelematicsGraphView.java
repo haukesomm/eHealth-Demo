@@ -7,7 +7,7 @@
  * https://github.com/haukesomm/Telematics-App-Mockup/blob/master/LICENSE
  */
 
-package de.haukesomm.healthdemo.data;
+package de.haukesomm.healthdemo.ui;
 
 import android.content.Context;
 import android.content.res.TypedArray;

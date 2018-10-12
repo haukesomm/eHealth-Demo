@@ -24,6 +24,7 @@ import android.widget.TextView;
 import java.util.List;
 
 import de.haukesomm.healthdemo.R;
+import de.haukesomm.healthdemo.ui.DataActivity;
 
 /**
  * Created on 29.08.18

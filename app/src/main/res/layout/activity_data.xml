@@ -28,7 +28,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
                 android:name="com.google.android.gms.maps.SupportMapFragment"
-                tools:context="de.haukesomm.healthdemo.data.DataActivity" />
+                tools:context="de.haukesomm.healthdemo.ui.DataActivity" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -72,7 +72,7 @@
             <View
                 style="@style/Divider" />
 
-            <de.haukesomm.healthdemo.data.TelematicsGraphView
+            <de.haukesomm.healthdemo.ui.TelematicsGraphView
                 android:id="@+id/activity_data_graph_speed"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
