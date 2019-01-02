@@ -9,8 +9,8 @@
 
     <ImageView
         android:id="@+id/privacy_mode_overview_icon"
-        android:layout_width="72dp"
-        android:layout_height="72dp"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
         android:layout_margin="@dimen/margin_small"
         android:src="@drawable/ic_privacy_mode_unknown"
         android:tint="@color/colorAccent"/>
