@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/activity_policy_privacy_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:elevation="4dp"
+        app:title="Privacy Policy"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/activity_policy_privacy_toolbar"
+        android:clipToPadding="false"
+        android:paddingBottom="88dp"> <!-- Bottom padding equals height of fab + margins -->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_default"
+                style="@style/Text.Title.Primary"
+                android:background="@drawable/shape_chip"
+                android:textColor="@android:color/white"
+                android:text="@string/privacy_setup_policy_title"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_default"
+                android:layout_marginEnd="@dimen/margin_default"
+                style="@style/Text.Title.Primary"
+                android:text="@string/privacy_setup_policy_subtitle"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_large"
+                android:layout_gravity="center_horizontal"
+                android:orientation="vertical">
+
+                <!-- TODO Mockup. Populate dynamically at runtime -->
+
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/Text.Body1.Primary"
+                    android:text="Key feature of privacy policy 1"/>
+
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/Text.Body1.Primary"
+                    android:text="Key feature of privacy policy 2"/>
+
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/Text.Body1.Primary"
+                    android:text="Key feature of privacy policy 3"/>
+
+            </LinearLayout>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:background="@android:color/transparent"
+                android:textColor="@color/colorAccent"
+                android:text="@string/privacy_setup_policy_showAll"/>
+
+            <View
+                style="@style/Divider"
+                android:layout_marginTop="@dimen/margin_default"
+                android:layout_marginBottom="@dimen/margin_default"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_default"
+                style="@style/Text.Title.Primary"
+                android:background="@drawable/shape_chip"
+                android:textColor="@android:color/white"
+                android:text="@string/privacy_setup_mode_title"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_default"
+                android:layout_marginEnd="@dimen/margin_default"
+                style="@style/Text.Title.Primary"
+                android:text="@string/privacy_setup_mode_subtitle"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_default"
+                android:layout_marginEnd="@dimen/margin_default"
+                style="@style/Text.Body1.Secondary"
+                android:text="@string/privacy_setup_mode_subsubtitle"/>
+
+            <de.haukesomm.healthdemo.privacy.PrivacyModeView
+                android:id="@+id/activity_policy_privacy_mode"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_large"
+                android:layout_gravity="center_horizontal"/>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <!--<android.support.design.widget.FloatingActionButton
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:layout_margin="@dimen/margin_default"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/ic_done"
+        android:tint="@android:color/white"/>-->
+
+</RelativeLayout>

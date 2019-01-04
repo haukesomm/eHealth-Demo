@@ -12,8 +12,10 @@
 package de.haukesomm.healthdemo.ui;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
+import android.preference.PreferenceManager;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -43,6 +45,12 @@ import de.haukesomm.healthdemo.privacy.PrivacyModeView;
  */
 public class MainActivity extends AppCompatActivity {
 
+    private static final int REQUEST_PRIVACY_SETUP = 10100;
+
+
+    private SharedPreferences mPrefs;
+
+
     /**
      * {@inheritDoc}
      */
@@ -50,10 +58,14 @@ public class MainActivity extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        mPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+
         bindActivity();
 
         initSearch();
         initFragments();
+
+        launchSetupIfNecessary();
     }
 
 
@@ -91,6 +103,9 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         switch (requestCode) {
+            case REQUEST_PRIVACY_SETUP:
+                mPrefs.edit().putBoolean(getString(R.string.pref_bool_privacy_setupPending), false)
+                        .apply();
             case PrivacyModeView.REQUEST_SELECT_PRIVACY_MODE:
                 mOverviewFragment.updatePrivacyMode();
                 break;
@@ -231,5 +246,14 @@ public class MainActivity extends AppCompatActivity {
                         Toast.LENGTH_LONG).show();
             }
         });
+    }
+
+
+
+    private void launchSetupIfNecessary() {
+        if (mPrefs.getBoolean(getString(R.string.pref_bool_privacy_setupPending), true)) {
+            Intent setup = new Intent(this, PrivacySetupActivity.class);
+            startActivityForResult(setup, REQUEST_PRIVACY_SETUP);
+        }
     }
 }

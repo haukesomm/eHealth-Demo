@@ -98,6 +98,8 @@ public class OverviewFragment extends Fragment {
     private PrivacyModeView mPrivacyModeView;
 
 
+    // TODO Make this method part of the View itself
+    @Deprecated
     public void updatePrivacyMode() {
         int id = mPrefs
                 .getInt(getString(R.string.pref_int_privacy_lastModeID), PrivacyMode.UNKNOWN.getID());
