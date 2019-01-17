@@ -200,7 +200,7 @@ public class BlackboxAdapter extends BaseAdapter {
                     + (locality != null ? locality : "");
 
             textView.setText(formattedAddress);
-        } catch (IOException | JSONException e) {
+        } catch (IndexOutOfBoundsException| IOException | JSONException e) {
             // Do nothing (text set to 'unknown' by default via XML resource)
         }
     }

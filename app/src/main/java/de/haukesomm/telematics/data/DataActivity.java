@@ -416,7 +416,7 @@ public class DataActivity extends AppCompatActivity implements AppBarLayout.OnOf
         try {
             Address address = mGeocoder.getFromLocation(lat, lng, 1).get(0);
             return address.getAddressLine(0);
-        } catch (IOException e) {
+        } catch (IndexOutOfBoundsException | IOException e) {
             return getString(R.string.unknown);
         }
     }
