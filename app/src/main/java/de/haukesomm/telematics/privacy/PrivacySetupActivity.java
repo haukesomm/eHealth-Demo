@@ -70,7 +70,7 @@ public class PrivacySetupActivity extends AppCompatActivity {
     public void updatePrivacyMode() {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
         int id = prefs
-                .getInt(getString(R.string.pref_int_privacy_lastModeID), PrivacyMode.UNKNOWN.getID());
+                .getInt(getString(R.string.pref_int_privacy_lastModeID), PrivacyMode.MAXIMUM_DATA.getID());
         PrivacyMode mode = PrivacyMode.fromID(id);
         mPrivacyModeView.setMode(mode);
     }
