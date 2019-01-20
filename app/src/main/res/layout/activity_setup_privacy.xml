@@ -54,19 +54,21 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     style="@style/Text.Body1.Primary"
-                    android:text="Key feature of privacy policy 1"/>
+                    android:text="In order to track my health accurately, it is important to use as many different device sensors as possible"/>
 
                 <CheckBox
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_small"
                     style="@style/Text.Body1.Primary"
-                    android:text="Key feature of privacy policy 2"/>
+                    android:text="I am okay with my health data being processed in the cloud"/>
 
                 <CheckBox
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_small"
                     style="@style/Text.Body1.Primary"
-                    android:text="Key feature of privacy policy 3"/>
+                    android:text="I would like to share parts of my health data anonymously in order to help detecting diseases more accurately"/>
 
             </LinearLayout>
 

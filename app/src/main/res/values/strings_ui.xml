@@ -57,8 +57,8 @@
     <string name="privacy_mode_unknown_title">Unknown</string>
     <string name="privacy_setup_finish">Finish Setup</string>
     <string name="privacy_setup_policy_title">Step 1</string>
-    <string name="privacy_setup_policy_subtitle">Please select the parts of our privacy policy that
-        you agree with most</string>
+    <string name="privacy_setup_policy_subtitle">Please select the statements about our privacy
+        policy that you agree with most</string>
     <string name="privacy_setup_policy_showAll">Show Entire Policy</string>
     <string name="privacy_setup_mode_title">Step 2</string>
     <string name="privacy_setup_mode_subtitle">Please select a Privacy Mode</string>
